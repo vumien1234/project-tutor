@@ -1,0 +1,308 @@
+//input login/register
+.css-1wc848c-MuiFormHelperText-root.Mui-error {
+    margin: 0 !important;
+}
+
+.underline_1,
+.underline {
+    width: 200px;
+    height: 2px;
+    background-color: #e54924;
+    margin: auto;
+    margin-top: 5px;
+}
+.underline_1 {
+    width: 300px !important;
+    margin-top: 5px !important;
+}
+// cloud
+@keyframes cloudFloat {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-200px);
+    }
+    50% {
+        transform: translateY(-400px);
+    }
+    75% {
+        transform: translateY(-200px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.animate-cloud {
+    opacity: 0.5;
+    animation: cloudFloat 30s ease-in-out infinite;
+}
+@keyframes CloudFloat_1 {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-150px);
+    }
+    50% {
+        transform: translateY(-250px);
+    }
+    75% {
+        transform: translateY(-150px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.animate-cloud_1 {
+    opacity: 0.5;
+    animation: CloudFloat_1 30s ease-in-out infinite;
+}
+.animate-cloud_2 {
+    opacity: 0.5;
+    animation: CloudFloat_2 30s ease-in-out infinite;
+}
+@keyframes CloudFloat_2 {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-250px);
+    }
+    50% {
+        transform: translateY(-350px);
+    }
+    75% {
+        transform: translateY(-250px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+// star
+.animate-star {
+    animation: StarFloat 10s ease-in-out infinite;
+}
+
+@keyframes StarFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+// animation_img
+.animation_img {
+    animation: animationFloat 15s ease-in-out infinite;
+}
+@keyframes animationFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateX(-70px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.item_slider_auto {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-left-radius: 50% 100%;
+    border-bottom-right-radius: 50% 100%;
+    overflow: hidden;
+}
+.box_slider_auto {
+    position: relative;
+    width: 240px;
+    height: 120px;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%);
+    border-bottom-left-radius: 50% 100%;
+    border-bottom-right-radius: 50% 100%;
+    overflow: hidden;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+}
+
+// custom react-slick
+.slick-slide > div {
+    margin: 0 10px;
+}
+
+// star
+.star {
+    color: rgb(255, 234, 0);
+    font-size: 27px;
+    margin-right: 15px;
+}
+// css dots
+.dot {
+    border-color: #c1c1c1 !important;
+}
+
+.slick-dots li.slick-active .dot {
+    border-color: #e85a38 !important;
+}
+
+.slick-dots li.slick-active .dot div {
+    background-color: #e85a38 !important;
+}
+
+.slider-container .slick-list {
+    padding-bottom: 30px !important;
+}
+
+// introduce
+.Ellipse {
+    margin-left: -70px;
+    animation: rotate 15s linear infinite;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid rgb(252, 172, 172);
+    transform: scale(1);
+    animation: ripple-animation 8s ease-out infinite;
+    margin-left: -50px;
+}
+
+.ripple-1 {
+    height: 20px;
+    width: 20px;
+    left: 30px;
+    bottom: -10px;
+    animation-delay: 0s;
+}
+
+.ripple-2 {
+    height: 40px;
+    width: 40px;
+    left: 25px;
+    bottom: -15px;
+    animation-delay: 1s;
+}
+
+.ripple-3 {
+    height: 60px;
+    width: 60px;
+    left: 20px;
+    bottom: -20px;
+    animation-delay: 2s;
+}
+
+.ripple-4 {
+    height: 80px;
+    width: 80px;
+    left: 15px;
+    bottom: -25px;
+    animation-delay: 3s;
+}
+
+@keyframes ripple-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+
+.animate_number_tutor {
+    animation: animation_2 10s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+@keyframes animation_2 {
+    0% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.animate_number_student {
+    animation: animation_1 10s ease-in-out infinite;
+    animation-delay: 5s;
+}
+
+@keyframes animation_1 {
+    0% {
+        transform: translateY(0);
+    }
+    70% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+// icon-introduce
+
+.slick-dots {
+    bottom: -30px !important;
+}
+@keyframes rotate-slightly {
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    40% {
+        transform: rotate(-10deg);
+    }
+    60% {
+        transform: rotate(10deg);
+    }
+    80% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-rotate-slightly {
+    animation: rotate-slightly 0.5s infinite;
+}
+.react-calendar {
+    border: none !important;
+}

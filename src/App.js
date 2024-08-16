@@ -1,10 +1,20 @@
+// App.js
 import React from "react";
+import Routing from "./routes/Routing";
+import './assets/css/custom.scss';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ScrollToTop from "./modules/scrollToTop/ScrollToTop";
+import { Provider } from 'react-redux';
+import store from './config/store';
 
-const App = () =>{
-  return(
-    <div>
-      <h1>Miên</h1>
-    </div>
-  )
-}
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Routing />
+      <ScrollToTop />
+    </Provider>
+  );
+};
+
 export default App;
