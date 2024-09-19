@@ -1,12 +1,16 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { TextField} from '@mui/material';
+import { TextField } from '@mui/material';
 import ImageSignUp from '../../../assets/image/register.png';
 import CustomButton from '../../../components/common/Button';
 import { makeStyles } from '@mui/styles';
 import LogoWeb from '../../../assets/image/logo-web.png';
+import { notification } from 'antd';
+import { useDispatch } from 'react-redux';
+import { createUser } from './api';
 
 const Signup = () => {
+  const dispatch = useDispatch()
   const classes = useStyles();
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -15,9 +19,14 @@ const Signup = () => {
     }
   });
 
-  const handleSignUp = (data) => {
-    console.log('login', data);
-    // Add your login logic here
+  const handleSignUp = async (data) => {
+    await dispatch(createUser({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      role: "student"
+    }))
+    console.log(data)
   };
 
   return (
@@ -26,7 +35,7 @@ const Signup = () => {
         <div className='flex flex-col justify-center items-center bg-gray-90'>
           <div className='text-center w-full max-w-md px-8 mx-auto'>
             <div>
-                <img src={LogoWeb} alt="Website logo" className="w-[90px] h-[90px] mx-auto" />
+              <img src={LogoWeb} alt="Website logo" className="w-[90px] h-[90px] mx-auto" />
               <p className='text-[14px] text-[#ccc]'>Gia sư tận tâm, thành công cho bạn !</p>
             </div>
             <h2 className='text-[#205493] font-bold text-xl uppercase mt-2'>Đăng ký</h2>
@@ -40,24 +49,6 @@ const Signup = () => {
                     <TextField
                       {...field}
                       label="Username"
-                      variant="outlined"
-                      fullWidth
-                      error={!!fieldState.error}
-                      helperText={fieldState.error ? fieldState.error.message : ''}
-                      className={classes.input}
-                    />
-                  )}
-                />
-              </div>
-              <div className='mb-4'>
-                <Controller
-                  name='phone'
-                  control={control}
-                  rules={{ required: 'phone is required' }}
-                  render={({ field, fieldState }) => (
-                    <TextField
-                      {...field}
-                      label="Phone"
                       variant="outlined"
                       fullWidth
                       error={!!fieldState.error}
@@ -104,7 +95,7 @@ const Signup = () => {
                   )}
                 />
               </div>
-              <div>
+              {/* <div>
                 <Controller
                   name="confirm-password"
                   control={control}
@@ -122,7 +113,7 @@ const Signup = () => {
                     />
                   )}
                 />
-              </div>
+              </div> */}
 
               <div className='my-7'>
                 <CustomButton className='w-2/4 h-11' type="success" color="primary">Đăng ký</CustomButton>
@@ -131,7 +122,7 @@ const Signup = () => {
           </div>
         </div>
         <div className='relative h-full hidden md:block'>
-            <img src={ImageSignUp} alt="Login banner" className='absolute inset-0 w-full h-full object-cover' />
+          <img src={ImageSignUp} alt="Login banner" className='absolute inset-0 w-full h-full object-cover' />
         </div>
       </div>
     </div>
@@ -143,7 +134,7 @@ export default Signup;
 const useStyles = makeStyles({
   input: {
     '& .MuiInputBase-root': {
-      height: '50px', 
+      height: '50px',
       paddingLeft: '10px',
     },
     '& .MuiInputLabel-root': {

@@ -1,5 +1,14 @@
-import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import SendRequest from "../../../utils/sendRequest";
 
-export const getToken = async (params) => {
-    return await axios.post("https://reqres.in/api/login", params);
-};
+export const loginAction = createAsyncThunk("auth/login", async (payload, thunkAPI) => {
+    const url = "/users/login";
+    let res = await SendRequest(url, payload, thunkAPI, "POST");
+    return res;
+});
+
+export const createUser = createAsyncThunk("auth/create-me", async (payload, thunkAPI) => {
+    const url = "/users";
+    let res = await SendRequest(url, payload, thunkAPI, "POST");
+    return res;
+});
