@@ -18,11 +18,14 @@ export const authSlice = createSlice({
             localStorage.removeItem("token");
             // redirect to login page
             window.location.href = "/login";
+        },
+        setRememberPage: (state, action) => {
+            state.rememberPage = action.payload;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(loginAction.fulfilled, (state, action) => {
-            localStorage.setItem("token", action.payload.access_token);
+            localStorage.setItem("token", action.payload.token);
         });
         builder.addCase(getUserData.fulfilled, (state, action) => {
             state.currentUser = action.payload;
@@ -37,5 +40,5 @@ export const authSlice = createSlice({
     }
 });
 
-export const { logOut } = authSlice.actions;
+export const { logOut, setRememberPage } = authSlice.actions;
 export default authSlice.reducer;

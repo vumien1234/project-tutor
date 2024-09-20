@@ -8,14 +8,12 @@ import CustomButton from '../../../components/common/Button';
 import { makeStyles } from '@mui/styles';
 import LogoWeb from '../../../assets/image/logo-web.png';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../routes/router';
+import { Link } from 'react-router-dom';
 import { loginAction } from './api';
 
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -25,11 +23,11 @@ const Login = () => {
 
   const handleLogin = useCallback(async (data) => {
     const rs = await dispatch(loginAction(data))
-    console.log(data)
     if (rs.payload?.token) {
-      navigate(routes.home.path)
+      const rememberPage = localStorage.getItem('rememberPage') || '/'
+      window.location.href = rememberPage
     }
-  }, [dispatch, navigate])
+  }, [dispatch])
 
 
   return (
@@ -69,7 +67,7 @@ const Login = () => {
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
-                      label="Password"
+                      label="Mật Khẩu"
                       type="password"
                       variant="outlined"
                       fullWidth
@@ -80,8 +78,8 @@ const Login = () => {
                   )}
                 />
               </div>
-              <div className='flex justify-between items-center text-[14px] text-[#0D5EF4]'>
-                <p><a href='/signup'>Đăng ký</a></p>
+              <div className='flex mt-2 justify-between items-center text-[14px] text-[#0D5EF4]'>
+                <p><Link to='/signup'>Đăng ký</Link></p>
                 <p >Quên mật khẩu ?</p>
               </div>
               <div className='my-7'>

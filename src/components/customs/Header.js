@@ -10,8 +10,10 @@ import { RiMenu3Fill, RiUser3Line } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { navLinksClassList, navLinksDefault } from "../constants/dataHeader";
 import Avata from "../../assets/image/avata-default.png";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+    const currentUser = useSelector((state) => state.auth.currentUser);
     const [searchParams] = useSearchParams();
     const tabParam = searchParams.get("tab");
     const navigate = useNavigate();
@@ -61,9 +63,8 @@ const Header = () => {
         return links.map((link) => (
             <div
                 key={link.path}
-                className={`nav-link cursor-pointer p-5 md:py-0 hover:bg-hover-default md:px-0 md:bg-transparent md:hover:bg-transparent ${
-                    activeTab === link.path ? "text-yellow-500" : ""
-                } overflow-y-auto`}
+                className={`nav-link cursor-pointer p-5 md:py-0 hover:bg-hover-default md:px-0 md:bg-transparent md:hover:bg-transparent ${activeTab === link.path ? "text-yellow-500" : ""
+                    } overflow-y-auto`}
                 onClick={() => handleTabClick(link.path)}>
                 {link.label}
             </div>
@@ -107,9 +108,8 @@ const Header = () => {
                     </div>
 
                     <div
-                        className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform transform ${
-                            toggle ? "translate-x-0" : "translate-x-full"
-                        } h-screen md:hidden`}>
+                        className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform transform ${toggle ? "translate-x-0" : "translate-x-full"
+                            } h-screen md:hidden`}>
                         <div className="flex justify-between p-5">
                             <div className="flex gap-5 flex-col sm:flex-row">
                                 <CustomButton title="Đăng kí làm gia sư" color="secondary" />
@@ -162,29 +162,37 @@ const Header = () => {
                                 0395219002
                             </a>
                         </div>
-                        <div className="relative group">
-                            <div className="w-[50px] h-[50px] rounded-full bg-white flex items-center justify-center cursor-pointer">
-                                <img
-                                    src={AvataDefault}
-                                    alt="AvataDefault"
-                                    className="w-[30px] h-[30px]"
-                                />
-                            </div>
-                            <div className="absolute w-[290px] right-0 top-full hidden group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
-                                <div className="flex flex-col cursor-pointer bg-white text-black shadow-lg">
-                                    <div className="p-2">
-                                        <Tab
-                                            detail="Thông tin cá nhân"
-                                            Icon={RiUser3Line}
-                                            onClick={() =>
-                                                navigate("/ho-so?tab=thong-tin-nguoi-dung")
-                                            }
-                                        />
-                                        <Tab detail="Đăng xuất" Icon={IoIosLogOut} />
+                        {Object.keys(currentUser).length > 0 ? (
+                            <div className="relative group">
+                                <div className="w-[50px] h-[50px] rounded-full bg-white flex items-center justify-center cursor-pointer">
+                                    <img
+                                        src={AvataDefault}
+                                        alt="AvataDefault"
+                                        className="w-[30px] h-[30px]"
+                                    />
+                                </div>
+                                <div className="absolute w-[290px] right-0 top-full hidden group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
+                                    <div className="flex flex-col cursor-pointer bg-white text-black shadow-lg">
+                                        <div className="p-2">
+                                            <Tab detail={currentUser.username} />
+                                            <Tab
+                                                detail="Thông tin cá nhân"
+                                                Icon={RiUser3Line}
+                                                onClick={() =>
+                                                    navigate("/ho-so?tab=thong-tin-nguoi-dung")
+                                                }
+                                            />
+                                            <Tab detail="Đăng xuất" Icon={IoIosLogOut} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>) : (
+                            <Link to="/login">
+                                <button className="bg-white text-black px-5 py-2 rounded">
+                                    Đăng nhập
+                                </button>
+                            </Link>
+                        )}
                     </div>
                 </Container>
             </div>

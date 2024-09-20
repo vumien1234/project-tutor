@@ -12,3 +12,9 @@ export const createUser = createAsyncThunk("auth/create-me", async (payload, thu
     let res = await SendRequest(url, payload, thunkAPI, "POST");
     return res;
 });
+
+export const getUserData = createAsyncThunk("auth/get-user-data", async (payload, thunkAPI) => {
+    const url = "/users/me";
+    let res = await SendRequest(url, null, thunkAPI, "GET");
+    return res;
+});

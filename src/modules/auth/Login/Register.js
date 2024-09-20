@@ -5,11 +5,12 @@ import ImageSignUp from '../../../assets/image/register.png';
 import CustomButton from '../../../components/common/Button';
 import { makeStyles } from '@mui/styles';
 import LogoWeb from '../../../assets/image/logo-web.png';
-import { notification } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createUser } from './api';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   const classes = useStyles();
   const { handleSubmit, control } = useForm({
@@ -20,13 +21,16 @@ const Signup = () => {
   });
 
   const handleSignUp = async (data) => {
-    await dispatch(createUser({
-      username: data.username,
+    let res = await dispatch(createUser({
+      full_name: data.full_name,
       email: data.email,
       password: data.password,
       role: "student"
     }))
-    console.log(data)
+    console.log(res)
+    if (res.payload) {
+      navigate('/login')
+    }
   };
 
   return (
@@ -42,13 +46,13 @@ const Signup = () => {
             <form onSubmit={handleSubmit(handleSignUp)} className='w-full text-center mt-4'>
               <div className='mb-4'>
                 <Controller
-                  name='username'
+                  name='full_name'
                   control={control}
-                  rules={{ required: 'username is required' }}
+                  rules={{ required: 'full_name is required' }}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
-                      label="Username"
+                      label="Họ và Tên"
                       variant="outlined"
                       fullWidth
                       error={!!fieldState.error}
@@ -78,13 +82,32 @@ const Signup = () => {
               </div>
               <div className='mb-4'>
                 <Controller
+                  name="phone"
+                  control={control}
+                  rules={{ required: 'phone is required' }}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      label="Số điện Thoại"
+                      type="phone"
+                      variant="outlined"
+                      fullWidth
+                      error={!!fieldState.error}
+                      helperText={fieldState.error ? fieldState.error.message : ''}
+                      className={classes.input}
+                    />
+                  )}
+                />
+              </div>
+              <div className='mb-4'>
+                <Controller
                   name="password"
                   control={control}
                   rules={{ required: 'Password is required' }}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
-                      label="Password"
+                      label="Mât khẩu"
                       type="password"
                       variant="outlined"
                       fullWidth
@@ -95,25 +118,11 @@ const Signup = () => {
                   )}
                 />
               </div>
-              {/* <div>
-                <Controller
-                  name="confirm-password"
-                  control={control}
-                  rules={{ required: 'Confirm password is required' }}
-                  render={({ field, fieldState }) => (
-                    <TextField
-                      {...field}
-                      label="Confirm-password"
-                      type="password"
-                      variant="outlined"
-                      fullWidth
-                      error={!!fieldState.error}
-                      helperText={fieldState.error ? fieldState.error.message : ''}
-                      className={classes.input}
-                    />
-                  )}
-                />
-              </div> */}
+
+              {/* go to login */}
+              <div className='text'>
+                Đã có tài khoản ? <Link className='text-[#0D5EF4]' to='/login'>Đăng nhập</Link>
+              </div>
 
               <div className='my-7'>
                 <CustomButton className='w-2/4 h-11' type="success" color="primary">Đăng ký</CustomButton>

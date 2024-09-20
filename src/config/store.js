@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import scrollReducer from '../modules/scrollToTop/slices';
 import { loadingSlice } from "../components/loading/loadingSlice";
+import { authSlice } from "../modules/auth/Login/slices";
 
 const rootReducer = combineReducers({
   loading: loadingSlice.reducer,
+  auth: authSlice.reducer,
   scroll: scrollReducer,
 });
 
