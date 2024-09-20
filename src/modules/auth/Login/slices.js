@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserData, loginAction } from "./api";
+import { getUserData, loginAction, updateUser } from "./api";
 
 const initialState = {
     currentUser: {},
@@ -21,6 +21,12 @@ export const authSlice = createSlice({
         },
         setRememberPage: (state, action) => {
             state.rememberPage = action.payload;
+        },
+        updateUserData: (state, action) => {
+            state.currentUser = {
+                ...state.currentUser,
+                ...action.payload
+            };
         }
     },
     extraReducers: (builder) => {
@@ -40,5 +46,5 @@ export const authSlice = createSlice({
     }
 });
 
-export const { logOut, setRememberPage } = authSlice.actions;
+export const { logOut, setRememberPage, updateUserData } = authSlice.actions;
 export default authSlice.reducer;

@@ -47,6 +47,12 @@ const Header = () => {
         setToggle(false);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        // reload page
+        window.location.reload();
+    };
+
     useEffect(() => {
         if (toggle) {
             document.body.classList.add("overflow-hidden");
@@ -162,31 +168,35 @@ const Header = () => {
                                 0395219002
                             </a>
                         </div>
+
                         {Object.keys(currentUser).length > 0 ? (
                             <div className="relative group">
-                                <div className="w-[50px] h-[50px] rounded-full bg-white flex items-center justify-center cursor-pointer">
+                                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center cursor-pointer">
                                     <img
                                         src={AvataDefault}
                                         alt="AvataDefault"
-                                        className="w-[30px] h-[30px]"
+                                        className="w-8 h-8"
                                     />
                                 </div>
+
                                 <div className="absolute w-[290px] right-0 top-full hidden group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
                                     <div className="flex flex-col cursor-pointer bg-white text-black shadow-lg">
                                         <div className="p-2">
-                                            <Tab detail={currentUser.username} />
+                                            <div className="flex flex-col items-start mb-2">
+                                                <span className="text-lg font-semibold normal-case">Username: {currentUser.username}</span>
+                                                <span className="text-sm text-gray-600 normal-case">Vai trò: {currentUser.role}</span>
+                                            </div>
                                             <Tab
                                                 detail="Thông tin cá nhân"
                                                 Icon={RiUser3Line}
-                                                onClick={() =>
-                                                    navigate("/ho-so?tab=thong-tin-nguoi-dung")
-                                                }
+                                                onClick={() => navigate("/ho-so?tab=thong-tin-nguoi-dung")}
                                             />
-                                            <Tab detail="Đăng xuất" Icon={IoIosLogOut} />
+                                            <Tab detail="Đăng xuất" Icon={IoIosLogOut} onClick={() => handleLogout()} />
                                         </div>
                                     </div>
                                 </div>
-                            </div>) : (
+                            </div>
+                        ) : (
                             <Link to="/login">
                                 <button className="bg-white text-black px-5 py-2 rounded">
                                     Đăng nhập
@@ -194,6 +204,7 @@ const Header = () => {
                             </Link>
                         )}
                     </div>
+
                 </Container>
             </div>
         </div>

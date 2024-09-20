@@ -24,6 +24,8 @@ const Signup = () => {
     let res = await dispatch(createUser({
       full_name: data.full_name,
       email: data.email,
+      phone: data.phone,
+      is_active: true,
       password: data.password,
       role: "student"
     }))

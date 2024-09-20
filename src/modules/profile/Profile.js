@@ -54,7 +54,7 @@ const Profile = () => {
                                 isActive={activeTab === "lich-hoc"}
                                 onClick={() => handleClickTab("lich-hoc")}
                             />
-                             <Tab
+                            <Tab
                                 detail="Khóa học đăng kí"
                                 Icon={FaBook}
                                 isActive={activeTab === "khoa-hoc-dang-ki"}
