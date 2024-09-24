@@ -27,7 +27,7 @@ const UserInforRegister = ({ setStep }) => {
         <>
             <div className="py-12 w-full">
                 <h5>Hồ sơ đăng kí</h5>
-                <h6 className="font-semibold py-5">Thông tin người dùng</h6>
+                <h6 className="font-semibold pt-5">Thông tin người dùng</h6>
                 <form onSubmit={handleSubmit(handleRegister)}>
                     <UserDefault />
                     <div className="flex md:flex-row flex-col md:gap-5 md:mt-5">
@@ -63,9 +63,9 @@ const UserInforRegister = ({ setStep }) => {
                             accept=".png, .jpg, .jpeg"
                             type="file"
                             placeholder="Mặt trước thẻ sinh viên trường Phenikaa"
-                            {...register("photo", {
-                                required: "Vui lòng nhập mặt trước thẻ sinh viên trường Phenikaa",
-                            })}
+                            // {...register("photo", {
+                            //     required: "Vui lòng nhập mặt trước thẻ sinh viên trường Phenikaa",
+                            // })}
                             onChange={handleFileUpload}
                             className={`${
                                 errors.photo ? "border-red-500" : ""

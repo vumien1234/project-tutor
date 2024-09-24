@@ -3,7 +3,7 @@ import { FaPhoneVolume } from "react-icons/fa6";
 
 const CallButton = () => {
     return (
-        <div className="fixed top-[80%] left-10 md:left-3 flex items-center space-x-4 z-50">
+        <div className="fixed top-[80%] left-10 md:left-3 md:flex items-center space-x-4 z-50 hidden">
             <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-red-600 opacity-20 animate-ping"></div>
                 <div className="absolute inset-0 rounded-full bg-red-600 opacity-20 animate-ping delay-100"></div>

@@ -43,7 +43,7 @@ export default function Confirm() {
             </h6>
             <div className="flex flex-col justify-center md:flex-row items-center gap-5">
                 <Link to="/ho-so?tab=khoa-hoc-dang-ki">
-                    <CustomButton title="Kiểm tra đơn hàng" icon={FaArrowRight} />
+                    <CustomButton title="Kiểm tra đơn hàng" icon={FaArrowRight} color="primary1"/>
                 </Link>
                 <Link to="/danh-sach-lop">
                     <CustomButton title="Đăng ký lớp học mới" type="outline1" />

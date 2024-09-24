@@ -2,7 +2,7 @@ import React from "react";
 
 const UserDefault = () => {
     return (
-        <div className="mt-0 md:mt-5">
+        <div>
             <div className="flex md:flex-row flex-col md:gap-5 ">
                 <div className="flex flex-col w-full mt-5 md:mt-0 ">
                     <h6 className="mb-3">Họ và tên</h6>

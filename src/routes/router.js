@@ -12,11 +12,12 @@ import UserInfor from "../modules/profile/UserInfor";
 import Password from "../modules/profile/Password";
 import Overview from "../modules/overview/Overview";
 import ReceiveClass from "../modules/receiveClass/ReceiveClass";
-import Calendar from "../modules/calendar/Calendar";
-import Course from "../modules//course/Course";
+import Calendar from "../modules/profile/Calendar";
+import Course from "../modules/profile/Course";
 import RegisterClass from "../modules/registerClass/RegisterClass";
 import Confirm from "../modules/confirm/Confirm";
 import Note from "../modules/note/Note";
+import ArticleDetail from "../modules/Home/ArticleDetail";
 
 const injectProps = (props, Component) => {
     return <Component {...props} />;
@@ -28,6 +29,12 @@ export const routes = {
         path: "/",
         component: (props) => injectProps(props, Home),
         title: "Trang chủ",
+    },
+    article: {
+        exact: false,
+        path: "/bai-viet/:slug",
+        component: (props) => injectProps(props, ArticleDetail),
+        title: "Bài viết",
     },
     introduce: {
         exact: false,

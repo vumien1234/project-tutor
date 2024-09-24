@@ -53,7 +53,7 @@ const Password = () => {
                         )}
                     </div>
                 </div>
-                <div className="flex flex-col w-full mt-5 md:mt-0">
+                <div className="flex flex-col w-full mt-5">
                     <h6
                         className={`${
                             errors.PasswordConfirm ? "text-red-500" : ""

@@ -8,9 +8,9 @@ import Container from "../../components/common/Container";
 import Tab from "../../components/common/Tab";
 import UserInfor from "./UserInfor";
 import Password from "./Password";
-import Calendar from "../calendar/Calendar";
+import Calendar from "./Calendar";
 import { FaBook, FaRegCalendarAlt } from "react-icons/fa";
-import Course from "../course/Course";
+import Course from "./Course";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -54,7 +54,7 @@ const Profile = () => {
                                 isActive={activeTab === "lich-hoc"}
                                 onClick={() => handleClickTab("lich-hoc")}
                             />
-                             <Tab
+                            <Tab
                                 detail="Khóa học đăng kí"
                                 Icon={FaBook}
                                 isActive={activeTab === "khoa-hoc-dang-ki"}

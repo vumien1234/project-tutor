@@ -236,8 +236,8 @@ const Home = () => {
             </Container>
 
             {/* slider auto */}
-            <div className="mt-10 bg-black py-10 w-full ">
-                <h3 style={{ color: "white" }} className="mx-auto text-center">
+            <div className="mt-10 py-10 w-full ">
+                <h3 className="mx-auto text-center">
                     Tại sao bạn nên lựa chọn chúng tôi ?
                 </h3>
                 <div>
@@ -257,7 +257,7 @@ const Home = () => {
                         alt=""
                     />
                     <img
-                        style={{ marginTop: "-20px" }}
+                        style={{ marginTop: "-100px" }}
                         className="animation_img absolute w-[230px] h-[140px] object-cover right-7 hidden md:block"
                         src={Plane_img}
                         alt=""
@@ -268,7 +268,7 @@ const Home = () => {
                             Môi trường cung cấp
                         </h6>
                     </div>
-                    <h3 className="text-center mt-2 text-2xl font-bold">
+                    <h3 className="mx-auto text-center">
                         Quy trình làm việc của gia sư
                     </h3>
                     <div className="mt-5">

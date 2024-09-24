@@ -29,7 +29,7 @@ const CustomButton = ({
             onClick={onClick}
             {...rest}>
             <div className="flex items-center justify-center">
-                {title && <span className="whitespace-nowrap">{title}</span>}
+                {title && <h6 className="whitespace-nowrap">{title}</h6>}
                 {Icon && <Icon className={`ml-2`} />}
                 {children}
             </div>
