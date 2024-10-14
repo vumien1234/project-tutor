@@ -1,15 +1,28 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import scrollReducer from "../modules/scrollToTop/slices";
-import profileReducer from "../modules/profile/slices";
+import { loadingSlice } from "../components/loading/loadingSlice";
+import { authSlice } from "../modules/auth/Login/slices";
+import classListReduce from "../modules/ClassList/slice";
 
-const store = configureStore({
-    reducer: {
-        scroll: scrollReducer,
-        profile: profileReducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }),
+const rootReducer = combineReducers({
+  loading: loadingSlice.reducer,
+  auth: authSlice.reducer,
+  scroll: scrollReducer,
+  classList: classListReduce
 });
-export default store;
+
+export const makeStore = (preloadedState) => {
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat();
+    },
+    preloadedState
+  });
+
+  setupListeners(store.dispatch);
+  return store;
+};
+
+export const store = makeStore();

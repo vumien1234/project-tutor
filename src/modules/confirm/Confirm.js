@@ -3,10 +3,8 @@ import CustomButton from "../../components/common/Button";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoQrCodeOutline } from "react-icons/io5";
-// import { useSearchParams } from "react-router-dom";
 
 export default function Confirm() {
-    // const certificateId = useSearchParams().get("c");
 
     return (
         <div className="flex flex-col gap-12 w-full py-12">

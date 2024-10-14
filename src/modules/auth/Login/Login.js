@@ -1,21 +1,19 @@
 import React, { useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button} from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import ImageLogin from '../../../assets/image/banner-login.png';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import CustomButton from '../../../components/common/Button';
 import { makeStyles } from '@mui/styles';
 import LogoWeb from '../../../assets/image/logo-web.png';
-import { loginAsync } from './slices';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../routes/router';
+import { Link } from 'react-router-dom';
+import { loginAction } from './api';
 
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -24,12 +22,12 @@ const Login = () => {
   });
 
   const handleLogin = useCallback(async (data) => {
-    const rs = await dispatch(loginAsync(data))
-    console.log(data)
+    const rs = await dispatch(loginAction(data))
     if (rs.payload?.token) {
-      navigate(routes.home.path)
+      const rememberPage = localStorage.getItem('rememberPage') || '/'
+      window.location.href = rememberPage
     }
-  }, [dispatch, navigate])
+  }, [dispatch])
 
 
   return (
@@ -38,7 +36,7 @@ const Login = () => {
         <div className='flex flex-col justify-center items-center bg-gray-90'>
           <div className='text-center w-full max-w-md px-8 mx-auto'>
             <div>
-            <img src={LogoWeb} alt="Website logo" className="w-[120px] h-[120px] mx-auto" />
+              <img src={LogoWeb} alt="Website logo" className="w-[120px] h-[120px] mx-auto" />
               <p className='text-[14px] text-[#ccc]'>Gia sư tận tâm, thành công cho bạn !</p>
             </div>
             <h2 className='text-[#205493] font-bold text-xl uppercase mt-3'>Đăng nhập</h2>
@@ -69,7 +67,7 @@ const Login = () => {
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
-                      label="Password"
+                      label="Mật Khẩu"
                       type="password"
                       variant="outlined"
                       fullWidth
@@ -80,12 +78,12 @@ const Login = () => {
                   )}
                 />
               </div>
-              <div className='flex justify-between items-center text-[14px] text-[#0D5EF4]'>
-                <p><a href='/signup'>Đăng ký</a></p>
+              <div className='flex mt-2 justify-between items-center text-[14px] text-[#0D5EF4]'>
+                <p><Link to='/signup'>Đăng ký</Link></p>
                 <p >Quên mật khẩu ?</p>
               </div>
               <div className='my-7'>
-                <CustomButton title='Đăng nhập' buttonType='submit' className='w-full'/>
+                <CustomButton title='Đăng nhập' buttonType='submit' className='w-full' />
               </div>
               <div className='flex justify-center items-center mt-4'>
                 <div className='flex-1 h-px bg-[#205493] mr-2'></div>
@@ -125,7 +123,7 @@ export default Login;
 const useStyles = makeStyles({
   input: {
     '& .MuiInputBase-root': {
-      height: '50px', 
+      height: '50px',
       paddingLeft: '10px',
     },
     '& .MuiInputLabel-root': {

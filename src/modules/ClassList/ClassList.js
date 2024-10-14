@@ -1,215 +1,174 @@
-import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { IoHomeOutline } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { FaSearch, FaFilter, FaArrowRight } from "react-icons/fa";
+import { IoHomeOutline, IoLocationSharp, IoPerson } from "react-icons/io5";
 import { AiOutlineDown } from "react-icons/ai";
-import Container from "../../components/common/Container";
-import { menuCheckBox } from "../../components/constants/menuCheckBox";
-import { FaFilter } from "react-icons/fa";
-import { FaBook } from "react-icons/fa";
-import { CiBookmark } from "react-icons/ci";
-import { IoLocationSharp } from "react-icons/io5";
 import { MdAttachMoney } from "react-icons/md";
-import CustomButton from "../../components/common/Button";
-import { FaArrowRight } from "react-icons/fa6";
+import { CiBookmark, CiCalendar } from "react-icons/ci";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Container from "../../components/common/Container";
+import CustomButton from "../../components/common/Button";
+import { menuCheckBox } from "../../components/constants/menuCheckBox";
+import { fetchClassList } from "./api";
+import { IoMdTime } from "react-icons/io";
+import { RiBookLine } from "react-icons/ri";
+import { Pagination } from "../../components/common/Pagination";
 
 const ClassList = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [openMenu, setOpenMenu] = useState(null);
+  const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [openMenu, setOpenMenu] = useState(null);
+  const { classList, currentPage, totalPages, setCurrentPage } = useSelector((state) => state.classList);
 
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-    const toggleMenu = (index) => {
-        setOpenMenu(openMenu === index ? null : index);
-    };
+  const toggleMenu = (index) => {
+    setOpenMenu(openMenu === index ? null : index);
+  };
 
-    const MenuCheckBox = () => {
-        return (
-            <div className="flex flex-wrap gap-4">
-                {menuCheckBox.map((item, index) => (
-                    <div key={index} className="relative flex-1 min-w-[200px] md:min-w-[300px]">
-                        <div
-                            className="border border-gray-300 p-2 rounded-md flex items-center cursor-pointer"
-                            style={{ height: "40px" }}
-                            onClick={() => toggleMenu(index)}>
-                            <div className="flex items-center justify-between flex-grow">
-                                <p>{item.title}</p>
-                                {item.submenu && (
-                                    <div className="flex items-center">
-                                        <AiOutlineDown
-                                            size={16}
-                                            className={`transition-transform duration-300 ease-in-out ${
-                                                openMenu === index ? "rotate-180" : ""
-                                            }`}
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        {openMenu === index && item.submenu && (
-                            <div className="absolute left-0 top-full mt-2 bg-white w-full border border-gray-200 shadow-lg z-20">
-                                {item.submenu.map((subItem, subIndex) => (
-                                    <div className="flex items-center p-2" key={subIndex}>
-                                        <input
-                                            type="checkbox"
-                                            id={`checkbox-${index}-${subIndex}`}
-                                            className="mr-2"
-                                        />
-                                        <label
-                                            htmlFor={`checkbox-${index}-${subIndex}`}
-                                            className="text-gray-700">
-                                            {subItem.title}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                ))}
+  const MenuCheckBox = () => (
+    <div className="flex flex-wrap gap-4">
+      {menuCheckBox.map((item, index) => (
+        <div key={index} className="relative flex-1 min-w-[200px] md:min-w-[300px]">
+          <div
+            className="border border-gray-300 p-2 rounded-md flex items-center cursor-pointer"
+            style={{ height: "40px" }}
+            onClick={() => toggleMenu(index)}
+          >
+            <div className="flex items-center justify-between flex-grow">
+              <p>{item.title}</p>
+              {item.submenu && (
+                <AiOutlineDown size={16} className={`transition-transform ${openMenu === index ? "rotate-180" : ""}`} />
+              )}
             </div>
-        );
-    };
-
-    return (
-        <Container className={"justify-center items-center py-12"}>
-            <div className="w-full">
-                <div className="flex items-center mb-4">
-                    <IoHomeOutline className="w-[20px] h-[20px] mr-2 text-color-orange" />
-                    <p className="text-gray-400">/ Danh sách lớp</p>
+          </div>
+          {openMenu === index && item.submenu && (
+            <div className="absolute left-0 top-full mt-2 bg-white w-full border border-gray-200 shadow-lg z-20">
+              {item.submenu.map((subItem, subIndex) => (
+                <div className="flex items-center p-2" key={subIndex}>
+                  <input type="checkbox" id={`checkbox-${index}-${subIndex}`} className="mr-2" />
+                  <label htmlFor={`checkbox-${index}-${subIndex}`} className="text-gray-700">
+                    {subItem.title}
+                  </label>
                 </div>
-                <div className="flex items-center py-5">
-                    <h3>Danh sách lớp</h3>
-                </div>
-                <div className="flex items-center rounded-md overflow-hidden border-2 border-gray-300">
-                    <input
-                        type="text"
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                        placeholder="Tìm kiếm tên gia sư..."
-                        className="flex-grow p-4 outline-none border-none"
-                        style={{ height: "60px" }}
-                    />
-                    <button
-                        className="bg-color-button text-white flex items-center justify-center p-4 transition-colors duration-300"
-                        style={{ height: "60px" }}>
-                        <FaSearch className="w-5 h-5" />
-                        <span className="ml-2">Tìm Kiếm</span>
-                    </button>
-                </div>
-
-                {/* Checkbox Menu */}
-                <div className="py-5">
-                    <div className="text-color-button">
-                        <div className="flex items-center pb-5">
-                            <FaFilter />
-                            <h5 className="pl-3 ">Bộ lọc</h5>
-                        </div>
-                        <MenuCheckBox />
-                    </div>
-                    <div className="py-10 gap-5 grid grid-cols-1 md:grid-cols-4">
-                        <div className="border border-gray-300">
-                            <div className="bg-[#0056B3] p-4">
-                                <h6 className="font-semibold text-white">D5865</h6>
-                            </div>
-                            <div className="p-4 space-y-4">
-                                <div className="flex items-center">
-                                    <FaBook className="mr-2 text-gray-400" />
-                                    <h6 className="font-semibold">Tiếng Pháp - Lớp 5</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <IoLocationSharp className="mr-2 text-gray-400" />
-                                    <h6>Nguyễn Trãi, Thanh Xuân, Hà Nội</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <MdAttachMoney className="mr-2 text-gray-400" />
-                                    <h6>250.000 ₫/buổi, 2 buổi/tuần</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <CiBookmark className="mr-2 text-gray-400" />
-                                    <h6>Yêu cầu : Sinh viên</h6>
-                                </div>
-                                <Link to="/danh-sach-lop/1">
-                                    <div className="pt-5">
-                                        <CustomButton
-                                            color="primary"
-                                            title="Xem chi tiết"
-                                            icon={FaArrowRight}
-                                        />
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className="border border-gray-300">
-                            <div className="bg-[#0056B3] p-4">
-                                <h6 className="font-semibold text-white">D5865</h6>
-                            </div>
-                            <div className="p-4 space-y-4">
-                                <div className="flex items-center">
-                                    <FaBook className="mr-2 text-gray-400" />
-                                    <h6 className="font-semibold">Tiếng Pháp - Lớp 5</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <IoLocationSharp className="mr-2 text-gray-400" />
-                                    <h6>Nguyễn Trãi, Thanh Xuân, Hà Nội</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <MdAttachMoney className="mr-2 text-gray-400" />
-                                    <h6>250.000 ₫/buổi, 2 buổi/tuần</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <CiBookmark className="mr-2 text-gray-400" />
-                                    <h6>Yêu cầu : Sinh viên</h6>
-                                </div>
-                                <Link to="/danh-sach-lop/1">
-                                    <div className="pt-5">
-                                        <CustomButton
-                                            color="primary"
-                                            title="Xem chi tiết"
-                                            icon={FaArrowRight}
-                                        />
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className="border border-gray-300">
-                            <div className="bg-[#0056B3] p-4">
-                                <h6 className="font-semibold text-white">D5865</h6>
-                            </div>
-                            <div className="p-4 space-y-4">
-                                <div className="flex items-center">
-                                    <FaBook className="mr-2 text-gray-400" />
-                                    <h6 className="font-semibold">Tiếng Pháp - Lớp 5</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <IoLocationSharp className="mr-2 text-gray-400" />
-                                    <h6>Nguyễn Trãi, Thanh Xuân, Hà Nội</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <MdAttachMoney className="mr-2 text-gray-400" />
-                                    <h6>250.000 ₫/buổi, 2 buổi/tuần</h6>
-                                </div>
-                                <div className="flex items-center">
-                                    <CiBookmark className="mr-2 text-gray-400" />
-                                    <h6>Yêu cầu : Sinh viên</h6>
-                                </div>
-                                <Link to="/danh-sach-lop/1">
-                                    <div className="pt-5">
-                                        <CustomButton
-                                            color="primary"
-                                            title="Xem chi tiết"
-                                            icon={FaArrowRight}
-                                        />
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              ))}
             </div>
-        </Container>
-    );
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  useEffect(() => {
+    dispatch(fetchClassList());
+  }, [dispatch]);
+
+  return (
+    <Container className="py-12">
+      <div className="w-full">
+        {/* Breadcrumb */}
+        <div className="flex items-center mb-4">
+          <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" />
+          <p className="text-gray-400">/ Danh sách lớp</p>
+        </div>
+        {/* Page Title */}
+        <div className="flex items-center py-5">
+          <h3 className="text-lg font-bold">Danh sách lớp</h3>
+        </div>
+        {/* Search Bar */}
+        <div className="flex items-center border-2 border-gray-300 rounded-md overflow-hidden">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Tìm kiếm tên gia sư..."
+            className="flex-grow p-4 outline-none"
+            style={{ height: "60px" }}
+          />
+          <button className="bg-blue-500 text-white flex items-center justify-center p-4" style={{ height: "60px" }}>
+            <FaSearch className="w-5 h-5" />
+            <span className="ml-2">Tìm Kiếm</span>
+          </button>
+        </div>
+        {/* Filter Section */}
+        <div className="py-5">
+          <div className="text-blue-500">
+            <div className="flex items-center pb-5">
+              <FaFilter />
+              <h5 className="pl-3">Bộ lọc</h5>
+            </div>
+            <MenuCheckBox />
+          </div>
+        </div>
+        {/* Class List */}
+        {classList && classList.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
+            {classList?.map((item, index) => (
+              <div className="border border-gray-300" key={index}>
+                <div className="bg-blue-800 p-4">
+                  <h6 className="font-semibold text-white">{item.id}</h6>
+                </div>
+                <div className="p-4 space-y-4">
+                  <div className="flex items-center  ">
+                    <div className="w-[30px]">
+                      <RiBookLine className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6 className="font-semibold">Môn học: {item?.subject}</h6>
+                  </div>
+                  <div className="flex items-center  ">
+                    <div className="w-[30px]">
+                      <IoPerson className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6>Giáo viên: {item?.username}</h6>
+                  </div>
+                  <div className="flex items-center ">
+                    <div className="w-[30px]">
+                      <IoLocationSharp className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6>Địa điểm: {item?.address}</h6>
+                  </div>
+                  <div className="flex items-center ">
+                    <div className="w-[30px]">
+                      <MdAttachMoney className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6>Giá: {item?.total_price}</h6>
+                  </div>
+                  <div className="flex items-center ">
+                    <div className="w-[30px]">
+                      <IoMdTime className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6>Thời gian: {item?.time}</h6>
+                  </div>
+                  <div className="flex items-center ">
+                    <div className="w-[30px]">
+                      <CiCalendar className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6 className="font-semibold">Ngày dến hạn: {item?.due_date}</h6>
+                  </div>
+                  <div className="flex items-center ">
+                    <div className="w-[30px]">
+                      <CiBookmark className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6>Ghi chú: {item?.note}</h6>
+                  </div>
+                  <Link to={`/chi-tiet-lop/${item.id}`}>
+                    <div className="pt-5">
+                      <CustomButton color="primary" title="Xem chi tiết" icon={FaArrowRight} />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No classes available</p>
+        )}
+        <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      </div>
+    </Container>
+  );
 };
 
 export default ClassList;
