@@ -144,31 +144,31 @@ const Header = () => {
       </div>
 
       {/* menu-header */}
-      <div className="h-[70px] bg-[#006266] text-white md:flex hidden justify-between items-center uppercase">
+      <div className="h-[60px] bg-[#006266] text-white md:flex hidden justify-between items-center uppercase">
         <Container className="justify-between items-center">
-          <div className="nav-header flex items-center space-x-12">
+          <div className="nav-header flex items-center text-[14px] space-x-12">
             {renderNavigation(isClassListHeader ? navLinksClassList : navLinksDefault)}
           </div>
 
           <div className="flex items-center space-x-10">
             <div className="flex items-center">
-              <MdLocalPhone className="text-3xl" />
-              <a href="tel:0395219002" className="ml-1 text-2xl">
+              <MdLocalPhone className="text-2xl font-bold" />
+              <a href="tel:0395219002" className="ml-1 text-2xl font-semibold">
                 0395219002
               </a>
             </div>
 
             {Object.keys(currentUser).length > 0 ? (
               <div className="relative group">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center cursor-pointer">
-                  <img src={AvataDefault} alt="AvataDefault" className="w-8 h-8" />
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer">
+                  <img src={AvataDefault} alt="AvataDefault" className="w-7 h-7" />
                 </div>
 
-                <div className="absolute w-[290px] right-0 top-full hidden group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
-                  <div className="flex flex-col cursor-pointer rounded-xl bg-white text-black shadow-lg">
+                <div className="absolute w-[290px] right-0 top-full shadow-xl bg-white hidden rounded-xl group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
+                  <div className="flex flex-col cursor-pointer text-black">
                     <div className="p-2">
                       <div className="flex flex-col items-start mb-2 px-2">
-                        <span className="text-lg font-semibold normal-case">Username: {currentUser.username}</span>
+                        <span className="text-lg font-semibold normal-case">Tên người dùng: {currentUser.username}</span>
                         <span className="text-sm text-gray-600 normal-case">Vai trò: {currentUser.role}</span>
                       </div>
                       <Tab

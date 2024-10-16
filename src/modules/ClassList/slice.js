@@ -29,11 +29,11 @@ export const classListSlice = createSlice({
       })
       .addCase(fetchClassList.fulfilled, (state, action) => {
         state.loading = false;
-        state.classList = action.payload;
-        state.totalPages = action?.payload?.totalPages;
-        state.currentPage = action?.payload?.currentPage;
-        console.log("total", action.payload.totalPages);
-      })
+        state.classList = action.payload.data; 
+        state.totalPages = action.payload.totalPages; 
+        state.currentPage = action.payload.currentPage; 
+    })
+    
 
       .addCase(fetchClassList.rejected, (state, action) => {
         state.loading = false;

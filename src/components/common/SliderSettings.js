@@ -4,52 +4,27 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 // Custom Next Arrow
 const NextArrow = ({ onClick }) => (
   <div
-    className="custom-arrow custom-next"
-    onClick={onClick}
-    style={{
-      position: "absolute",
-      top: "50%",
-      right: "-30px",
-      transform: "translateY(-50%)",
-      cursor: "pointer",
-      zIndex: 1,
-      backgroundColor: 'rgba(0,0,0,0.2)',
-      borderRadius: '50%',
-      padding: '10px',
-      width: '40px',
-      height: '40px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    }}
-  >
-    <FaChevronRight style={{ fontSize: "20px", color: "#fff" }} />
-  </div>
+  className="
+    absolute top-1/2 right-[-30px] transform -translate-y-1/2
+    cursor-pointer z-10 bg-black/20 rounded-full p-2
+    w-10 h-10 md:flex justify-center items-center shadow-md hidden
+  "
+  onClick={onClick}
+>
+  <FaChevronRight className="text-white text-xl" />
+</div>
+
 );
 
 // Custom Prev Arrow
 const PrevArrow = ({ onClick }) => (
   <div
-    className="custom-arrow custom-prev"
-    onClick={onClick}
-    style={{
-      position: "absolute",
-      top: "50%",
-      left: "-30px",
-      transform: "translateY(-50%)",
-      cursor: "pointer",
-      zIndex: 1,
-      backgroundColor: 'rgba(0,0,0,0.2)',
-      borderRadius: '50%',
-      padding: '10px',
-      width: '40px',
-      height: '40px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    }}
+  className="
+  absolute top-1/2 left-[-30px] transform -translate-y-1/2
+  cursor-pointer z-10 bg-black/20 rounded-full p-2
+  w-10 h-10 md:flex justify-center items-center shadow-md hidden
+"
+onClick={onClick}
   >
     <FaChevronLeft style={{ fontSize: "20px", color: "#fff" }} />
   </div>

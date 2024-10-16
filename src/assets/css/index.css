@@ -109,18 +109,14 @@ code {
     }
     h3 {
       font-weight: normal;
-      @apply text-[26px] md:text-[32px];
-    }
-    h4 {
-      font-size: 22px;
-      @apply text-[20px] md:text-[22px];
+      @apply text-[20px] md:text-[28px];
     }
     h5 {
-      font-weight: lighter;
-      @apply text-[20px] md:text-[22px];
+      font-weight: normal;
+      @apply text-[14px] md:text-[16px];
     }
     h6 {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: normal;
     }
   }

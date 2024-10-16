@@ -4,7 +4,7 @@ import Banner from "../../components/common/Banner";
 import ImgCreateNote from "../../assets/image/anh-bia.png";
 import UserDefault from "../registerClass/UserDefault";
 import { useForm } from "react-hook-form";
-import SingleSelect from "../../components/common/Select";
+// import SingleSelect from "../../components/common/Select";
 import CustomButton from "../../components/common/Button";
 import { useSelector } from "react-redux";
 
@@ -38,9 +38,9 @@ const Note = () => {
           <div className="w-full bg-white p-16">
             <h3 className="text-[#16a085] ">Tạo Note nhận lớp</h3>
             <form onSubmit={handleSubmit(handleCreateClass)}>
-              <h6 className="font-semibold my-5">1. Thông tin cá nhân</h6>
-              <UserDefault currentUser={currentUser} />
-              <h6 className="font-semibold py-5">2. Thông tin yêu cầu</h6>
+              {/* <h6 className="font-semibold my-5">1. Thông tin cá nhân</h6> */}
+              {/* <UserDefault currentUser={currentUser} /> */}
+              <h6 className="font-semibold py-5">Thông tin yêu cầu</h6>
               {/* <div className="flex md:flex-row flex-col md:gap-5  space-y-5 md:space-y-0">
                 <SingleSelect
                   label="Chọn môn học *"

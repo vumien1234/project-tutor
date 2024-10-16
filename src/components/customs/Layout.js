@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="pt-[80px] md:pt-[170px]">{children}</main>
+      <main className="pt-[80px] md:pt-[160px]">{children}</main>
       <Footer />
       <CallButton />
     </div>

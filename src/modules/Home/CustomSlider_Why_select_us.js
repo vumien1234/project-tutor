@@ -75,6 +75,16 @@ const CustomSliderWhySelectUs = () => {
     }
   ];
 
+  // Mảng chứa các màu nền tương ứng với từng bài viết
+  const backgroundColors = [
+    'bg-red-300',
+    'bg-green-500',
+    'bg-blue-500',
+    'bg-yellow-500',
+    'bg-purple-400',
+    'bg-orange-300'
+  ];
+
   const custom_sliderSettings_1 = {
     ...sliderSettings,
     infinite: true,
@@ -86,16 +96,24 @@ const CustomSliderWhySelectUs = () => {
     dots: false,
     responsive: [
       {
-        breakpoint: 1480,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true
         }
       },
       {
-        breakpoint: 780,
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
@@ -108,16 +126,16 @@ const CustomSliderWhySelectUs = () => {
     <Container className=" justify-center items-center">
       <div className="w-full">
         <Slider {...custom_sliderSettings_1}>
-          {articles.map((article) => (
-            <div key={article.id} className="border border-dashed border-blue-500 p-5 rounded-xl max-w-sm mx-auto">
-              <div className="relative bg-blue-600 text-white rounded-lg h-full">
+          {articles.map((article, index) => (
+            <div key={article.id} className="border border-dashed border-blue-500 p-5 rounded-xl md:max-w-[300px] w-full mx-auto">
+              <div className={`relative text-white rounded-lg h-full overflow-hidden ${backgroundColors[index % backgroundColors.length]}`}>
                 <div className="flex justify-center box_slider_auto">
-                  <img src={article.image} alt="Tiện lợi và thoải mái" className="item_slider_auto object-cover" />
+                  <img src={article.image} alt={article.title} className="item_slider_auto object-cover" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-semibold text-center line-clamp-1">{article.title}</h3>
-                  <p className="mt-4 mb-10 text-center line-clamp-6">{article.content}</p>
-                  <div className="text-center bg-color-orange flex items-center justify-center w-3/5 h-10 mx-auto rounded-full">
+                  <h5 className="font-semibold text-[18px] text-center line-clamp-1">{article.title}</h5>
+                  <h5 className="mt-4 mb-6 text-center line-clamp-6">{article.content}</h5>
+                  <div className="text-center bg-color-orange flex items-center justify-center w-[150px] h-10 mx-auto rounded-full">
                     <Link
                       to={`/bai-viet/${article.slug}`}
                       className="text-white font-semibold text-[16px] rounded-full"
