@@ -3,35 +3,39 @@ import { useForm } from "react-hook-form";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import CustomButton from "../../components/common/Button";
 import UserDefault from "./UserDefault";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { fetchRegisterClassList } from "./api";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
-const UserInforRegister = ({ setStep, classList }) => {
+const UserInforRegister = ({ setStep }) => {
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const dispatch = useDispatch();
+  const {id}= useParams();
   const navigate = useNavigate();
-  const location = useLocation(); // Lấy thông tin trang trước
+  const location = useLocation();
+  const dispatch=useDispatch()
 
-  const handleRegister = (data) => {
-    console.log("Thông tin đăng ký: ", data);
-
-    dispatch(fetchRegisterClassList())
-      .then((response) => {
-        console.log("Đăng ký lớp thành công: ", response);
-        navigate(`?tab=confirm&c=${response.id}`);
-        setStep(2); // Chuyển đến bước tiếp theo
-      })
-      .catch((error) => {
-        console.error("Đăng ký lớp thất bại: ", error);
-      });
+  const handleRegister = async (data) => {
+    try {
+      const response = await dispatch(fetchRegisterClassList({ ...data, id }));
+      console.log("Response API: ", response);
+      console.log('id',data?.id)
+      if (response.meta.arg.id) {
+        navigate(`?tab=confirm&c=${response.meta.arg.id}`);
+        setStep(2); 
+      } else {
+        console.error("Đăng ký lớp thất bại: Không có id trả về");
+      }
+    } catch (error) {
+      console.error("Đăng ký lớp thất bại: ", error);
+    }
   };
-
+  
+   
   const handleBack = () => {
     if (location.state?.from) {
       navigate(location.state.from);
@@ -40,7 +44,7 @@ const UserInforRegister = ({ setStep, classList }) => {
     }
   };
 
-  const selectedClass = classList?.[0] || null;
+  // const selectedClass = classList?.[0] || null;
 
   return (
     <div className="py-12 w-full">
@@ -62,8 +66,7 @@ const UserInforRegister = ({ setStep, classList }) => {
                 type="text"
                 placeholder="Họ và tên"
                 className="py-3 px-5 rounded-sm border-[1.5px] border-solid w-full md:min-w-[300px]"
-                value={selectedClass?.username || ""}
-                disabled
+                {...register("username", { required: "là bắt buộc" })}
               />
             </div>
             <div className="flex flex-col w-full mt-5 md:mt-0">
@@ -72,8 +75,7 @@ const UserInforRegister = ({ setStep, classList }) => {
                 type="text"
                 placeholder="Giá tiền"
                 className="py-3 px-5 rounded-sm border-[1.5px] border-solid w-full md:min-w-[300px]"
-                value={selectedClass?.total_price || ""}
-                disabled
+                {...register("total_page", { required: " bắt buộc" })}
               />
             </div>
           </div>

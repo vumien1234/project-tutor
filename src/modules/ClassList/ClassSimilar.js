@@ -28,12 +28,12 @@ const ClassListSlider = ({ classList }) => {
           <div
             className="relative flex transition-transform duration-500 ease-in-out gap-4 mb-5"
             style={{
-              transform: `translateX(-${currentIndex * (350 + 16)}px)`,
+              transform: `translateX(-${currentIndex * (295 + 16)}px)`,
               width: `${classList.length * (350 + 16)}px`
             }}
           >
             {classList.map((item, index) => (
-              <div className="border border-gray-300 w-[350px]" key={index}>
+              <div className="border border-gray-300 w-[295px]" key={index}>
                 <div className="bg-blue-800 p-4">
                   <h6 className="font-semibold text-white">{item.id}</h6>
                 </div>

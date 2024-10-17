@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import LogoHeader from "../../assets/image/logo-web.png";
 import { MdLocalPhone, MdOutlineClear } from "react-icons/md";
 import CustomButton from "../common/Button";
 import Container from "../common/Container";
@@ -11,6 +10,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { navLinksClassList, navLinksDefault } from "../constants/dataHeader";
 import Avata from "../../assets/image/avata-default.png";
 import { useSelector } from "react-redux";
+import Logo_web from "../../assets/image/TUTORMASTER1.png";
 
 const Header = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -25,7 +25,10 @@ const Header = () => {
 
   const handleToggle = () => {
     setToggle(!toggle);
-  };
+  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -66,8 +69,8 @@ const Header = () => {
     return links.map((link) => (
       <div
         key={link.path}
-        className={`nav-link cursor-pointer p-5 md:py-0 hover:bg-hover-default md:px-0 md:bg-transparent md:hover:bg-transparent ${
-          activeTab === link.path ? "text-yellow-500" : ""
+        className={`nav-link cursor-pointer p-5 md:py-0 hover:bg-hover-default font-semibold md:px-0 md:bg-transparent md:hover:bg-transparent ${
+          activeTab === link.path ? "text-yellow-500 font-semibold" : ""
         } overflow-y-auto`}
         onClick={() => handleTabClick(link.path)}
       >
@@ -82,19 +85,12 @@ const Header = () => {
         <Container className="justify-between items-center">
           <div className="flex justify-between items-center w-full">
             <div className="flex items-center justify-start space-x-4">
-              <Link to={"/"}>
-                <img
-                  className="h-12 w-12 rounded-full border-2 border-custom-green"
-                  src={LogoHeader}
-                  alt="Logo header"
-                />
-              </Link>
-              <div>
-                <p className="text-2xl font-semibold text-[#16a085]">TutorMaster</p>
-                <h6 className="text-orange-500 font-bold md:flex hidden">Chinh phục học tập cùng chúng tôi</h6>
-              </div>
+              <img
+                src={Logo_web}
+                alt="Logo"
+                className="object-cover "
+						  />
             </div>
-
             <div className="md:hidden block">
               <RiMenu3Fill onClick={handleToggle} className="text-3xl cursor-pointer" />
             </div>
@@ -144,7 +140,7 @@ const Header = () => {
       </div>
 
       {/* menu-header */}
-      <div className="h-[60px] bg-[#006266] text-white md:flex hidden justify-between items-center uppercase">
+      <div className="h-[60px] bg-[#3a83bb] text-white md:flex hidden justify-between items-center uppercase">
         <Container className="justify-between items-center">
           <div className="nav-header flex items-center text-[14px] space-x-12">
             {renderNavigation(isClassListHeader ? navLinksClassList : navLinksDefault)}

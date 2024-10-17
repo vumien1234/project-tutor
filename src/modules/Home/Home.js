@@ -78,7 +78,7 @@ const Home = () => {
         <div className="mt-5">
           <div className="flex flex-col md:flex-row md:justify-between md:gap-10">
             <div className="flex-1 md:w-5/12">
-              <h3 className="text-color-purple ">Câu chuyện về chúng tôi</h3>
+              <h4 className="text-color-purple font-semibold uppercase">Câu chuyện về chúng tôi</h4>
               <h5 className="mt-2">
                 Câu chuyện của chúng tôi bắt đầu từ niềm tin vững chắc rằng mỗi học viên đều xứng đáng có cơ hội tiếp
                 cận một môi trường học tập chất lượng, an toàn và đầy động lực. Từ niềm tin đó, chúng tôi đã tạo ra
@@ -120,7 +120,7 @@ const Home = () => {
           </div>
           <div className="flex-1 md:w-7/12 ml-0 md:ml-20 relative">
            
-            <h3 className="font-medium mt-5 text-color-purple md:mt-0">Gia nhập đội ngũ gia sư của TutorMaster</h3>
+            <h4 className="mt-5 text-color-purple font-semibold uppercase md:mt-0">Gia nhập đội ngũ gia sư của TutorMaster</h4>
             <h5 className="block mt-5">
               TutorMaster không chỉ là một nền tảng giáo dục trực tuyến thông thường, mà còn là cơ hội tuyệt vời cho bạn
               phát triển bản thân, chia sẻ kiến thức và kiếm thu nhập từ kỹ năng giảng dạy của bạn. Bất kể bạn là giáo
@@ -153,7 +153,7 @@ const Home = () => {
 
       {/* slider auto */}
       <div className="mt-10 pt-10 pb-3 placeholder-blue-300 w-full bg-[#ffcccc] bg-opacity-40">
-        <h3 className="mx-auto text-center">Tại sao bạn nên lựa chọn chúng tôi ?</h3>
+        <h4 className="mx-auto font-semibold uppercase text-center">Tại sao bạn nên lựa chọn chúng tôi ?</h4>
         <div>
           <div className="underline mx-auto"></div>
           <div className="underline_1 mx-auto"></div>
@@ -177,7 +177,7 @@ const Home = () => {
             alt=""
           />
          
-          <h3 className="mx-auto text-center text-color-purple">Quy trình làm việc của gia sư</h3>
+          <h4 className="mx-auto text-center font-semibold uppercase text-color-purple">Quy trình làm việc của gia sư</h4>
           <div className="mt-5">
             <div className="flex flex-col md:flex-row md:gap-8 gap-4">
               <div className="flex-1 md:w-4/12">
@@ -244,7 +244,7 @@ const Home = () => {
       <div className="mt-12 relative bg-[#FFDFD7] md:py-10 py-5">
         <img style={{ top: "-150px", left: "-105px" }} src={Flower} alt="Flower" className="absolute hidden md:block" />
         <div>
-          <h3 className="text-center text-color-purple mb-5 mt-2">Gia sư chuyên nghiệp</h3>
+          <h4 className="text-center font-semibold uppercase text-color-purple mb-5 mt-2">Gia sư chuyên nghiệp</h4>
           <CustomSliderTeacher />
         </div>
       </div>
@@ -253,7 +253,7 @@ const Home = () => {
         <div className="my-12">
         
           <div>
-            <h3 className="text-center mt-2 text-color-purple">Phản hồi từ phụ huynh</h3>
+            <h4 className="text-center font-semibold uppercase mt-2 text-color-purple">Phản hồi từ phụ huynh</h4>
             <div className="mt-5 relative">
               <CustomSliderReviewFeedBack />
             </div>

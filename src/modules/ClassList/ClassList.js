@@ -69,13 +69,15 @@ const ClassList = () => {
     <Container className="py-12">
       <div className="w-full">
         {/* Breadcrumb */}
-        <div className="flex items-center mb-4">
-          <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" />
-          <p className="text-gray-400">/ Danh sách lớp</p>
+        <div className="flex items-center">
+         <div className="flex items-center">
+           <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" /><p className="mr-2">Trang chủ</p>
+           <p >/ Danh sách lớp</p>
+         </div>
         </div>
         {/* Page Title */}
         <div className="flex items-center py-5">
-          <h3 className="text-lg font-bold">Danh sách lớp</h3>
+          <h3 >Danh sách lớp</h3>
         </div>
         {/* Search Bar */}
         <div className="flex items-center border-2 border-gray-300 rounded-md overflow-hidden">
@@ -85,9 +87,9 @@ const ClassList = () => {
             onChange={handleSearchChange}
             placeholder="Tìm kiếm tên gia sư..."
             className="flex-grow p-4 outline-none"
-            style={{ height: "60px" }}
+            style={{ height: "50px" }}
           />
-          <button className="bg-blue-500 text-white flex items-center justify-center p-4" style={{ height: "60px" }}>
+          <button className="bg-blue-500 text-white flex items-center justify-center p-4" style={{ height: "50px" }}>
             <FaSearch className="w-5 h-5" />
             <span className="ml-2">Tìm Kiếm</span>
           </button>
@@ -104,7 +106,7 @@ const ClassList = () => {
         </div>
         {/* Class List */}
         {classList && classList.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 py-5">
             {classList?.map((item, index) => (
               <div className="border border-gray-300" key={index}>
                 <div className="bg-blue-800 p-4">
@@ -165,7 +167,7 @@ const ClassList = () => {
         ) : (
           <p>No classes available</p>
         )}
-        <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} className="mt-4"/>
       </div>
     </Container>
   );

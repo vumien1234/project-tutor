@@ -2,19 +2,9 @@ import React, { useState } from "react";
 import Container from "../../components/common/Container";
 import Banner from "../../components/common/Banner";
 import ImgCreateNote from "../../assets/image/anh-bia.png";
-import UserDefault from "../registerClass/UserDefault";
 import { useForm } from "react-hook-form";
 // import SingleSelect from "../../components/common/Select";
 import CustomButton from "../../components/common/Button";
-import { useSelector } from "react-redux";
-
-// Dữ liệu giả cho phần select
-const fakeData = [
-  { id: 1, name: "Toán học" },
-  { id: 2, name: "Vật lý" },
-  { id: 3, name: "Hoá học" },
-  { id: 4, name: "Sinh học" }
-];
 
 const Note = () => {
   const {
@@ -22,8 +12,6 @@ const Note = () => {
     formState: { errors },
     handleSubmit
   } = useForm();
-  const currentUser = useSelector((state) => state.auth.currentUser);
-
   // const [selectedSubject, setSelectedSubject] = useState(null);
 
   const handleCreateClass = (data) => {
@@ -36,11 +24,11 @@ const Note = () => {
       <div className="bg-[#EFF3FF] py-20">
         <Container>
           <div className="w-full bg-white p-16">
-            <h3 className="text-[#16a085] ">Tạo Note nhận lớp</h3>
+            <h3 className="text-blue-400 ">Tạo Note nhận lớp</h3>
             <form onSubmit={handleSubmit(handleCreateClass)}>
               {/* <h6 className="font-semibold my-5">1. Thông tin cá nhân</h6> */}
               {/* <UserDefault currentUser={currentUser} /> */}
-              <h6 className="font-semibold py-5">Thông tin yêu cầu</h6>
+              <h5 className="font-semibold py-5">Thông tin yêu cầu</h5>
               {/* <div className="flex md:flex-row flex-col md:gap-5  space-y-5 md:space-y-0">
                 <SingleSelect
                   label="Chọn môn học *"
@@ -116,7 +104,6 @@ const Note = () => {
                 className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Mời nhập"
               /> */}
-
               <CustomButton buttonType="submit" title="Tạo note nhận lớp" className="my-10" />
             </form>
           </div>

@@ -39,12 +39,14 @@ const ClassDetail = () => {
     <Container>
       {classListDetail ? (
         <div className="w-full py-12">
-          <div className="flex items-center mb-4">
+         <div className="flex items-center mb-4">
             <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" />
-            <h6 className="text-gray-400">
-              / Danh sách lớp / <span className="font-semibold ">{classListDetail.id}</span>
-            </h6>
+            <p className="mr-2">Trang chủ</p>
+            <div className="flex items-center">
+              <p> / Danh sách lớp / <span>{classListDetail.id}</span></p>
+            </div>    
           </div>
+
           <div className="py-5 flex flex-col md:flex-row gap-10 w-full">
             <div className="w-full lg:w-1/2">
               <h3 className="text-xl font-semibold mb-4">Chi tiết lớp {classListDetail.id}</h3>

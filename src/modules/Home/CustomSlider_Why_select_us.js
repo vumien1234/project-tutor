@@ -75,16 +75,6 @@ const CustomSliderWhySelectUs = () => {
     }
   ];
 
-  // Mảng chứa các màu nền tương ứng với từng bài viết
-  const backgroundColors = [
-    'bg-red-300',
-    'bg-green-500',
-    'bg-blue-500',
-    'bg-yellow-500',
-    'bg-purple-400',
-    'bg-orange-300'
-  ];
-
   const custom_sliderSettings_1 = {
     ...sliderSettings,
     infinite: true,
@@ -128,7 +118,7 @@ const CustomSliderWhySelectUs = () => {
         <Slider {...custom_sliderSettings_1}>
           {articles.map((article, index) => (
             <div key={article.id} className="border border-dashed border-blue-500 p-5 rounded-xl md:max-w-[300px] w-full mx-auto">
-              <div className={`relative text-white rounded-lg h-full overflow-hidden ${backgroundColors[index % backgroundColors.length]}`}>
+              <div className={`relative text-white rounded-lg h-full overflow-hidden bg-orange-300`}>
                 <div className="flex justify-center box_slider_auto">
                   <img src={article.image} alt={article.title} className="item_slider_auto object-cover" />
                 </div>
