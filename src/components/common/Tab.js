@@ -11,7 +11,7 @@ const Tab = ({ url, Icon, detail, isActive, onClick }) => {
 
   return (
     <button
-      className={`flex w-[266px] justify-start items-center p-5 ml-1 md:gap-3
+      className={`flex w-[266px] justify-start items-center p-4 ml-1 md:gap-3
        hover:bg-slate-900 hover:bg-opacity-5 ${
          isActive && "bg-slate-900 bg-opacity-5"
        } rounded-lg`}

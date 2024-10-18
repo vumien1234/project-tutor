@@ -71,7 +71,7 @@ const ClassList = () => {
         {/* Breadcrumb */}
         <div className="flex items-center">
          <div className="flex items-center">
-           <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" /><p className="mr-2">Trang chủ</p>
+           <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" /><a href="/" className="mr-2">Trang chủ</a>
            <p >/ Danh sách lớp</p>
          </div>
         </div>
@@ -80,18 +80,18 @@ const ClassList = () => {
           <h3 >Danh sách lớp</h3>
         </div>
         {/* Search Bar */}
-        <div className="flex items-center border-2 border-gray-300 rounded-md overflow-hidden">
+        <div className="flex items-center border border-gray-300 h-[42px] rounded-md overflow-hidden">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Tìm kiếm tên gia sư..."
-            className="flex-grow p-4 outline-none"
-            style={{ height: "50px" }}
+            className="flex-grow p-4 outline-none md:h-[40px] h-[30px]"
+          
           />
-          <button className="bg-blue-500 text-white flex items-center justify-center p-4" style={{ height: "50px" }}>
-            <FaSearch className="w-5 h-5" />
-            <span className="ml-2">Tìm Kiếm</span>
+          <button className="bg-blue-500 border border-blue-300 text-white flex items-center justify-center p-4">
+            <FaSearch />
+            <h5 className="ml-2">Tìm Kiếm</h5>
           </button>
         </div>
         {/* Filter Section */}

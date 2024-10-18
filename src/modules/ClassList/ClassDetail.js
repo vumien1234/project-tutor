@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Container from "../../components/common/Container";
-import { IoHomeOutline, IoLocationSharp, IoPerson } from "react-icons/io5";
+import { IoHomeOutline, IoLocationSharp } from "react-icons/io5";
 import { IoIosCheckmarkCircle, IoMdTime } from "react-icons/io";
 import { IoMdPerson } from "react-icons/io";
 import { MdAttachMoney } from "react-icons/md";
@@ -39,12 +39,17 @@ const ClassDetail = () => {
     <Container>
       {classListDetail ? (
         <div className="w-full py-12">
-         <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4">
             <IoHomeOutline className="w-5 h-5 mr-2 text-orange-500" />
-            <p className="mr-2">Trang chủ</p>
+            <a href="/" className="mr-2">
+              Trang chủ
+            </a>
             <div className="flex items-center">
-              <p> / Danh sách lớp / <span>{classListDetail.id}</span></p>
-            </div>    
+              <a href="/danh-sach-lop">
+                <span>/ Danh sách lớp / </span>
+              </a>
+              <span className="ml-2">{classListDetail.id}</span>
+            </div>
           </div>
 
           <div className="py-5 flex flex-col md:flex-row gap-10 w-full">

@@ -7,7 +7,7 @@ import { IoQrCodeOutline } from "react-icons/io5";
 export default function Confirm() {
 
     return (
-        <div className="flex flex-col gap-12 w-full py-12">
+        <div className="flex flex-col gap-12 ">
             <div className="flex flex-col md:flex-row justify-between gap-[50px] md:gap-0">
                 <div className="flex flex-col w-full md:pr-10">
                     <div className="border-b mb-2 flex pb-2">

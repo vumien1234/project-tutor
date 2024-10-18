@@ -11,6 +11,8 @@ import { navLinksClassList, navLinksDefault } from "../constants/dataHeader";
 import Avata from "../../assets/image/avata-default.png";
 import { useSelector } from "react-redux";
 import Logo_web from "../../assets/image/TUTORMASTER1.png";
+import Logo_webMobile from "../../assets/image/logo-mobile.png";
+import CustomSearch from "./Search";
 
 const Header = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -25,7 +27,7 @@ const Header = () => {
 
   const handleToggle = () => {
     setToggle(!toggle);
-  }
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -81,26 +83,37 @@ const Header = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50">
-      <div className="md:h-[100px] h-[80px] bg-white flex justify-between items-center w-full shadow-md md:shadow-none">
+      <div className="md:h-[100px] h-[130px] bg-white flex justify-between items-center w-full shadow-md md:shadow-none">
         <Container className="justify-between items-center">
-          <div className="flex justify-between items-center w-full">
-            <div className="flex items-center justify-start space-x-4">
-              <img
-                src={Logo_web}
-                alt="Logo"
-                className="object-cover "
-						  />
-            </div>
-            <div className="md:hidden block">
-              <RiMenu3Fill onClick={handleToggle} className="text-3xl cursor-pointer" />
+          <div className="flex flex-row gap-10 items-center justify-between w-full">
+            {/* Phần bên trái - Logo và Search */}
+            <div className="flex flex-row w-full items-center justify-between">
+              <img src={Logo_web} alt="Logo" className="object-cover md:block hidden ml-[-46px]" />
+              <img src={Logo_webMobile} alt="Logo" className="object-cover block md:hidden ml-[-20px]" />
+              <div className="md:block hidden w-full">
+                <CustomSearch />
+              </div>
+              <div className="md:hidden block">
+                <RiMenu3Fill onClick={handleToggle} className="text-[30px] cursor-pointer" />
+              </div>
             </div>
 
-            <div className="md:flex hidden gap-5">
+            {/* Phần bên phải - Các button và thông tin liên hệ */}
+            <div className="md:flex flex-row w-[50%] hidden gap-5 items-center justify-end">
               <CustomButton title="Đăng kí làm gia sư" color="secondary" />
               <Link to={"/danh-sach-lop"}>
                 <CustomButton title="Đăng kí thuê gia sư" color="primary1" />
               </Link>
+              <div className="flex items-center justify-center p-4 h-[45px] cursor-pointer bg-[#335ce3] rounded-lg">
+                <MdLocalPhone className="text-xl font-bold text-white" />
+                <a href="tel:0395219002" className="ml-1 text-xl text-white font-semibold">
+                  0395219002
+                </a>
+              </div>
             </div>
+          </div>
+          <div className="block md:hidden w-full my-2">
+            <CustomSearch />
           </div>
 
           <div
@@ -147,24 +160,19 @@ const Header = () => {
           </div>
 
           <div className="flex items-center space-x-10">
-            <div className="flex items-center">
-              <MdLocalPhone className="text-2xl font-bold" />
-              <a href="tel:0395219002" className="ml-1 text-2xl font-semibold">
-                0395219002
-              </a>
-            </div>
-
             {Object.keys(currentUser).length > 0 ? (
               <div className="relative group">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer">
-                  <img src={AvataDefault} alt="AvataDefault" className="w-7 h-7" />
+                <div className="w-11 h-11 border border-green-500 rounded-full flex items-center justify-center cursor-pointer">
+                  <img src={currentUser.avatar || AvataDefault} alt="AvataDefault" className="w-full h-full rounded-full " />
                 </div>
 
                 <div className="absolute w-[290px] right-0 top-full shadow-xl bg-white hidden rounded-xl group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
                   <div className="flex flex-col cursor-pointer text-black">
                     <div className="p-2">
                       <div className="flex flex-col items-start mb-2 px-2">
-                        <span className="text-lg font-semibold normal-case">Tên người dùng: {currentUser.username}</span>
+                        <span className="text-lg font-semibold normal-case">
+                          Tên người dùng: {currentUser.username}
+                        </span>
                         <span className="text-sm text-gray-600 normal-case">Vai trò: {currentUser.role}</span>
                       </div>
                       <Tab

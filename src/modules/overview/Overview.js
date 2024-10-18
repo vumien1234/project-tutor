@@ -1,19 +1,22 @@
 import React from "react";
-// import Container from "../../components/common/Container";
-import Banner from "../../components/common/Banner";
-import ImgOverview from "../../assets/image/banner-overview.jpg";
+import Banner1 from "../../components/common/Banner1";
+import img1 from '../../assets/image/tong-quan/banner.webp'
 
 const Overview = () => {
-    return (
-        <>
-            <Banner
-                className="h-[400px]"
-                image={ImgOverview}
-                title="Chào mừng Mộc Miên đến với TutorMaster"
-                description="Tổng quan"
-            />
-        </>
-    );
+  return (
+    <div>
+      <div className="relative">
+        <Banner1 
+          banners={[
+            { image_url: img1 },
+            { image_url: img1 }
+          ]}
+          isFullPage 
+          withButton 
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Overview;

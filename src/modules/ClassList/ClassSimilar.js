@@ -1,35 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { RiBookLine } from "react-icons/ri";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp, IoTime, IoPerson } from "react-icons/io5";
 import { MdAttachMoney } from "react-icons/md";
 import { CiCalendar, CiBookmark } from "react-icons/ci";
 import CustomButton from "../../components/common/Button";
-import { IoTime } from "react-icons/io5";
-import { IoPerson } from "react-icons/io5";
 
 const ClassListSlider = ({ classList }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(1);
+
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      if (window.innerWidth <= 640) {
+        setSlidesToShow(1); 
+      } else {
+        setSlidesToShow(4);
+      }
+    };
+
+    updateSlidesToShow();
+    window.addEventListener("resize", updateSlidesToShow);
+
+    return () => {
+      window.removeEventListener("resize", updateSlidesToShow);
+    };
+  }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex < classList.length - 4 ? prevIndex + 1 : 0));
+    setCurrentIndex((prevIndex) => 
+      (prevIndex < classList.length - slidesToShow ? prevIndex + 1 : 0)
+    );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : classList.length - 4));
+    setCurrentIndex((prevIndex) =>
+      (prevIndex > 0 ? prevIndex - 1 : classList.length - slidesToShow)
+    );
+  };
+
+  const getSlideWidth = () => {
+    const slideWidth = 295 + 16;
+    return slideWidth; 
   };
 
   return (
     <div className="py-2">
-      <h4 className="font-semibold  mb-6">Các lớp tương tự</h4>
-      {classList && classList.length > 0 ? (  
+      <h4 className="font-semibold mb-6">Các lớp tương tự</h4>
+      {classList && classList.length > 0 ? (
         <div className="relative overflow-hidden">
           <div
             className="relative flex transition-transform duration-500 ease-in-out gap-4 mb-5"
             style={{
-              transform: `translateX(-${currentIndex * (295 + 16)}px)`,
-              width: `${classList.length * (350 + 16)}px`
+              transform: `translateX(-${currentIndex * getSlideWidth()}px)`,
+              width: `${classList.length * getSlideWidth()}px`
             }}
           >
             {classList.map((item, index) => (
@@ -82,15 +107,13 @@ const ClassListSlider = ({ classList }) => {
           >
             <svg fill="none" height="20" style={{ fill: "#000" }} viewBox="0 0 20 20" width="20">
               <path
-                d="M14.6043 9.02755C14.8577 9.28108 15.0001 9.6249 15.0001 9.98339C15.0001 10.3419 14.8577 10.6857 14.6043 10.9392L6.95625 18.5873C6.83153 18.7164 6.68235 18.8194 6.51741 18.8902C6.35246 18.9611 6.17506 18.9984 5.99554 18.9999C5.81603 19.0015 5.63801 18.9673 5.47186 18.8993C5.3057 18.8313 5.15475 18.731 5.02782 18.604C4.90088 18.4771 4.80049 18.3261 4.73251 18.16C4.66453 17.9938 4.63033 17.8158 4.63189 17.6363C4.63345 17.4568 4.67074 17.2794 4.7416 17.1144C4.81245 16.9495 4.91545 16.8003 5.04457 16.6756L11.7368 9.98339L5.04457 3.29118C4.7983 3.0362 4.66203 2.69469 4.66511 2.34021C4.66819 1.98573 4.81038 1.64664 5.06104 1.39598C5.31171 1.14532 5.65079 1.00313 6.00527 1.00005C6.35975 0.996971 6.70126 1.13324 6.95625 1.37951L14.6043 9.02755Z"
+                d="M14.6043 9.02755C14.8577 9.28108 15.0001 9.6249 15.0001 9.98339C15.0001 10.3419 14.8577 10.6857 14.6043 10.9392L6.95625 18.5873C6.83153 18.7164 6.68235 18.8194 6.51741 18.8902C6.35246 18.9611 6.17506 18.9984 5.99554 18.9999C5.81603 19.0015 5.63801 18.9673 5.47186 18.8993C5.3057 18.8313 5.15475 18.731 5.02782 18.604C4.90088 18.4771 4.80049 18.3261 4.73251 18.16C4.66453 17.9938 4.63033 17.8158 4.63189 17.6363C4.63345 17.4568 4.67074 17.2794 4.74158 17.1144C4.81243 16.9495 4.91546 16.8003 5.04457 16.6756L11.7368 9.98339L5.04457 3.29118C4.79829 3.0362 4.66204 2.69469 4.66511 2.34021C4.66818 1.98573 4.81038 1.64664 5.06104 1.39598C5.3117 1.14532 5.65079 1.00313 6.00527 1.00005C6.35975 0.996971 6.70126 1.13324 6.95625 1.37951L14.6043 9.02755Z"
                 fillRule="evenodd"
               />
             </svg>
           </button>
         </div>
-      ) : (
-        <p>No classes available</p>
-      )}
+      ) : null}
     </div>
   );
 };

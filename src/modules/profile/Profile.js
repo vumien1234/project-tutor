@@ -31,7 +31,7 @@ const Profile = () => {
 
   return (
     <div>
-      <Banner className="h-[400px]" image={ImgUserInfor} title="Xin chào Mộc Miên" description="Tài khoản của tôi" />
+      <Banner className="h-[200px]" image={ImgUserInfor} title="Xin chào Mộc Miên" description="Tài khoản của tôi" />
       <Container>
         <div className="w-full py-12">
           <div className="flex md:flex-row flex-col gap-10">
@@ -67,7 +67,9 @@ const Profile = () => {
               {activeTab === "thong-tin-nguoi-dung" && <UserInfor />}
               {activeTab === "mat-khau" && <Password />}
               {activeTab === "khoa-hoc-dang-ki" && <Course />}
-              {activeTab === "lich-hoc" && <Calendar />}
+              {activeTab === "lich-hoc" &&
+                <Calendar/>
+              }
             </div>
           </div>
         </div>
