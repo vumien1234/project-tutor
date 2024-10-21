@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="bg-[#ddeafe] text-[#333]">
       <Container>
         <div className="py-5">
-          <img src={Logo_web} alt="Logo" className="object-cover " />
+          <img src={Logo_web} alt="Logo" className="object-cover ml-[-12px]" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 md:gap-16">
             <div className="flex-1 space-y-2">
