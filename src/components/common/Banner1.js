@@ -10,7 +10,7 @@ export default function Banner({
   className,
   isFullPage,
   isHead,
-  height = 650,
+  height = 600,
   width = 1924,
   isPagination = false,
   rounded = false,
@@ -44,7 +44,7 @@ export default function Banner({
                 alt={item.alt || "banner"}
                 className={classNames(
                   rounded ? "rounded-3xl" : "",
-                  isFullPage ? "md:h-[650px] h-[400px]" : "",
+                  isFullPage ? "md:h-[600px] h-[400px]" : "",
                   `h-[400px] w-full object-cover md:h-[${height}px]`
                 )}
                 style={!isFullPage ? { width: `${width}px`, height: `${height}px` } : { minWidth: "100%" }}

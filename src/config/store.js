@@ -4,12 +4,14 @@ import scrollReducer from "../modules/scrollToTop/slices";
 import { loadingSlice } from "../components/loading/loadingSlice";
 import { authSlice } from "../modules/auth/Login/slices";
 import classListReduce from "../modules/ClassList/slice";
+import listTutorReduce from '../modules/tutorList/slice';
 
 const rootReducer = combineReducers({
   loading: loadingSlice.reducer,
   auth: authSlice.reducer,
   scroll: scrollReducer,
-  classList: classListReduce
+  classList: classListReduce,
+  listTutor:listTutorReduce
 });
 
 export const makeStore = (preloadedState) => {

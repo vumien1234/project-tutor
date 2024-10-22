@@ -11,29 +11,21 @@ const Pagination = ({ page, setCurrentPage, contentRef, className = "", totalPag
 
   const actionNext = () => {
     if (page < totalPages) {
-      setCurrentPage((prev) => {
-        const newPage = prev + 1;
-        scrollToContent();
-        return newPage;
-      });
+      setCurrentPage(prev => prev + 1);
+      scrollToContent(); 
     }
   };
 
   const actionPrev = () => {
     if (page > 1) {
-      setCurrentPage((prev) => {
-        const newPage = prev - 1;
-        scrollToContent();
-        return newPage;
-      });
+      setCurrentPage(prev => prev - 1);
+      scrollToContent();
     }
   };
 
   const actionPage = (value) => {
-    setCurrentPage(() => {
-      scrollToContent();
-      return value;
-    });
+    setCurrentPage(value); 
+    scrollToContent();
   };
 
   return (

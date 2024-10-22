@@ -19,7 +19,7 @@ const ClassDetail = () => {
   // Dùng useParams để lấy classId từ URL
   const { classId } = useParams();
   const dispatch = useDispatch();
-  const { classListDetail, loading, error, classList } = useSelector((state) => state.classList);
+  const { classListDetail,  classList } = useSelector((state) => state.classList);
 
   useEffect(() => {
     if (classId) {
@@ -30,10 +30,6 @@ const ClassDetail = () => {
   useEffect(() => {
     dispatch(fetchClassList());
   }, [dispatch]);
-
-  // Kiểm tra trạng thái loading và error
-  if (loading) return <p>Đang tải...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <Container>
@@ -124,7 +120,7 @@ const ClassDetail = () => {
         </div>
       ) : (
         <p>Không có thông tin lớp học này.</p>
-      )}
+      )} 
     </Container>
   );
 };

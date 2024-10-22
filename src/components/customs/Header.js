@@ -88,7 +88,9 @@ const Header = () => {
           <div className="flex flex-row gap-10 items-center justify-between w-full">
             {/* Phần bên trái - Logo và Search */}
             <div className="flex flex-row w-full items-center justify-between">
-              <img src={Logo_web} alt="Logo" className="object-cover md:block hidden ml-[-46px]" />
+             <h1 className="w-[290px] h-full">
+               <img src={Logo_web} alt="Logo" className="object-cover md:block hidden ml-[-40px]" />
+             </h1>
               <img src={Logo_webMobile} alt="Logo" className="object-cover block md:hidden ml-[-20px]" />
               <div className="md:block hidden w-full">
                 <CustomSearch />

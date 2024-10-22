@@ -105,11 +105,11 @@ code {
     }
     h2 {
       font-weight: bold;
-      @apply text-[32px] md:text-[46px];
+      @apply text-[28px] md:text-[32px];
     }
     h3 {
       font-weight: bold;
-      @apply text-[20px] md:text-[28px];
+      @apply text-[20px] md:text-[24px];
     }
     h4 {
       font-weight: normal;
