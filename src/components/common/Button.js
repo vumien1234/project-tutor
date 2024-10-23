@@ -26,7 +26,7 @@ const CustomButton = ({
     <button type={buttonType} className={`${buttonClass} ${className}`} onClick={onClick} {...rest}>
       <div className="flex items-center justify-center">
         {IconLeft && <IconLeft className={`mr-2`} />}
-        {title && <h6 className="whitespace-nowrap">{title}</h6>}
+        {title && <h6 className="whitespace-nowrap uppercase font-semibold">{title}</h6>}
         {Icon && <Icon className={`ml-2`} />}
         {children}
       </div>

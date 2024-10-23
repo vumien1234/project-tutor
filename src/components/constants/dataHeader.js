@@ -4,7 +4,7 @@ export const navLinksClassList = [
     { path: "/cach-thuc-nhan-lop", label: "Cách thức nhận lớp" },
     { path: "/chinh-sach-hoan-phi", label: "Chính sách hoàn phí" },
     { path: "/hop-dong", label: "Hợp đồng" },
-    { path: "/tao-note-nhan-lop", label: "Tạo note nhận lớp" },
+    // { path: "/tao-note-nhan-lop", label: "Tạo note nhận lớp" },
 ];
 
 export const navLinksDefault = [

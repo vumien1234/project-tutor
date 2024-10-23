@@ -145,7 +145,7 @@ export const routes = {
     children: [
       {
         auth: AUTH_VALIDATE.ALL,
-        path: "/doi-ngu-gia-su/:id",
+        path: "/doi-ngu-gia-su/:userName",
         component: (props) => injectProps(props, TeacherDetail),
         title: "Đội ngũ gia sư"
       }

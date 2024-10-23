@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';  // Import icon từ react-icons
+import CustomImage from '../common/CustomImage';
 
 const fakeData = [
   { id: 1, name: 'Product 1 React Hook useEffect has a missing dependency  Either include it or remove the dependency array', image: '/assets/image/logo-web.png', path: '/product/1' },
@@ -101,7 +102,7 @@ export default function CustomSearch() {
                       key={item.id}
                       className={`${index !== listData.length - 1 ? 'mb-2' : ''} flex gap-[10px] rounded-md p-1 hover:bg-gray-100`}
                     >
-                      <img
+                      <CustomImage
                         className="h-[45px] w-[45px] rounded-md object-cover"
                         alt={item.name}
                         src={item.image}
