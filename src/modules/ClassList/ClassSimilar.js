@@ -113,7 +113,7 @@ const ClassListSlider = ({ classList }) => {
             </svg>
           </button>
         </div>
-      ) : null}
+      ) : <>không có dữ liệu</>}
     </div>
   );
 };

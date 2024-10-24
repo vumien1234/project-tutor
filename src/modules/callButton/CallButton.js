@@ -13,7 +13,7 @@ const CallButton = () => {
                 </button>
             </div>
             <div className="rounded-full bg-red-600 bg-opacity-90 px-5 py-3 text-white text-lg font-semibold shadow-lg hidden md:block">
-                <h5>041 111 2002</h5>
+                <h4 className="font-semibold">0395219002</h4>
             </div>
         </div>
     );

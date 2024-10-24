@@ -111,7 +111,7 @@ const ClassDetail = () => {
             <img src={ImgWhy} alt="why" className="object-cover w-[150px] h-[150px]" />
             <div>
               <h3>Nếu bạn chưa chắc chắn về việc nhận lớp này?</h3>
-              <h6 className="py-5">Hãy liên hệ với chúng tôi để được tư vấn thêm.</h6>
+              <h6 className="py-5">Nếu bạn vẫn còn phân vân hoặc có thắc mắc về lớp học, hãy liên hệ ngay với TutorMaster để được tư vấn chi tiết hơn. Chúng tôi sẽ hỗ trợ bạn chọn lựa lớp học phù hợp nhất với mục tiêu và nhu cầu của bạn, giúp bạn tự tin hơn khi ra quyết định.</h6>
               <Link to="/lien-he">
                 <CustomButton title="Liên hệ" icon={FaArrowRight} />
               </Link>

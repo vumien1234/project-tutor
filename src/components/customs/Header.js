@@ -34,7 +34,7 @@ const Header = () => {
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const validPaths = ["/tong-quan", "/cach-thuc-nhan-lop", "/tao-note-nhan-lop"];
+    const validPaths = ["/tong-quan", "/cach-thuc-nhan-lop","/chinh-sach-hoan-phi","/hop-dong"];
 
     const classListRegex = /^\/danh-sach-lop(\/.*)?$/;
 
@@ -106,7 +106,7 @@ const Header = () => {
               <Link to={"/danh-sach-lop"}>
                 <CustomButton title="Đăng kí thuê gia sư" color="primary1" />
               </Link>
-              <div className="flex items-center justify-center p-4 h-[45px] cursor-pointer bg-[#335ce3] rounded-lg">
+              <div className="flex items-center justify-center p-4 h-[45px] cursor-pointer bg-[#3a83bb] rounded-lg">
                 <MdLocalPhone className="text-xl font-bold text-white" />
                 <a href="tel:0395219002" className="ml-1 text-xl text-white font-semibold">
                   0395219002

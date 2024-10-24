@@ -22,7 +22,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <FaPhone className="w-[20px] h-[20px]" />
-                <h5 className="ml-4">041 111 2002</h5>
+                <h5 className="ml-4">0395219002</h5>
               </div>
               <div className="flex items-center">
                 <MdEmail className="w-[20px] h-[20px]" />
@@ -32,16 +32,16 @@ const Footer = () => {
             <div className="flex-1 space-y-2">
               <h5 className="uppercase font-semibold">VỀ TUTORMASTER</h5>
               <h5 className="mt-1">
-                <a href="/introduce">Giới thiệu</a>
+                <a href="/gioi-thieu">Giới thiệu</a>
               </h5>
               <h5>
-                <a href="/classes">Danh sách lớp</a>
+                <a href="/danh-sach-lop">Danh sách lớp</a>
               </h5>
               <h5>
                 <a href="/for-tutors">Dành cho gia sư</a>
               </h5>
               <h5>
-                <a href="/contact">Liên hệ</a>
+                <a href="/lien-he">Liên hệ</a>
               </h5>
               <h5>
                 <a href="/privacy-policy">Chính sách bảo mật</a>

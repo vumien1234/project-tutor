@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner1 from "../../components/common/Banner1";
 import img1 from "../../assets/image/tong-quan/banner.jpeg";
 import img2 from "../../assets/image/tong-quan/2.jpeg";
@@ -8,8 +8,61 @@ import WhyUS from "../../assets/image/tong-quan/Why_do_you_choose_us.jpg";
 import CustomImage from "../../components/common/CustomImage";
 import CustomButton from "../../components/common/Button";
 import { FaArrowRight } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const Overview = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const handleToggle = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+  const faqData = [
+    {
+      question: "Tại sao tôi nên chọn TutorMaster?",
+      answer:
+        "TutorMaster cung cấp gia sư chất lượng và công cụ hỗ trợ học tập hiện đại giúp bạn đạt hiệu quả cao trong học tập. Ngoài ra, TutorMaster còn có hệ thống đánh giá gia sư chuyên nghiệp giúp bạn lựa chọn dễ dàng hơn."
+    },
+    {
+      question: "Tôi có thể chọn gia sư theo nhu cầu không?",
+      answer:
+        "Có, bạn hoàn toàn có thể lựa chọn gia sư dựa trên chuyên môn và phong cách giảng dạy phù hợp với mình. Bạn có thể xem hồ sơ chi tiết của gia sư để chọn người phù hợp nhất."
+    },
+    {
+      question: "Học phí sẽ được tính như thế nào?",
+      answer:
+        "Học phí sẽ được thông báo rõ ràng trước khi bạn đăng ký và có các chính sách thanh toán linh hoạt, bao gồm thanh toán theo buổi hoặc theo tháng."
+    },
+    {
+      question: "Nếu tôi không hài lòng với gia sư thì sao?",
+      answer:
+        "Bạn có thể liên hệ để thay đổi gia sư hoặc nhận hỗ trợ từ TutorMaster để tìm người phù hợp hơn. Chúng tôi cam kết đảm bảo chất lượng giảng dạy và sự hài lòng của bạn."
+    },
+    {
+      question: "Tôi có thể học thử trước khi quyết định không?",
+      answer:
+        "TutorMaster cung cấp buổi học thử miễn phí để bạn đánh giá chất lượng gia sư trước khi đăng ký chính thức. Điều này giúp bạn đảm bảo rằng gia sư và phương pháp học phù hợp với nhu cầu của mình."
+    },
+    {
+      question: "Gia sư của TutorMaster có được đào tạo bài bản không?",
+      answer:
+        "Tất cả gia sư tại TutorMaster đều được tuyển chọn kỹ lưỡng và trải qua quá trình đào tạo chuyên sâu để đảm bảo chất lượng giảng dạy tốt nhất."
+    },
+    {
+      question: "TutorMaster có hỗ trợ học viên trong việc chuẩn bị cho kỳ thi quan trọng không?",
+      answer:
+        "Có, chúng tôi cung cấp các khóa học luyện thi chuyên biệt để hỗ trợ học viên trong việc chuẩn bị cho các kỳ thi quan trọng như đại học, các chứng chỉ quốc tế, và thi học kỳ."
+    },
+    {
+      question: "Học trực tuyến tại TutorMaster có thuận tiện không?",
+      answer:
+        "TutorMaster cung cấp nền tảng học trực tuyến tiên tiến, giúp bạn học tập mọi lúc, mọi nơi. Các buổi học trực tuyến được thiết kế để tương tác hiệu quả với gia sư."
+    },
+    {
+      question: "Tôi có thể thay đổi lịch học linh hoạt không?",
+      answer:
+        "Lịch học tại TutorMaster được sắp xếp và cố định trước để đảm bảo tính ổn định và sự chuẩn bị tốt nhất cho cả học viên và gia sư. Trong trường hợp đặc biệt, bạn có thể liên hệ với gia sư hoặc trung tâm để xem xét thay đổi, nhưng việc này sẽ phụ thuộc vào điều kiện cụ thể và sự đồng ý của cả hai bên."
+    }
+  ];
+
   return (
     <div>
       <Banner1
@@ -22,7 +75,7 @@ const Overview = () => {
       <Container>
         <div className="py-12">
           <>
-            <h2 className="font-bold text-center">Tổng Quan về Website Tìm Gia Sư</h2>
+            <h2 className="font-bold text-center text-[#3a83bb] uppercase">Tổng Quan về Website Tìm Gia Sư</h2>
             <h4 className="mt-8 text-xl font-semibold">Mục Đích và Chức Năng</h4>
             <h5 className="mt-2">
               Website tìm gia sư là nền tảng trực tuyến được thiết kế để kết nối học sinh, phụ huynh với các gia sư có
@@ -41,30 +94,42 @@ const Overview = () => {
               <li className="text-lg">
                 <strong className="text-[14px] md:text-[16px]">Tìm Kiếm Gia Sư:</strong>
                 <ul className="list-disc list-inside mt-2 ml-5">
-                  <li>
+                  <li className="text-[14px] md:text-[16px]">
                     Cho phép người dùng tìm kiếm gia sư dựa trên nhiều tiêu chí như môn học, khu vực,họ và tên gia sư
                   </li>
-                  <li>Bộ lọc để tìm kiếm dễ dàng và nhanh chóng.</li>
+                  <li className="text-[14px] md:text-[16px]">
+                    Bộ lọc để tìm kiếm dễ dàng và nhanh chóng ,{" "}
+                    <a href="/danh-sach-lop">
+                      <span className="text-blue-500 ">Xem danh sách lớp</span>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li className="text-lg">
                 <strong className="text-[14px] md:text-[16px]">Quản Lý Lịch Học:</strong>
                 <ul className="list-disc list-inside mt-2 ml-5">
-                  <li>
+                  <li className="text-[14px] md:text-[16px]">
                     Sau khi đăng kí lớp học và được admin chấp nhận yêu cầu thì lịch học của bạn sẽ được hiển thị trong
                     phần profile.
                   </li>
-                  <li>Giúp người học tổ chức thời gian hiệu quả với lịch học đã được phân công rõ ràng.</li>
+                  <li className="text-[14px] md:text-[16px]">
+                    Giúp người học tổ chức thời gian hiệu quả với lịch học đã được phân công rõ ràng.
+                  </li>
                 </ul>
               </li>
               <li className="text-lg">
                 <strong className="text-[14px] md:text-[16px]">Liên hệ:</strong>
                 <ul className="list-disc list-inside mt-2 ml-5">
-                  <li>
+                  <li className="text-[14px] md:text-[16px]">
                     Người dùng có thể gửi form liên hệ đến chúng tôi trong giờ hành chính , chúng tôi sẽ phản hồi lại
                     qua email mà bạn đăng kí,câu trả lời sẽ được phản hồi sớm nhất và giải đáp các thắc mắc của bạn.
                   </li>
-                  <li>Cung cấp thông tin cá nhân,khoá học đăng kí,và thông tin liên lạc.</li>
+                  <li className="text-[14px] md:text-[16px]">
+                    Cung cấp thông tin cá nhân,khoá học đăng kí,và thông tin liên lạc.
+                    <a href="/lien-he">
+                      <span className="text-blue-500 ">Liên hệ ngay</span>
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ol>
@@ -72,7 +137,7 @@ const Overview = () => {
             <ol className="list-decimal list-inside mt-2 space-y-2">
               <li className="text-lg">
                 <strong className="text-[14px] md:text-[16px]">Học Sinh và Phụ Huynh:</strong>
-                <ul className="list-disc list-inside mt-2 ml-5">
+                <ul className="list-disc text-[14px] md:text-[16px] list-inside mt-2 ml-5">
                   <li>Dễ dàng tìm kiếm gia sư phù hợp với nhu cầu học tập.</li>
                   <li>Tiết kiệm thời gian và công sức trong việc tìm kiếm giáo viên.</li>
                   <li>Có nhiều lựa chọn về gia sư và phương pháp học tập.</li>
@@ -80,7 +145,7 @@ const Overview = () => {
               </li>
               <li className="text-lg">
                 <strong className="text-[14px] md:text-[16px]">Gia Sư:</strong>
-                <ul className="list-disc list-inside mt-2 ml-5">
+                <ul className="list-disc text-[14px] md:text-[16px] list-inside mt-2 ml-5">
                   <li>Cơ hội tiếp cận nhiều học sinh tiềm năng.</li>
                   <li>Quản lý lịch học và thông tin cá nhân dễ dàng.</li>
                   <li>Nhận phản hồi để cải thiện chất lượng giảng dạy.</li>
@@ -299,7 +364,28 @@ const Overview = () => {
             <a href="/gioi-thieu">
               <CustomButton title="Xem thêm" icon={FaArrowRight} className="mt-7" />
             </a>
-            <div>Các phản hồi về TutorMaster</div>
+
+            <div className="mt-10 w-full">
+              <h3 className="text-xl font-semibold mb-4">Phụ huynh học sinh hỏi đáp</h3>
+              <div className="space-y-3">
+                {faqData.map((faq, index) => (
+                  <div key={index} className="border-b border-gray-200">
+                    <div
+                      className="flex justify-between items-center py-2 cursor-pointer"
+                      onClick={() => handleToggle(index)}
+                    >
+                      <h5>{faq.question}</h5>
+                      <span>{activeIndex === index ? <IoIosArrowUp size={20} /> : <IoIosArrowDown size={20} />}</span>
+                    </div>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${activeIndex === index ? "max-h-40" : "max-h-0"}`}
+                    >
+                      <h5 className="mt-2">{faq.answer}</h5>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </div>

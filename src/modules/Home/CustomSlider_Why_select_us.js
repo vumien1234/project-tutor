@@ -118,7 +118,7 @@ const CustomSliderWhySelectUs = () => {
         <Slider {...custom_sliderSettings_1}>
           {articles.map((article, index) => (
             <div key={article.id} className="border border-dashed border-blue-500 p-5 rounded-xl md:max-w-[300px] w-full mx-auto">
-              <div className={`relative text-white rounded-lg h-full overflow-hidden bg-orange-300`}>
+              <div className={`relative text-white rounded-lg h-full overflow-hidden bg-[#65cadf]`}>
                 <div className="flex justify-center box_slider_auto">
                   <img src={article.image} alt={article.title} className="item_slider_auto object-cover" />
                 </div>
