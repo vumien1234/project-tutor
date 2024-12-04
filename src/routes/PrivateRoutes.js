@@ -3,11 +3,13 @@ import Layout from "../components/customs/Layout";
 import useLoadData from "../hooks/useLoadData"
 import { useLocation } from "react-router-dom";
 import { AUTH_VALIDATE } from "../constants/AuthConstant";
+import AdminLayout from "../components/customs/admin/AdminLayout";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const auth = rest.auth;
     const loading = useLoadData();
     const currentUser = useSelector((store) => store.auth.currentUser);
+
     const location = useLocation();
     if (AUTH_VALIDATE.ALL !== auth) {
         if (loading) {
@@ -28,6 +30,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         }
     }
 
+    // if (location.pathname.includes("/manage")) {
+    //     return (
+    //         <AdminLayout>
+    //             <Component {...rest} />
+    //         </AdminLayout>
+    //     )
+    // }
+
     return (
         <Layout>
             <Component {...rest} />
@@ -35,14 +45,3 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )
 }
 export default PrivateRoute;
-
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//     const isAuthenticated = true; // Thay đổi điều kiện xác thực phù hợp
-
-//     return (
-//         <Route
-//             {...rest}
-//             element={isAuthenticated ? <Component {...rest} /> : <Navigate to="/login" />}
-//         />
-//     );
-// };

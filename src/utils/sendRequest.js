@@ -94,7 +94,7 @@ const SendRequest = async (url, payload, thunkAPI, method = "post") => {
           }
         }
       }
-  return thunkAPI.rejectWithValue(undefined, error);
+      return thunkAPI.rejectWithValue(undefined, error);
     }
   };
 

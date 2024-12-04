@@ -7,7 +7,7 @@ import AvataDefault from "../../assets/image/avata-default.png";
 import Tab from "../common/Tab";
 import { RiMenu3Fill, RiUser3Line } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
-import { navLinksClassList, navLinksDefault } from "../constants/dataHeader";
+import { navLinksDefault } from "../constants/dataHeader";
 import Avata from "../../assets/image/avata-default.png";
 import { useSelector } from "react-redux";
 import Logo_web from "../../assets/image/TUTORMASTER1.png";
@@ -34,7 +34,7 @@ const Header = () => {
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const validPaths = ["/tong-quan", "/cach-thuc-nhan-lop","/chinh-sach-hoan-phi","/hop-dong"];
+    const validPaths = ["/tong-quan", "/cach-thuc-nhan-lop", "/chinh-sach-hoan-phi", "/hop-dong"];
 
     const classListRegex = /^\/danh-sach-lop(\/.*)?$/;
 
@@ -71,15 +71,56 @@ const Header = () => {
     return links.map((link) => (
       <div
         key={link.path}
-        className={`nav-link cursor-pointer p-5 md:py-0 hover:bg-hover-default font-semibold md:px-0 md:bg-transparent md:hover:bg-transparent ${
-          activeTab === link.path ? "text-yellow-500 font-semibold" : ""
-        } overflow-y-auto`}
-        onClick={() => handleTabClick(link.path)}
+        className={`relative group cursor-pointer p-5 md:py-0 hover:bg-hover-default font-semibold md:px-0 md:bg-transparent md:hover:bg-transparent ${activeTab === link.path ? "text-yellow-500 font-semibold" : ""}`}
       >
-        {link.label}
+        <span onClick={() => handleTabClick(link.path)}>{link.label}</span>
+
+        {link.children && (
+          <div className="absolute left-0 hidden group-hover:block mt-0 w-48">
+            <div className="mt-4 w-48 bg-white shadow-lg rounded-md border border-gray-200 overflow-hidden">
+              <div className="flex flex-col">
+                {link.children.map((child) => (
+                  <div
+                    key={child.path}
+                    className={`px-4 py-2 text-gray-700 hover:bg-gray-200 cursor-pointer`}
+                    onClick={() => handleTabClick(child.path)}
+                  >
+                    {child.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     ));
   };
+  const renderNavigationMobile = (links) => {
+    return links.map((link) => (
+      <div
+        key={link.path}
+        className={`cursor-pointer p-5 md:py-0 font-semibold bg-transparent`}
+      >
+        <span onClick={() => handleTabClick(link.path)}>{link.label}</span>
+
+        {/* Show children on mobile with indentation */}
+        {link.children && (
+          <div className="flex flex-col pl-4 mt-2"> {/* Added padding to indent on mobile */}
+            {link.children.map((child) => (
+              <div
+                key={child.path}
+                className="px-4 py-2 text-gray-700 hover:bg-gray-200 cursor-pointer"
+                onClick={() => handleTabClick(child.path)}
+              >
+                {child.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    ));
+  };
+
 
   return (
     <div className="fixed top-0 left-0 w-full z-50">
@@ -88,11 +129,11 @@ const Header = () => {
           <div className="flex flex-row gap-10 items-center justify-between w-full">
             {/* Phần bên trái - Logo và Search */}
             <div className="flex flex-row w-full items-center justify-between">
-             <h1 className="w-[290px] cursor-pointer h-full">
-               <a href="/">
-                <img src={Logo_web} alt="Logo" className="object-cover md:block hidden ml-[-40px]" />
-               </a>
-             </h1>
+              <h1 className="w-[290px] cursor-pointer h-full">
+                <a href="/">
+                  <img src={Logo_web} alt="Logo" className="object-cover md:block hidden ml-[-40px]" />
+                </a>
+              </h1>
               <img src={Logo_webMobile} alt="Logo" className="object-cover block md:hidden ml-[-20px]" />
               <div className="md:block hidden w-full">
                 <CustomSearch />
@@ -121,9 +162,8 @@ const Header = () => {
           </div>
 
           <div
-            className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform transform ${
-              toggle ? "translate-x-0" : "translate-x-full"
-            } h-screen md:hidden`}
+            className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform transform ${toggle ? "translate-x-0" : "translate-x-full"
+              } h-screen md:hidden`}
           >
             <div className="flex justify-between p-5">
               <div className="flex gap-5 flex-col sm:flex-row">
@@ -135,7 +175,7 @@ const Header = () => {
               <MdOutlineClear className="h-10 w-10 cursor-pointer" onClick={handleToggle} />
             </div>
 
-            <div>
+            <div className="h-100 overflow-auto">
               <div className="w-14 h-14 object-cover flex flex-row gap-5 m-5">
                 <img src={Avata} alt="Avata" />
                 <div>
@@ -144,7 +184,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex flex-col">
-                {renderNavigation(isClassListHeader ? navLinksClassList : navLinksDefault)}
+                {renderNavigationMobile(navLinksDefault)}
               </div>
               <div className="border border-gray-100"></div>
               <Link to={"/ho-so?tab=thong-tin-nguoi-dung"}>
@@ -160,7 +200,7 @@ const Header = () => {
       <div className="h-[60px] bg-[#3a83bb] text-white md:flex hidden justify-between items-center uppercase">
         <Container className="justify-between items-center">
           <div className="nav-header flex items-center text-[14px] space-x-12">
-            {renderNavigation(isClassListHeader ? navLinksClassList : navLinksDefault)}
+            {renderNavigation(navLinksDefault)}
           </div>
 
           <div className="flex items-center space-x-10">
@@ -175,7 +215,7 @@ const Header = () => {
                     <div className="p-2">
                       <div className="flex flex-col items-start mb-2 px-2">
                         <span className="text-lg font-semibold normal-case">
-                          Tên người dùng: {currentUser.username}
+                          Xin chào: {currentUser.username}
                         </span>
                         <span className="text-sm text-gray-600 normal-case">Vai trò: {currentUser.role}</span>
                       </div>

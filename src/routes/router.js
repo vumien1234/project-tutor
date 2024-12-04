@@ -19,6 +19,8 @@ import Note from "../modules/note/Note";
 import ArticleDetail from "../modules/Home/ArticleDetail";
 import { AUTH_VALIDATE } from "../constants/AuthConstant";
 import TutorList from "../modules/tutorList/TutorList";
+import RefundPolicy from "../modules/refundPolicy/RefundPolicy";
+import ContractPage from "../modules/contractPage/ContractPage";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -95,6 +97,20 @@ export const routes = {
     path: "/cach-thuc-nhan-lop",
     component: (props) => injectProps(props, ReceiveClass),
     title: "Cách thức nhận lớp"
+  },
+  refundPolicy: {
+    exact: false,
+    auth: AUTH_VALIDATE.ALL,
+    path: "/chinh-sach-hoan-phi",
+    component: (props) => injectProps(props, RefundPolicy),
+    title: "Chính sách hoàn phí"
+  },
+  contractPage: {
+    exact: false,
+    auth: AUTH_VALIDATE.ALL,
+    path: "/hop-dong",
+    component: (props) => injectProps(props, ContractPage),
+    title: "Hợp đồng"
   },
   note: {
     exact: false,
