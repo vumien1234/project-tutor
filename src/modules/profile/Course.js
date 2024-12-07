@@ -1,66 +1,66 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCourceList } from "./api";
-import CustomImage from "../../components/common/CustomImage";
+import { fetchCourseList } from "./api";
+import { CLASS_STATUS, CLASS_STATUS_COLOR } from "../../constants/MainConstants";
 
 const Course = () => {
   const dispatch = useDispatch();
-  const { courceList, selectedCourseId, currentPage, limit } = useSelector((state) => state.courceList);
+  const { courseList } = useSelector((state) => state.courseList);
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   useEffect(() => {
-    if (selectedCourseId) {
-      dispatch(fetchCourceList({ page: currentPage, limit, id: selectedCourseId }));
+    if (currentUser.username) {
+      dispatch(fetchCourseList({ page: 1, limit: 10, username: currentUser.username }));
     }
-  }, [currentPage, dispatch, limit, selectedCourseId]);
-  console.log("id_lop",courceList)
+  }, [currentUser.username, dispatch]);
 
   return (
     <>
-      {courceList && courceList.length > 0 ? (
-        <div className="border border-[#3a83bb] rounded-lg p-8 text-left">
-          {courceList.map((item) => (
-            <div key={item.id}>
-              <div className="flex justify-between">
-                <h6 className="p-2 border text-center w-[150px] font-semibold rounded-lg mb-4">{item.id_lop}</h6>
-                <button className="w-[100px] h-[35px] border border-red-400 rounded-lg font-medium">Xoá</button>
-              </div>
-              <div className="flex flex-col md:flex-row w-full gap-5">
-                {/* Hình ảnh giáo viên */}
-                <div className="w-full md:w-[200px] h-[300px] md:h-[180px]">
-                  <CustomImage src={item.avata} alt="Teacher" className="object-cover w-full h-full rounded-md" />
-                </div>
-                {/* Thông tin khóa học */}
-                <div className="w-full md:w-2/3">
-                  <h5 className="font-semibold mb-2">Toán cấp I</h5>
-                  <div className="space-y-3">
-                    <div className="flex justify-start items-start">
-                      <h6 className="w-[100px]">Giáo viên</h6>
-                      <h6 className="font-semibold">Vũ Thị Miên</h6>
-                    </div>
-                    <div className="flex justify-start items-start">
-                      <h6 className="w-[100px]">Thời gian</h6>
-                      <h6 className="font-semibold">3 tháng</h6>
-                    </div>
-                    <div className="flex justify-start items-start">
-                      <h6 className="w-[100px]">Học phí</h6>
-                      <h6 className="font-semibold">1.000.000đ</h6>
-                    </div>
-                    <div className="flex gap-3 justify-start md:flex-row flex-col">
-                      <div className="flex items-center w-[150px] bg-[#FFF5E5] p-2 rounded-md">
-                        <h6 className="text-[#DA8506]">Chưa thanh toán</h6>
-                      </div>
-                      <h6 className="flex items-center gap-2">
-                        Hạn thanh toán <p className="font-semibold">10/06/2024</p>
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+      {courseList && courseList.length > 0 ? (
+        <div className="border border-[#3a83bb] rounded-lg text-left overflow-hidden">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-4 py-2">#</th>
+                <th className="border border-gray-300 px-4 py-2">Môn học</th>
+                <th className="border border-gray-300 px-4 py-2">Thời gian bắt đầu</th>
+                <th className="border border-gray-300 px-4 py-2">Học phí</th>
+                <th className="border border-gray-300 px-4 py-2">Trạng thái</th>
+                <th className="border border-gray-300 px-4 py-2">Hạn nhận đơn</th>
+                <th className="border border-gray-300 px-4 py-2">Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              {courseList.map((item, index) => (
+                <tr key={item.id} className="hover:bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2 text-center">{index + 1}</td>
+                  <td className="border border-gray-300 px-4 py-2">{item.subject}</td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {new Date(item.time).toLocaleString()}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {item.total_price.toLocaleString()}đ
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">
+                    <span
+                      className={`px-3 py-1 rounded-full ${CLASS_STATUS_COLOR[item.status]}`}
+                    >
+                      {CLASS_STATUS[item.status]}
+                    </span>
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {new Date(item.due_date).toLocaleDateString()}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">
+                    <button className="text-blue-500">Xem chi tiết</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ) : (
-        <>Không có khóa học nào</>
+        <p className="text-center">Không có khóa học nào</p>
       )}
     </>
   );

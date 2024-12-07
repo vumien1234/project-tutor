@@ -21,6 +21,7 @@ import { AUTH_VALIDATE } from "../constants/AuthConstant";
 import TutorList from "../modules/tutorList/TutorList";
 import RefundPolicy from "../modules/refundPolicy/RefundPolicy";
 import ContractPage from "../modules/contractPage/ContractPage";
+import CreateClass from "../modules/ClassRoom/createClass/CreateClass";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -111,6 +112,20 @@ export const routes = {
     path: "/hop-dong",
     component: (props) => injectProps(props, ContractPage),
     title: "Hợp đồng"
+  },
+  createClass: {
+    exact: false,
+    auth: AUTH_VALIDATE.CUSTOMER,
+    path: "/tao-lop",
+    component: (props) => injectProps(props, CreateClass),
+    title: "Tạo lớp học"
+  },
+  myClass: {
+    exact: false,
+    auth: AUTH_VALIDATE.CUSTOMER,
+    path: "/lop-hoc-cua-toi",
+    component: (props) => injectProps(props, ClassList),
+    title: "Lớp học của tôi",
   },
   note: {
     exact: false,

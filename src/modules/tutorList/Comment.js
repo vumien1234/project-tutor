@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchComment, fetchPostComment } from "./api";
 import { convertTime } from "../../utils/timeConverter";
 import { setPostComment } from "./slice";
+import { PATH_FILE_URL } from "../../constants/MainConstants";
 
 const Comment = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const Comment = () => {
           {comment.slice(0, visibleComments).map((cmt, index) => (
             <div key={index} className="px-8 py-5 mb-5 flex flex-row gap-5 border border-gray-200 rounded-lg">
               <img
-                src={cmt.username_voted === currentUser.username ? currentUser.avatar : ImgTeacher}
+                src={cmt.username_voted === currentUser.username ? `${PATH_FILE_URL}/${currentUser.avatar}` : ImgTeacher}
                 className="w-[60px] h-[60px] rounded-full"
                 alt="avatar"
               />

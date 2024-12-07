@@ -22,6 +22,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { LuCornerUpRight } from "react-icons/lu";
 import Container from "../../components/common/Container";
 import OutstandingTeacher from "./OutstandingTeacher";
+import { Link } from "react-router-dom";
 
 const images = [Quality_tutor, Method_tutor, Result_tutor];
 const imagesCommit = [Good_price, Dedicated_advice, Reputable_service, Quality_guaranteed];
@@ -35,104 +36,104 @@ const Introduce = () => {
 					alt="Ellipse"
 					className="object-cover w-[170px] h-[150px] rounded-full Ellipse absolute"
 				/>
-			<Container className="py-12">
-        <div className="flex w-full flex-col md:flex-row mx-auto">
-          {/* Phần nội dung chính */}
-          <div className="flex-1 flex flex-col justify-center md:pr-10">
-            <div className="relative">
-              <div className="flex items-center space-x-4 mt-4 z-10">
-                <img src={LightBulb} alt="Light Bulb" className="w-10 h-12" />
-                <p className="text-[#0F2239] uppercase text-2xl font-semibold">
-                  khám phá tri thức mới
-                </p>
-              </div>
-              <div>
-              <p className="text-4xl text-color-orange font-bold pt-5">
-                Biến mỗi buổi học <br /> thành bước tiến cùng TutorMaster!
-              </p>
+				<Container className="py-12">
+					<div className="flex w-full flex-col md:flex-row mx-auto">
+						{/* Phần nội dung chính */}
+						<div className="flex-1 flex flex-col justify-center md:pr-10">
+							<div className="relative">
+								<div className="flex items-center space-x-4 mt-4 z-10">
+									<img src={LightBulb} alt="Light Bulb" className="w-10 h-12" />
+									<p className="text-[#0F2239] uppercase text-2xl font-semibold">
+										khám phá tri thức mới
+									</p>
+								</div>
+								<div>
+									<p className="text-4xl text-color-orange font-bold pt-5">
+										Biến mỗi buổi học <br /> thành bước tiến cùng TutorMaster!
+									</p>
 
 
-                <p className="block text-[#0F2239] mt-3 text-2xl">
-                Cùng nhau xây dựng một tương lai tươi sáng, <br /> phát triển tri thức, khám phá tiềm năng và chinh phục mục tiêu với TutorMaster!
-                </p>
-              </div>
-              <div className="mt-5 flex flex-wrap items-center gap-8">
-                <div className="flex items-center">
-                  <IoMdCheckmarkCircle className="text-color-orange text-2xl" />
-                  <h5 className="block pl-3 ">
-                    Được tin tưởng hàng đầu
-                  </h5>
-                </div>
-                <div className="flex items-center">
-                  <IoMdCheckmarkCircle className="text-color-purple text-2xl" />
-                  <h5 className="block pl-3 ">Gia sư xuất sắc</h5>
-                </div>
-                <div className="flex items-center">
-                  <IoMdCheckmarkCircle className="text-[#0F2239] text-2xl" />
-                  <h5 className="block pl-3 ">Cam kết tiến bộ</h5>
-                </div>
-              </div>
-              <div className="mt-10 flex flex-col md:flex-row items-start gap-4">
-              <a href="/danh-sach-lop">
-                  <CustomButton className="bg-color-orange">
-                    Đăng kí thuê gia sư ngay <FaArrowRight className="ml-3" />
-                  </CustomButton>
-              </a>
-                <a href="/lien-he">
-                  <CustomButton className="button-purple-color bg-color-purple">
-                    Liên hệ <FaArrowRight className="ml-3" />
-                  </CustomButton>
-                </a>
-              </div>
-            </div>
-          </div>
-          {/* Phần hình ảnh và số liệu */}
-          <div className="hidden md:flex flex-col items-end relative w-full md:w-[50%]">
-            <div className="absolute top-[-4rem] right-[-8rem]">
-              <img
-                src={Rainbow}
-                alt="Rainbow"
-                className="w-[170px] h-[170px] object-cover mt-5 hidden md:block"
-              />
-            </div>
-            <img
-              src={ImgTeacher}
-              alt="ImgTeacher"
-              className="object-cover absolute top-0 w-[75%] left-10"
-            />
-            <div className="absolute top-[70%] right-0 mb-4 animate_number_student">
-              <div className="bg-white border-2 border-orange-500 w-[200px] h-[70px] rounded-full flex items-center p-2">
-                <div className="flex items-center">
-                  <div className="w-[55px] h-[55px] bg-color-orange rounded-full flex items-center justify-center">
-                    <MdOutlinePersonAddAlt className="text-3xl text-white" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-color-orange text-2xl font-semibold">
-                      16.500 +
-                    </p>
-                    <span className="block text-sm">Học sinh</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute top-[95%] left-0 animate_number_tutor">
-              <div className="bg-white border-2 border-color-purple w-[200px] h-[70px] rounded-full flex items-center p-2">
-                <div className="flex items-center">
-                  <div className="w-[55px] h-[55px] bg-color-purple rounded-full flex items-center justify-center">
-                    <MdOutlinePersonAddAlt className="text-3xl text-white" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-color-purple text-2xl font-semibold">
-                      16.500 +
-                    </p>
-                    <span className="block text-sm">Gia sư</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Container>
+									<p className="block text-[#0F2239] mt-3 text-2xl">
+										Cùng nhau xây dựng một tương lai tươi sáng, <br /> phát triển tri thức, khám phá tiềm năng và chinh phục mục tiêu với TutorMaster!
+									</p>
+								</div>
+								<div className="mt-5 flex flex-wrap items-center gap-8">
+									<div className="flex items-center">
+										<IoMdCheckmarkCircle className="text-color-orange text-2xl" />
+										<h5 className="block pl-3 ">
+											Được tin tưởng hàng đầu
+										</h5>
+									</div>
+									<div className="flex items-center">
+										<IoMdCheckmarkCircle className="text-color-purple text-2xl" />
+										<h5 className="block pl-3 ">Gia sư xuất sắc</h5>
+									</div>
+									<div className="flex items-center">
+										<IoMdCheckmarkCircle className="text-[#0F2239] text-2xl" />
+										<h5 className="block pl-3 ">Cam kết tiến bộ</h5>
+									</div>
+								</div>
+								<div className="mt-10 flex flex-col md:flex-row items-start gap-4">
+									<Link to={"/tao-lop"}>
+										<CustomButton className="bg-color-orange">
+											Đăng ký thuê gia sư ngay <FaArrowRight className="ml-3" />
+										</CustomButton>
+									</Link>
+									<Link to={"/lien-he"}>
+										<CustomButton className="button-purple-color bg-color-purple">
+											Liên hệ <FaArrowRight className="ml-3" />
+										</CustomButton>
+									</Link>
+								</div>
+							</div>
+						</div>
+						{/* Phần hình ảnh và số liệu */}
+						<div className="hidden md:flex flex-col items-end relative w-full md:w-[50%]">
+							<div className="absolute top-[-4rem] right-[-8rem]">
+								<img
+									src={Rainbow}
+									alt="Rainbow"
+									className="w-[170px] h-[170px] object-cover mt-5 hidden md:block"
+								/>
+							</div>
+							<img
+								src={ImgTeacher}
+								alt="ImgTeacher"
+								className="object-cover absolute top-0 w-[75%] left-10"
+							/>
+							<div className="absolute top-[70%] right-0 mb-4 animate_number_student">
+								<div className="bg-white border-2 border-orange-500 w-[200px] h-[70px] rounded-full flex items-center p-2">
+									<div className="flex items-center">
+										<div className="w-[55px] h-[55px] bg-color-orange rounded-full flex items-center justify-center">
+											<MdOutlinePersonAddAlt className="text-3xl text-white" />
+										</div>
+										<div className="ml-4">
+											<p className="text-color-orange text-2xl font-semibold">
+												16.500 +
+											</p>
+											<span className="block text-sm">Học sinh</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="absolute top-[95%] left-0 animate_number_tutor">
+								<div className="bg-white border-2 border-color-purple w-[200px] h-[70px] rounded-full flex items-center p-2">
+									<div className="flex items-center">
+										<div className="w-[55px] h-[55px] bg-color-purple rounded-full flex items-center justify-center">
+											<MdOutlinePersonAddAlt className="text-3xl text-white" />
+										</div>
+										<div className="ml-4">
+											<p className="text-color-purple text-2xl font-semibold">
+												16.500 +
+											</p>
+											<span className="block text-sm">Gia sư</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</Container>
 
 				<div className="ripple-container">
 					<span className="ripple ripple-1"></span>
@@ -209,67 +210,67 @@ const Introduce = () => {
 			</div>
 
 			{/* mission */}
-				<Container>
-					<div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-16 py-12 relative h-auto md:h-[500px]">
-						<div className="w-full md:w-1/3 relative h-[300px] md:h-full">
-							<img
-								src={Mission}
-								alt="Mission"
-								className="object-cover w-full h-full rounded-md shadow-md"
-							/>
-						</div>
-						<div className="w-full md:w-2/3 flex flex-col px-4 md:px-8">
-            <h4 className="text-left mb-3 font-semibold">Sứ mệnh</h4>
-							<h5 className="mb-4">
-								Sứ mệnh của chúng tôi là nâng cao chất lượng giáo dục và tạo ra cơ
-								hội học tập công bằng cho mọi người. Chúng tôi tin rằng mỗi cá nhân
-								đều có tiềm năng vô hạn và quyền được tiếp cận vào kiến thức và kỹ
-								năng để phát triển bản thân.
-							</h5>
-							<h4 className="font-semibold">
-								Bằng việc cung cấp dịch vụ gia sư chất lượng, chúng tôi cam kết:
-							</h4>
-							<div className="flex flex-col mt-5 space-y-4">
-								{Missions.map((line, i) => (
-									<div className="flex items-start" key={i}>
-										<IoCheckmarkDoneSharp className="text-green-500 w-8 h-8 flex-shrink-0 mr-4" />
-										<h5>{line.content}</h5>
-									</div>
-								))}
-							</div>
+			<Container>
+				<div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-16 py-12 relative h-auto md:h-[500px]">
+					<div className="w-full md:w-1/3 relative h-[300px] md:h-full">
+						<img
+							src={Mission}
+							alt="Mission"
+							className="object-cover w-full h-full rounded-md shadow-md"
+						/>
+					</div>
+					<div className="w-full md:w-2/3 flex flex-col px-4 md:px-8">
+						<h4 className="text-left mb-3 font-semibold">Sứ mệnh</h4>
+						<h5 className="mb-4">
+							Sứ mệnh của chúng tôi là nâng cao chất lượng giáo dục và tạo ra cơ
+							hội học tập công bằng cho mọi người. Chúng tôi tin rằng mỗi cá nhân
+							đều có tiềm năng vô hạn và quyền được tiếp cận vào kiến thức và kỹ
+							năng để phát triển bản thân.
+						</h5>
+						<h4 className="font-semibold">
+							Bằng việc cung cấp dịch vụ gia sư chất lượng, chúng tôi cam kết:
+						</h4>
+						<div className="flex flex-col mt-5 space-y-4">
+							{Missions.map((line, i) => (
+								<div className="flex items-start" key={i}>
+									<IoCheckmarkDoneSharp className="text-green-500 w-8 h-8 flex-shrink-0 mr-4" />
+									<h5>{line.content}</h5>
+								</div>
+							))}
 						</div>
 					</div>
-				</Container>
+				</div>
+			</Container>
 
 			{/* Question and answer */}
-				<Container>
-					<div className="border border-gray-200 shadow-lg p-5 rounded-lg mb-10">
-						<img src={Question} alt="Question" className="object-cover py-5" />
-						<div className="px-5 pt-5">
-							<h5>1.Làm thế nào để đăng ký tìm gia sư ?</h5>
-							<div className="flex items-center py-3">
-								<LuCornerUpRight className="text-color-orange w-[30px] h-[30px] mr-5" />
-								<h5>
-									Bạn có thể đăng ký tìm gia sư bằng cách điền vào biểu mẫu trên
-									trang web của chúng tôi hoặc gọi điện trực tiếp đến số hotline
-									để được tư vấn và hướng dẫn chi tiết.
-								</h5>
-							</div>
-						</div>
-						<div className="p-5">
-							<h5>2.Làm thế nào để đăng ký tìm gia sư ?</h5>
-							<div className="flex items-center py-3">
-								<LuCornerUpRight className="text-color-orange w-[30px] h-[30px] mr-5" />
-								<h5>
-									Bạn có thể đăng ký tìm gia sư bằng cách điền vào biểu mẫu trên
-									trang web của chúng tôi hoặc gọi điện trực tiếp đến số hotline
-									để được tư vấn và hướng dẫn chi tiết.
-								</h5>
-							</div>
+			<Container>
+				<div className="border border-gray-200 shadow-lg p-5 rounded-lg mb-10">
+					<img src={Question} alt="Question" className="object-cover py-5" />
+					<div className="px-5 pt-5">
+						<h5>1.Làm thế nào để đăng ký tìm gia sư ?</h5>
+						<div className="flex items-center py-3">
+							<LuCornerUpRight className="text-color-orange w-[30px] h-[30px] mr-5" />
+							<h5>
+								Bạn có thể đăng ký tìm gia sư bằng cách điền vào biểu mẫu trên
+								trang web của chúng tôi hoặc gọi điện trực tiếp đến số hotline
+								để được tư vấn và hướng dẫn chi tiết.
+							</h5>
 						</div>
 					</div>
-				</Container>
-	
+					<div className="p-5">
+						<h5>2.Làm thế nào để đăng ký tìm gia sư ?</h5>
+						<div className="flex items-center py-3">
+							<LuCornerUpRight className="text-color-orange w-[30px] h-[30px] mr-5" />
+							<h5>
+								Bạn có thể đăng ký tìm gia sư bằng cách điền vào biểu mẫu trên
+								trang web của chúng tôi hoặc gọi điện trực tiếp đến số hotline
+								để được tư vấn và hướng dẫn chi tiết.
+							</h5>
+						</div>
+					</div>
+				</div>
+			</Container>
+
 		</>
 	);
 };

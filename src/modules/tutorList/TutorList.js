@@ -9,6 +9,7 @@ import { Pagination } from "../../components/common/Pagination";
 import TeamTeacher from "../../assets/image/teamTutor/gia-su1.jpg";
 import ImgTeacher from "../../assets/image/teamTutor/1.jpg";
 import { FaArrowRight, FaFilter } from "react-icons/fa";
+import { PATH_FILE_URL } from "../../constants/MainConstants";
 
 const TutorList = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const TutorList = () => {
     }
   };
 
-  const filteredTutors = listTutor.filter(tutor => 
+  const filteredTutors = listTutor.filter(tutor =>
     selectedRoles.length === 0 || selectedRoles.includes(tutor.job?.toLowerCase())
   );
 
@@ -56,25 +57,25 @@ const TutorList = () => {
                 Bộ lọc
               </h3>
               <div>
-                <h5 className="mb-2 font-semibold">Lọc theo vai trò</h5>
+                <h5 className="mb-2 font-semibold">Lọc theo môn học</h5>
                 <div className="flex flex-col space-y-2">
                   <label className="flex items-center">
-                    <input 
-                      type="checkbox" 
-                      name="role" 
-                      value="Sinh viên" 
-                      className="mr-2" 
-                      onChange={handleRoleChange} 
+                    <input
+                      type="checkbox"
+                      name="role"
+                      value="Sinh viên"
+                      className="mr-2"
+                      onChange={handleRoleChange}
                     />
                     Sinh viên
                   </label>
                   <label className="flex items-center">
-                    <input 
-                      type="checkbox" 
-                      name="role" 
-                      value="Giáo viên" 
-                      className="mr-2" 
-                      onChange={handleRoleChange} 
+                    <input
+                      type="checkbox"
+                      name="role"
+                      value="Giáo viên"
+                      className="mr-2"
+                      onChange={handleRoleChange}
                     />
                     Giáo viên
                   </label>
@@ -89,7 +90,7 @@ const TutorList = () => {
                     <div key={tutor.id} className="h-[340px] bg-white rounded-2xl shadow-lg relative">
                       <div className="w-full flex rounded-t-2xl justify-center items-center h-[210px]">
                         <img
-                          src={ImgTeacher}
+                          src={`${PATH_FILE_URL}/${tutor.avatar}` || ImgTeacher}
                           alt={tutor.username}
                           className="w-full z-40 h-full object-cover rounded-t-2xl"
                         />
@@ -99,14 +100,14 @@ const TutorList = () => {
                           <h5 className="line-clamp-1 text-[#03428E] font-semibold">{tutor.username}</h5>
                           <h6 className="line-clamp-1">{tutor.job}</h6>
                         </div>
-                       <a href={`/doi-ngu-gia-su/${tutor.username}`}>
-                         <CustomButton
-                           color="secondary"
-                           title="Xem chi tiết"
-                           icon={FaArrowRight}
-                           className="mt-5 !rounded-full !py-2"
-                         />
-                       </a>
+                        <a href={`/doi-ngu-gia-su/${tutor.username}`}>
+                          <CustomButton
+                            color="secondary"
+                            title="Xem chi tiết"
+                            icon={FaArrowRight}
+                            className="mt-5 !rounded-full !py-2"
+                          />
+                        </a>
                       </div>
                     </div>
                   ))}

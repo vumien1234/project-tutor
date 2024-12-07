@@ -50,7 +50,7 @@ const Profile = () => {
                 onClick={() => handleClickTab("lich-hoc")}
               />
               <Tab
-                detail="Khóa học đăng kí"
+                detail="Lớp học của tôi"
                 Icon={FaBook}
                 isActive={activeTab === "khoa-hoc-dang-ki"}
                 onClick={() => handleClickTab("khoa-hoc-dang-ki")}
@@ -68,7 +68,7 @@ const Profile = () => {
               {activeTab === "mat-khau" && <Password />}
               {activeTab === "khoa-hoc-dang-ki" && <Course />}
               {activeTab === "lich-hoc" &&
-                <Calendar/>
+                <Calendar />
               }
             </div>
           </div>

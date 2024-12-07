@@ -1,15 +1,36 @@
 import { notification } from "antd";
 import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
+import { v4 as uuidv4 } from "uuid";
+import { createClient } from "@supabase/supabase-js";
 
 function refactorURL(url) {
   // Xóa dấu / ở cuối URL hoặc dấu / trước dấu ?
   return url.replace(/\/(\?|$)/, "$1");
 }
 
+
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+export const supabaseApi = createClient(supabaseUrl, supabaseKey);
+
+export const uploadImage = async (file, oldfile = "") => {
+  const imageName = `${uuidv4()}.${file.name.split(".").pop()}`;
+
+  if (oldfile) {
+    await trackPromise(supabaseApi.storage.from("avatar").remove(oldfile));
+  }
+
+  // Track the promise and await the result
+  await trackPromise(supabaseApi.storage.from("avatar").upload(`${imageName}`, file));
+
+  return imageName;
+};
+
 const SendRequest = async (url, payload, thunkAPI, method = "post") => {
-  const BASE_URL = "https://api.onllearning.edu.vn/api";
-  // const BASE_URL = "http://localhost:3000/api";
+  // const BASE_URL = "https://api.onllearning.edu.vn/api";
+  const BASE_URL = "http://localhost:3005/api";
   url = refactorURL(url);
   const token = localStorage.getItem("token") || "";
   const instance = axios.create({

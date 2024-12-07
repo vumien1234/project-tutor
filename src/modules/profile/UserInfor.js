@@ -6,17 +6,20 @@ import CustomButton from "../../components/common/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../auth/Login/api";
 import { updateUserData } from "../auth/Login/slices";
+import { uploadImage } from "../../utils/sendRequest";
+import { PATH_FILE_URL } from "../../constants/MainConstants";
 
 const UserInfor = () => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const [avatarPreview, setAvatarPreview] = useState(currentUser.avatar || Avata);
+  const [avatarPreview, setAvatarPreview] = useState(`${PATH_FILE_URL}/${currentUser.avatar}` || Avata);
 
+  const [previewImg, setPreviewImg] = useState(null);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       address: currentUser.address || "",
-      avatar: currentUser.avatar || Avata,
+      avatar: `${PATH_FILE_URL}/${currentUser.avatar}` || Avata,
       gender: currentUser.gender || "",
       cccd: currentUser.cccd || "",
       introduction: currentUser.introduction || "",
@@ -43,6 +46,8 @@ const UserInfor = () => {
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
+      // save file to setPreviewImg
+      setPreviewImg(file);
       const base64String = await convertToBase64(file);
       setAvatarPreview(base64String); // Hiển thị ảnh xem trước
       setValue("avatar", base64String); // Cập nhật avatar trong form
@@ -50,10 +55,19 @@ const UserInfor = () => {
   };
 
   const onSubmitUser = async (data) => {
+    // update file
+    let avatar = data.avatar;
+    if (previewImg) {
+      const res = await uploadImage(previewImg, avatar);
+      if (res) {
+        avatar = res;
+      }
+    }
     const res = await dispatch(
       updateUser({
         ...data,
-        username: currentUser.username
+        username: currentUser.username,
+        avatar: avatar
       })
     );
     if (res.payload) {

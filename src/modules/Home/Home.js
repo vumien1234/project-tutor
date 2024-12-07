@@ -60,8 +60,8 @@ const Home = () => {
                   tập và nâng cao thành tựu học thuật của bạn!
                 </span>
                 <div className="mt-8">
-                  <Link to={"/danh-sach-lop"}>
-                    <CustomButton title="Đăng kí thuê gia sư ngay" icon={FaArrowRight} color="secondary" />
+                  <Link to={"/tao-lop"}>
+                    <CustomButton title="Đăng ký thuê gia sư ngay" icon={FaArrowRight} color="secondary" />
                   </Link>
                 </div>
               </div>
@@ -102,8 +102,12 @@ const Home = () => {
                 <h5>Cam kết về kết quả học tập</h5>
               </div>
               <div className="mt-14 flex flex-col w-[240px] sm:flex-row gap-5">
-                <CustomButton title="Đăng kí thuê gia sư ngay" icon={FaArrowRight} color="secondary" />
-                <CustomButton title="Tìm hiểu thêm" icon={FaArrowRight} color="primary1" />
+                <Link to="/tao-lop">
+                  <CustomButton title="Đăng ký thuê gia sư ngay" icon={FaArrowRight} color="secondary" />
+                </Link>
+                <Link to="/tong-quan">
+                  <CustomButton title="Tìm hiểu thêm" icon={FaArrowRight} color="primary1" />
+                </Link>
               </div>
             </div>
             <div className="flex-1 md:w-7/12 mt-16 md:mt-0">
@@ -119,7 +123,7 @@ const Home = () => {
             <img className="w-full pl-14 object-cover" src={Bachelors_hats} alt="store_img" />
           </div>
           <div className="flex-1 md:w-7/12 ml-0 md:ml-20 relative">
-           
+
             <h4 className="mt-5 text-color-purple font-semibold uppercase md:mt-0">Gia nhập đội ngũ gia sư của TutorMaster</h4>
             <h5 className="block mt-5">
               TutorMaster không chỉ là một nền tảng giáo dục trực tuyến thông thường, mà còn là cơ hội tuyệt vời cho bạn
@@ -145,7 +149,9 @@ const Home = () => {
               tương lai giáo dục tốt đẹp hơn.
             </h5>
             <div className="mt-10">
-              <CustomButton title="Đăng kí thuê gia sư ngay" icon={FaArrowRight} color="secondary" />
+              <Link to="/tao-lop">
+                <CustomButton title="Đăng ký thuê gia sư ngay" icon={FaArrowRight} color="secondary" />
+              </Link>
             </div>
           </div>
         </div>
@@ -176,7 +182,7 @@ const Home = () => {
             src={Plane_img}
             alt=""
           />
-         
+
           <h4 className="mx-auto text-center font-semibold uppercase text-color-purple">Quy trình làm việc của gia sư</h4>
           <div className="mt-5">
             <div className="flex flex-col md:flex-row md:gap-8 gap-4">
@@ -251,7 +257,7 @@ const Home = () => {
       {/* reviews and feedback */}
       <>
         <div className="my-12">
-        
+
           <div>
             <h4 className="text-center font-semibold uppercase mt-2 text-color-purple">Phản hồi từ phụ huynh</h4>
             <div className="mt-5 relative">

@@ -5,7 +5,7 @@ import CustomButton from "../common/Button";
 import Container from "../common/Container";
 import AvataDefault from "../../assets/image/avata-default.png";
 import Tab from "../common/Tab";
-import { RiMenu3Fill, RiUser3Line } from "react-icons/ri";
+import { RiBook3Line, RiMenu3Fill, RiUser3Line } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { navLinksDefault } from "../constants/dataHeader";
 import Avata from "../../assets/image/avata-default.png";
@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import Logo_web from "../../assets/image/TUTORMASTER1.png";
 import Logo_webMobile from "../../assets/image/logo-mobile.png";
 import CustomSearch from "./Search";
+import { PATH_FILE_URL } from "../../constants/MainConstants";
 
 const Header = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -146,8 +147,8 @@ const Header = () => {
             {/* Phần bên phải - Các button và thông tin liên hệ */}
             <div className="md:flex flex-row w-[50%] hidden gap-5 items-center justify-end">
               <CustomButton title="Đăng kí làm gia sư" color="secondary" />
-              <Link to={"/danh-sach-lop"}>
-                <CustomButton title="Đăng kí thuê gia sư" color="primary1" />
+              <Link to={"/tao-lop"}>
+                <CustomButton title="Đăng ký thuê gia sư" color="primary1" />
               </Link>
               <div className="flex items-center justify-center p-4 h-[45px] cursor-pointer bg-[#3a83bb] rounded-lg">
                 <MdLocalPhone className="text-xl font-bold text-white" />
@@ -168,8 +169,8 @@ const Header = () => {
             <div className="flex justify-between p-5">
               <div className="flex gap-5 flex-col sm:flex-row">
                 <CustomButton title="Đăng kí làm gia sư" color="secondary" />
-                <Link to={"/danh-sach-lop"}>
-                  <CustomButton title="Đăng kí thuê gia sư" color="primary1" onClick={handleToggle} />
+                <Link to={"/tao-lop"}>
+                  <CustomButton title="Đăng ký thuê gia sư" color="primary1" onClick={handleToggle} />
                 </Link>
               </div>
               <MdOutlineClear className="h-10 w-10 cursor-pointer" onClick={handleToggle} />
@@ -207,7 +208,7 @@ const Header = () => {
             {Object.keys(currentUser).length > 0 ? (
               <div className="relative group">
                 <div className="w-11 h-11 border border-green-500 rounded-full flex items-center justify-center cursor-pointer">
-                  <img src={currentUser.avatar || AvataDefault} alt="AvataDefault" className="w-full h-full rounded-full " />
+                  <img src={`${PATH_FILE_URL}/${currentUser.avatar}` || AvataDefault} alt="AvataDefault" className="w-full h-full rounded-full " />
                 </div>
 
                 <div className="absolute w-[290px] right-0 top-full shadow-xl bg-white hidden rounded-xl group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
@@ -223,6 +224,11 @@ const Header = () => {
                         detail="Thông tin cá nhân"
                         Icon={RiUser3Line}
                         onClick={() => navigate("/ho-so?tab=thong-tin-nguoi-dung")}
+                      />
+                      <Tab
+                        detail="Lớp học của tôi"
+                        Icon={RiBook3Line}
+                        onClick={() => navigate("/ho-so?tab=khoa-hoc-dang-ki")}
                       />
                       <Tab detail="Đăng xuất" Icon={IoIosLogOut} onClick={() => handleLogout()} />
                     </div>

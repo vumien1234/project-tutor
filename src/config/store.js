@@ -5,15 +5,15 @@ import { loadingSlice } from "../components/loading/loadingSlice";
 import { authSlice } from "../modules/auth/Login/slices";
 import classListReduce from "../modules/ClassList/slice";
 import listTutorReduce from '../modules/tutorList/slice';
-import courceListReduce from '../modules/profile/slice'
+import courseListReduce from '../modules/profile/slice'
 
 const rootReducer = combineReducers({
   loading: loadingSlice.reducer,
   auth: authSlice.reducer,
   scroll: scrollReducer,
   classList: classListReduce,
-  listTutor:listTutorReduce,
-  courceList:courceListReduce
+  listTutor: listTutorReduce,
+  courseList: courseListReduce
 });
 
 export const makeStore = (preloadedState) => {
