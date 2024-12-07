@@ -6,3 +6,10 @@ export const AUTH_VALIDATE = {
   TUTOR: "tutor",
   ADMIN: "admin",
 }
+
+export const TEXT_AUTH = {
+  "tutor": "Gia sư",
+  "customer": "Học viên",
+  "student": "Học viên",
+  "admin": "Quản trị viên",
+}

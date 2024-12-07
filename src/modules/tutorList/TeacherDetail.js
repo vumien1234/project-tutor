@@ -5,7 +5,8 @@ import Container from "../../components/common/Container";
 import { GoStarFill } from "react-icons/go";
 import { fetchListTutorDetail } from "./api";
 import Comment from "./Comment";
-import CustomImage from "../../components/common/CustomImage";
+import ImgTeacher from "../../assets/image/teamTutor/1.jpg";
+import { getIMG } from "../../utils/currencyFormatter";
 
 const TeacherDetail = () => {
   const dispatch = useDispatch();
@@ -53,15 +54,17 @@ const TeacherDetail = () => {
           </div>
           <div className="w-full flex justify-center items-center">
             <div className="relative ">
-              <CustomImage
-                src={listTutorDetail?.avatar}
-                alt="ImgTeacher"
-                className="w-[400px] rounded-lg h-[400px] object-cover"
+              <img
+                src={getIMG(listTutorDetail?.avatar) || ImgTeacher}
+                alt={listTutorDetail?.username}
+                className="w-full z-40 h-full object-cover rounded-t-2xl"
               />
             </div>
           </div>
         </div>
-      <Comment/>
+        <Comment
+          userName={userName}
+        />
       </div>
     </Container>
   );

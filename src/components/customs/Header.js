@@ -13,7 +13,8 @@ import { useSelector } from "react-redux";
 import Logo_web from "../../assets/image/TUTORMASTER1.png";
 import Logo_webMobile from "../../assets/image/logo-mobile.png";
 import CustomSearch from "./Search";
-import { PATH_FILE_URL } from "../../constants/MainConstants";
+import { TEXT_AUTH } from "../../constants/AuthConstant";
+import { getIMG } from "../../utils/currencyFormatter";
 
 const Header = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -208,7 +209,7 @@ const Header = () => {
             {Object.keys(currentUser).length > 0 ? (
               <div className="relative group">
                 <div className="w-11 h-11 border border-green-500 rounded-full flex items-center justify-center cursor-pointer">
-                  <img src={`${PATH_FILE_URL}/${currentUser.avatar}` || AvataDefault} alt="AvataDefault" className="w-full h-full rounded-full " />
+                  <img src={getIMG(currentUser.avatar) || AvataDefault} alt="AvataDefault" className="w-full h-full rounded-full " />
                 </div>
 
                 <div className="absolute w-[290px] right-0 top-full shadow-xl bg-white hidden rounded-xl group-hover:block md:max-h-[300px] md:overflow-y-auto md:scrollbar-thin">
@@ -218,7 +219,7 @@ const Header = () => {
                         <span className="text-lg font-semibold normal-case">
                           Xin chào: {currentUser.username}
                         </span>
-                        <span className="text-sm text-gray-600 normal-case">Vai trò: {currentUser.role}</span>
+                        <span className="text-sm text-gray-600 normal-case">Vai trò: {TEXT_AUTH[currentUser?.role] || ""}</span>
                       </div>
                       <Tab
                         detail="Thông tin cá nhân"

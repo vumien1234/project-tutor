@@ -9,13 +9,14 @@ import { Pagination } from "../../components/common/Pagination";
 import TeamTeacher from "../../assets/image/teamTutor/gia-su1.jpg";
 import ImgTeacher from "../../assets/image/teamTutor/1.jpg";
 import { FaArrowRight, FaFilter } from "react-icons/fa";
-import { PATH_FILE_URL } from "../../constants/MainConstants";
+import { getIMG } from "../../utils/currencyFormatter";
+import { LIST_OF_SUBJECTS } from "../../constants/MainConstants";
 
 const TutorList = () => {
   const dispatch = useDispatch();
   const { listTutor, currentPage, totalPages, limit } = useSelector((state) => state.listTutor);
 
-  const [selectedRoles, setSelectedRoles] = useState([]);
+  const [filterSubject, setFilterSubject] = useState([]);
 
   useEffect(() => {
     dispatch(fetchListTutor({ page: currentPage, limit }));
@@ -29,17 +30,11 @@ const TutorList = () => {
   const handleRoleChange = (event) => {
     const { value, checked } = event.target;
     if (checked) {
-      // Nếu được chọn, thêm vào danh sách
-      setSelectedRoles((prev) => [...prev, value.toLowerCase()]);
+      setFilterSubject([...filterSubject, value]);
     } else {
-      // Nếu bỏ chọn, loại bỏ khỏi danh sách
-      setSelectedRoles((prev) => prev.filter((role) => role !== value.toLowerCase()));
-    }
-  };
-
-  const filteredTutors = listTutor.filter(tutor =>
-    selectedRoles.length === 0 || selectedRoles.includes(tutor.job?.toLowerCase())
-  );
+      setFilterSubject(filterSubject.filter((item) => item !== value));
+    };
+  }
 
   return (
     <div className="relative">
@@ -59,38 +54,30 @@ const TutorList = () => {
               <div>
                 <h5 className="mb-2 font-semibold">Lọc theo môn học</h5>
                 <div className="flex flex-col space-y-2">
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="role"
-                      value="Sinh viên"
-                      className="mr-2"
-                      onChange={handleRoleChange}
-                    />
-                    Sinh viên
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="role"
-                      value="Giáo viên"
-                      className="mr-2"
-                      onChange={handleRoleChange}
-                    />
-                    Giáo viên
-                  </label>
+                  {LIST_OF_SUBJECTS.map((subject) => (
+                    <label key={subject} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="subject"
+                        value={subject}
+                        className="mr-2"
+                        onChange={handleRoleChange}
+                      />
+                      {subject}
+                    </label>
+                  ))}
                 </div>
               </div>
             </div>
             {/* Right Side - 75% */}
             <div className="w-[75%]">
-              {filteredTutors && filteredTutors.length > 0 ? (
+              {listTutor && listTutor.length > 0 ? (
                 <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-                  {filteredTutors.map((tutor) => (
+                  {listTutor.map((tutor) => (
                     <div key={tutor.id} className="h-[340px] bg-white rounded-2xl shadow-lg relative">
                       <div className="w-full flex rounded-t-2xl justify-center items-center h-[210px]">
                         <img
-                          src={`${PATH_FILE_URL}/${tutor.avatar}` || ImgTeacher}
+                          src={getIMG(tutor.avatar) || ImgTeacher}
                           alt={tutor.username}
                           className="w-full z-40 h-full object-cover rounded-t-2xl"
                         />
@@ -115,7 +102,7 @@ const TutorList = () => {
               ) : (
                 <p>Không có dữ liệu cho vai trò đã chọn.</p>
               )}
-              {filteredTutors.length > 0 && (
+              {listTutor.length > 0 && (
                 <Pagination
                   page={currentPage}
                   totalPages={totalPages}

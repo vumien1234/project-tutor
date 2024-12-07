@@ -9,11 +9,13 @@ import Tab from "../../components/common/Tab";
 import UserInfor from "./UserInfor";
 import Password from "./Password";
 import Calendar from "./Calendar";
-import { FaBook, FaRegCalendarAlt } from "react-icons/fa";
+import { FaBook, FaExternalLinkAlt, FaRegCalendarAlt } from "react-icons/fa";
 import Course from "./Course";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const [searchParams] = useSearchParams();
   const tabParam = searchParams.get("tab");
 
@@ -29,6 +31,10 @@ const Profile = () => {
     navigate(`/ho-so?tab=${tab}`);
   };
 
+  const handleNewTab = (tab) => {
+    navigate(`/quan-ly`);
+  }
+
   return (
     <div>
       <Banner className="h-[200px]" image={ImgUserInfor} title="Xin chào Mộc Miên" description="Tài khoản của tôi" />
@@ -43,18 +49,44 @@ const Profile = () => {
                 isActive={activeTab === "thong-tin-nguoi-dung"}
                 onClick={() => handleClickTab("thong-tin-nguoi-dung")}
               />
-              <Tab
-                detail="Lịch học"
-                Icon={FaRegCalendarAlt}
-                isActive={activeTab === "lich-hoc"}
-                onClick={() => handleClickTab("lich-hoc")}
-              />
-              <Tab
-                detail="Lớp học của tôi"
-                Icon={FaBook}
-                isActive={activeTab === "khoa-hoc-dang-ki"}
-                onClick={() => handleClickTab("khoa-hoc-dang-ki")}
-              />
+              {currentUser.role === "student" ? (
+                <>
+                  <Tab
+                    detail="Lịch học"
+                    Icon={FaRegCalendarAlt}
+                    isActive={activeTab === "lich-hoc"}
+                    onClick={() => handleClickTab("lich-hoc")}
+                  />
+                  <Tab
+                    detail="Lớp học của tôi"
+                    Icon={FaBook}
+                    isActive={activeTab === "khoa-hoc-dang-ki"}
+                    onClick={() => handleClickTab("khoa-hoc-dang-ki")}
+                  />
+                </>
+              ) : <>
+                {currentUser.role === "admin" ?
+                  <Tab
+                    detail="Lớp học của tôi"
+                    Icon={FaExternalLinkAlt}
+                    isActive={activeTab === "manager"}
+                    onClick={() => handleNewTab("manager")}
+                  /> : <>
+                    <Tab
+                      detail="Lịch dạy"
+                      Icon={FaRegCalendarAlt}
+                      isActive={activeTab === "lich-day"}
+                      onClick={() => handleClickTab("lich-day")}
+                    />
+                    <Tab
+                      detail="Lớp học đã đăng ký"
+                      Icon={FaBook}
+                      isActive={activeTab === "lop-hoc-dang-ki"}
+                      onClick={() => handleClickTab("lop-hoc-dang-ki")}
+                    />
+                  </>}
+              </>}
+
               <Tab
                 detail="Mật khẩu"
                 Icon={PiLockKey}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { TextField } from '@mui/material';
+import { TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import ImageSignUp from '../../../assets/image/register.png';
 import CustomButton from '../../../components/common/Button';
 import { makeStyles } from '@mui/styles';
@@ -11,13 +11,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const classes = useStyles();
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
-      password: ''
-    }
+      password: '',
+      role: 'student', // Default role
+    },
   });
 
   const handleSignUp = async (data) => {
@@ -27,11 +28,10 @@ const Signup = () => {
       phone: data.phone,
       is_active: true,
       password: data.password,
-      role: "student"
-    }))
-    console.log(res)
+      role: data.role, // Use selected role
+    }));
     if (res.payload) {
-      navigate('/login')
+      navigate('/login');
     }
   };
 
@@ -50,7 +50,7 @@ const Signup = () => {
                 <Controller
                   name='full_name'
                   control={control}
-                  rules={{ required: 'full_name is required' }}
+                  rules={{ required: 'Họ và Tên là bắt buộc' }}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
@@ -68,7 +68,7 @@ const Signup = () => {
                 <Controller
                   name='email'
                   control={control}
-                  rules={{ required: 'Email is required' }}
+                  rules={{ required: 'Email là bắt buộc' }}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
@@ -86,7 +86,7 @@ const Signup = () => {
                 <Controller
                   name="phone"
                   control={control}
-                  rules={{ required: 'phone is required' }}
+                  rules={{ required: 'Số điện thoại là bắt buộc' }}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
@@ -105,11 +105,11 @@ const Signup = () => {
                 <Controller
                   name="password"
                   control={control}
-                  rules={{ required: 'Password is required' }}
+                  rules={{ required: 'Mật khẩu là bắt buộc' }}
                   render={({ field, fieldState }) => (
                     <TextField
                       {...field}
-                      label="Mât khẩu"
+                      label="Mật khẩu"
                       type="password"
                       variant="outlined"
                       fullWidth
@@ -120,10 +120,31 @@ const Signup = () => {
                   )}
                 />
               </div>
+              <div className='mb-4'>
+                <FormControl fullWidth>
+                  <InputLabel id="role-select-label">Vai trò</InputLabel>
+                  <Controller
+                    name="role"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        labelId="role-select-label"
+                        label="Vai trò"
+                        variant="outlined"
+                        className={classes.input}
+                      >
+                        <MenuItem value="student">Học sinh</MenuItem>
+                        <MenuItem value="tutor">Gia sư</MenuItem>
+                      </Select>
+                    )}
+                  />
+                </FormControl>
+              </div>
 
               {/* go to login */}
               <div className='text'>
-                Đã có tài khoản ? <Link className='text-[#0D5EF4]' to='/login'>Đăng nhập</Link>
+                Đã có tài khoản? <Link className='text-[#0D5EF4]' to='/login'>Đăng nhập</Link>
               </div>
 
               <div className='my-7'>

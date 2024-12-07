@@ -2,7 +2,7 @@ export function convertTime(dateString) {
   const date = new Date(dateString);
 
   if (isNaN(date)) {
-    return "Ngày không hợp lệ";
+    return "";
   }
 
   const options = {

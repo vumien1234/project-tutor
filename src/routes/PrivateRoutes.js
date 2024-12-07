@@ -3,7 +3,6 @@ import Layout from "../components/customs/Layout";
 import useLoadData from "../hooks/useLoadData"
 import { useLocation } from "react-router-dom";
 import { AUTH_VALIDATE } from "../constants/AuthConstant";
-import AdminLayout from "../components/customs/admin/AdminLayout";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const auth = rest.auth;

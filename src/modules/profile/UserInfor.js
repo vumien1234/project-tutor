@@ -7,19 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../auth/Login/api";
 import { updateUserData } from "../auth/Login/slices";
 import { uploadImage } from "../../utils/sendRequest";
-import { PATH_FILE_URL } from "../../constants/MainConstants";
+import { getIMG } from "../../utils/currencyFormatter";
 
 const UserInfor = () => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const [avatarPreview, setAvatarPreview] = useState(`${PATH_FILE_URL}/${currentUser.avatar}` || Avata);
+  const [avatarPreview, setAvatarPreview] = useState(getIMG(currentUser.avatar) || Avata);
 
   const [previewImg, setPreviewImg] = useState(null);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       address: currentUser.address || "",
-      avatar: `${PATH_FILE_URL}/${currentUser.avatar}` || Avata,
+      avatar: getIMG(currentUser.avatar) || null,
       gender: currentUser.gender || "",
       cccd: currentUser.cccd || "",
       introduction: currentUser.introduction || "",
@@ -71,7 +71,7 @@ const UserInfor = () => {
       })
     );
     if (res.payload) {
-      dispatch(updateUserData(data));
+      dispatch(updateUserData({ ...data, avatar: avatar }));
     }
   };
 
