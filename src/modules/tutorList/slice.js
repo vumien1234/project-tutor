@@ -5,12 +5,12 @@ const initialState = {
   listTutor: [],
   comment: [],
   postComment: '',
-  listTutorDetail: null,
+  listTutorDetail: {},
   loading: false,
   error: null,
   currentPage: 1,
   totalPages: 0,
-  limit: 5,
+  limit: 10,
 };
 
 const listTutorSlice = createSlice({
@@ -84,7 +84,7 @@ const listTutorSlice = createSlice({
         state.comment.unshift(action.payload);
         state.postComment = '';
       })
-      
+
       .addCase(fetchPostComment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to post comment";

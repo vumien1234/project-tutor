@@ -4,7 +4,10 @@ import SendRequest from "../../utils/sendRequest";
 export const fetchClassList = createAsyncThunk("classList/fetchClassList", async (_, thunkAPI) => {
   try {
     const url = "/class-requests";
-    const response = await SendRequest(url, {}, thunkAPI, "GET");
+    const response = await SendRequest(url, {
+      status: "pending",
+      due: "false",
+    }, thunkAPI, "GET");
     return response;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

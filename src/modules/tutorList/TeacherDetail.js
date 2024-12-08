@@ -19,6 +19,18 @@ const TeacherDetail = () => {
     }
   }, [userName, dispatch]);
 
+  const renderListSubject = (subjects) => {
+    if (!subjects) return null;
+
+    subjects = subjects.split(",");
+
+    return subjects.map((subject, index) => (
+      <span key={index} className="bg-gray-200 px-2 py-1 rounded-full">
+        {subject}
+      </span>
+    ));
+  };
+
   return (
     <Container>
       <div className="py-12 w-full">
@@ -36,6 +48,12 @@ const TeacherDetail = () => {
             <div className="flex items-center text-left">
               <h6 className="font-semibold w-[150px]">Thường trú:</h6>
               <h6 className="flex-grow">{listTutorDetail?.address}</h6>
+            </div>
+            <div className="flex items-center text-left">
+              <h6 className="font-semibold w-[150px]">Chuyên môn:</h6>
+              <div className="flex flex-wrap gap-2">
+                {renderListSubject(listTutorDetail?.subjects)}
+              </div>
             </div>
             <div className="flex items-center text-left">
               <h6 className="font-semibold w-[150px]">Giới thiệu:</h6>

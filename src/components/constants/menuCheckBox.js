@@ -1,18 +1,37 @@
+import { LIST_OF_SUBJECTS } from "../../constants/MainConstants"
+
 export const menuCheckBox = [
 	{
 		title: "Chọn môn học",
+		key: "subjects",
 		link: false,
-		submenu: [{ title: "Toán" }, { title: "Lý" }, { title: "Hóa" }, { title: "Sinh" }],
+		submenu: [...LIST_OF_SUBJECTS],
 	},
 	{
 		title: "Chọn khu vực",
 		link: false,
+		key: "areas",
 		submenu: [
-			{ title: "Hà Đông" },
-			{ title: "Cầu Giấy" },
-			{ title: "Tây Hồ" },
-			{ title: "Hoàng Mai" },
+			"Hà Đông",
+			"Cầu Giấy",
+			"Tây Hồ",
+			"Hoàng Mai",
+			"Đống Đa",
+			"Hai Bà Trưng",
+			"Thanh Xuân",
+			"Ba Đình",
+			"Long Biên",
+			"Nam Từ Liêm",
+			"Bắc Từ Liêm",
+			"Gia Lâm",
+			"Mê Linh",
+			"Chương Mỹ",
+			"Ứng Hòa",
+			"Sơn Tây",
+			"Phú Xuyên",
+			"Thanh Oai",
+			"Thường Tín"
 		],
 	},
-   
+
 ];

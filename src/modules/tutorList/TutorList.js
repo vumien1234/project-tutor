@@ -19,7 +19,7 @@ const TutorList = () => {
   const [filterSubject, setFilterSubject] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchListTutor({ page: currentPage, limit }));
+    dispatch(fetchListTutor({ page: currentPage, limit: 1000 }));
   }, [currentPage, dispatch, limit]);
 
   const handlePageChange = (newPage) => {
@@ -35,6 +35,19 @@ const TutorList = () => {
       setFilterSubject(filterSubject.filter((item) => item !== value));
     };
   }
+
+  // Lọc danh sách giáo viên
+  const listTutorFiltered = listTutor.filter((tutor) => {
+    // Nếu không có chuyên môn nào trong filterSubject, thì trả về tất cả các tutor
+    if (filterSubject.length === 0) return true;
+
+    // Kiểm tra xem có ít nhất 1 chuyên môn của tutor khớp với filterSubject không
+    return filterSubject.some(subject => tutor?.subjects?.includes(subject));
+  });
+
+  // Tính toán số giáo viên cần hiển thị cho trang hiện tại
+  const startIndex = (currentPage - 1) * limit;
+  const endIndex = currentPage * limit;
 
   return (
     <div className="relative">
@@ -71,9 +84,9 @@ const TutorList = () => {
             </div>
             {/* Right Side - 75% */}
             <div className="w-[75%]">
-              {listTutor && listTutor.length > 0 ? (
+              {listTutorFiltered && listTutorFiltered.length > 0 ? (
                 <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-                  {listTutor.map((tutor) => (
+                  {listTutorFiltered?.slice(startIndex, endIndex)?.map((tutor) => (
                     <div key={tutor.id} className="h-[340px] bg-white rounded-2xl shadow-lg relative">
                       <div className="w-full flex rounded-t-2xl justify-center items-center h-[210px]">
                         <img
@@ -102,7 +115,7 @@ const TutorList = () => {
               ) : (
                 <p>Không có dữ liệu cho vai trò đã chọn.</p>
               )}
-              {listTutor.length > 0 && (
+              {listTutorFiltered.length > 0 && (
                 <Pagination
                   page={currentPage}
                   totalPages={totalPages}

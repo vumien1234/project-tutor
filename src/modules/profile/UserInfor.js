@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Avata from "../../assets/image/avata-default.png";
-import { FaArrowRight, FaRegEdit } from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import CustomButton from "../../components/common/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,13 +8,14 @@ import { updateUser } from "../auth/Login/api";
 import { updateUserData } from "../auth/Login/slices";
 import { uploadImage } from "../../utils/sendRequest";
 import { getIMG } from "../../utils/currencyFormatter";
+import { Select } from "antd"; // Import Select from Ant Design
+import { LIST_OF_SUBJECTS } from "../../constants/MainConstants";
+const { Option } = Select;
 
 const UserInfor = () => {
   const dispatch = useDispatch();
-
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [avatarPreview, setAvatarPreview] = useState(getIMG(currentUser.avatar) || Avata);
-
   const [previewImg, setPreviewImg] = useState(null);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
@@ -25,9 +26,11 @@ const UserInfor = () => {
       introduction: currentUser.introduction || "",
       job: currentUser.job || "",
       full_name: currentUser.full_name || "",
-      phone: currentUser.phone || ""
+      phone: currentUser.phone || "",
+      subjects: currentUser?.subjects?.split(",") || [],
     }
   });
+
   // Hàm chuyển ảnh thành base64
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -57,8 +60,8 @@ const UserInfor = () => {
   const onSubmitUser = async (data) => {
     // update file
     let avatar = data.avatar;
-    if (previewImg) {
-      const res = await uploadImage(previewImg, avatar);
+    if (previewImg !== null) {
+      const res = await uploadImage(previewImg);
       if (res) {
         avatar = res;
       }
@@ -67,23 +70,22 @@ const UserInfor = () => {
       updateUser({
         ...data,
         username: currentUser.username,
+        subjects: data.subjects.join(","),
         avatar: avatar
       })
     );
     if (res.payload) {
-      dispatch(updateUserData({ ...data, avatar: avatar }));
+      dispatch(updateUserData({ ...data, avatar: avatar, subjects: data.subjects.join(",") }));
     }
   };
 
   return (
     <>
       <div className="flex md:flex-row flex-col items-center gap-5 w-full">
-        <img src={avatarPreview} alt="Avatar" className="w-[120px] h-[120px] object-cover  border-4 border-[#66b6f3] rounded-full" />
+        <img src={avatarPreview} alt="Avatar" className="w-[120px] h-[120px] object-cover border-4 border-[#66b6f3] rounded-full" />
         <div>
           <h3 className="font-semibold">{currentUser.full_name || "Tên người dùng"}</h3>
-          <h6>
-            <b>ID tài khoản:</b> {currentUser.username}
-          </h6>
+          <h6><b>ID tài khoản:</b> {currentUser.username}</h6>
           <div className="flex items-center justify-start gap-3 cursor-pointer text-gray-500">
             <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" id="avatarInput" />
             <label
@@ -193,7 +195,33 @@ const UserInfor = () => {
             </div>
           </div>
 
-          <CustomButton title="Lưu thay đổi" buttonType="submit" icon={FaArrowRight} className="mt-10" />
+          {currentUser.role === "tutor" && (
+            <div className="flex md:flex-row flex-col md:gap-5 md:mt-5">
+              <div className="flex flex-col w-full mt-5 md:mt-0">
+                <h6 className="mb-2">Chuyên môn của bạn</h6>
+                <Select
+                  mode="multiple"
+                  placeholder="Chọn các môn học"
+                  {...register("subjects")}
+                  className="w-full md:min-w-[300px]"
+                  defaultValue={currentUser?.subjects?.split(",") || []}
+                  onChange={(value) => setValue("subjects", value)}
+                >
+                  {LIST_OF_SUBJECTS.map((subject, index) => (
+                    <Option key={index} value={subject}>
+                      {subject}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+            </div>
+          )}
+
+          <div className="flex flex-col items-start mt-5">
+            <CustomButton type="submit" className="py-3 px-8 rounded-md text-white bg-blue-500 hover:bg-blue-600 transition duration-300">
+              Cập nhật thông tin
+            </CustomButton>
+          </div>
         </form>
       </div>
     </>
