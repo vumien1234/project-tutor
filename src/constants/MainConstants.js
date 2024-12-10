@@ -34,3 +34,35 @@ export const CLASS_STATUS_COLOR = {
 }
 
 export const PATH_FILE_URL = process.env.REACT_APP_PATH_FILE
+
+export const DATE_OF_WEEK = [
+  "T2",
+  "T3",
+  "T4",
+  "T5",
+  "T6",
+  "T7",
+  "CN"
+]
+
+export const SHIFT_OF_DAY = [
+  "S",
+  "C",
+  "T"
+]
+
+export const DATE_OF_WEEK_TEXT = {
+  "T2": "Thứ 2",
+  "T3": "Thứ 3",
+  "T4": "Thứ 4",
+  "T5": "Thứ 5",
+  "T6": "Thứ 6",
+  "T7": "Thứ 7",
+  "CN": "Chủ nhật"
+}
+
+export const SHIFT_OF_DAY_TEXT = {
+  "S": "Sáng",
+  "C": "Chiều",
+  "T": "Tối"
+}

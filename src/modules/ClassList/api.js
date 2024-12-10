@@ -23,3 +23,26 @@ export const fetchClassListDetail = createAsyncThunk("class-requests", async (cl
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+// Ung Tuyen
+export const applyClass = createAsyncThunk("class-requests/applyClass", async (payload, thunkAPI) => {
+  try {
+    const url = `/class-requests/${payload.classId}/yeu-cau`;
+    const response = await SendRequest(url, payload, thunkAPI, "POST");
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// lay danh sach ung tuyen
+
+export const fetchApplyList = createAsyncThunk("class-requests/fetchApplyList", async (classId, thunkAPI) => {
+  try {
+    const url = `/class-requests/${classId}/yeu-cau`;
+    const response = await SendRequest(url, {}, thunkAPI, "GET");
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

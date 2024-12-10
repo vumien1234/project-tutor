@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FaSearch, FaFilter, FaArrowRight } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
 import { IoHomeOutline, IoLocationSharp, IoPerson } from "react-icons/io5";
 import { AiOutlineDown } from "react-icons/ai";
 import { MdAttachMoney } from "react-icons/md";
-import { CiBookmark, CiCalendar } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Container from "../../components/common/Container";
@@ -13,6 +12,7 @@ import { fetchClassList } from "./api";
 import { IoMdTime } from "react-icons/io";
 import { RiBookLine } from "react-icons/ri";
 import { Pagination } from "antd";  // Import Pagination từ Ant Design
+import { convertCurrency, convertDate } from "../../utils/main";
 
 const ClassList = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const ClassList = () => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(8); // Đặt kích thước trang mặc định là 8 lớp học
+  const [pageSize, setPageSize] = useState(12); // Đặt kích thước trang mặc định là 8 lớp học
 
   // Ref to track menu elements
   const menuRef = useRef(null);
@@ -185,28 +185,35 @@ const ClassList = () => {
                     <div className="w-[30px]">
                       <IoPerson className="mr-2 text-[20px] text-gray-400 shrink-0" />
                     </div>
-                    <h6>Giáo viên: {item?.username}</h6>
+                    <h6>Người thuê: {item?.username}</h6>
                   </div>
+                  {/* lớp */}
                   <div className="flex items-center">
                     <div className="w-[30px]">
-                      <IoLocationSharp className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                      <IoPerson className="mr-2 text-[20px] text-gray-400 shrink-0" />
                     </div>
-                    <h6>Địa điểm: {item?.address}</h6>
+                    <h6>Lớp: {item?.level === 13 ? "Đại học" : item?.level}</h6>
                   </div>
                   <div className="flex items-center">
                     <div className="w-[30px]">
                       <MdAttachMoney className="mr-2 text-[20px] text-gray-400 shrink-0" />
                     </div>
-                    <h6>Giá: {item?.total_price}</h6>
+                    <h6>Giá (1h): {convertCurrency(item?.total_price)}</h6>
                   </div>
                   <div className="flex items-center">
                     <div className="w-[30px]">
                       <IoMdTime className="mr-2 text-[20px] text-gray-400 shrink-0" />
                     </div>
-                    <h6>Thời gian: {item?.time}</h6>
+                    <h6>Hạn: {convertDate(item?.due_date)}</h6>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-[30px]">
+                      <IoLocationSharp className="mr-2 text-[20px] text-gray-400 shrink-0" />
+                    </div>
+                    <h6>{item?.address}</h6>
                   </div>
                   <div className="py-3 text-center">
-                    <Link to={`/class/detail/${item.id}`}>
+                    <Link to={`/chi-tiet-lop/${item.id}`}>
                       <CustomButton>Chi tiết lớp học</CustomButton>
                     </Link>
                   </div>

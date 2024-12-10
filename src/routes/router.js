@@ -64,13 +64,13 @@ export const routes = {
     ]
   },
 
-  registerClass: {
-    exact: false,
-    auth: AUTH_VALIDATE.TUTOR,
-    path: "/dang-ki-lop/:id",
-    component: (props) => injectProps(props, RegisterClass),
-    title: "Đăng kí lớp"
-  },
+  // registerClass: {
+  //   exact: false,
+  //   auth: AUTH_VALIDATE.TUTOR,
+  //   path: "/dang-ki-lop/:id",
+  //   component: (props) => injectProps(props, RegisterClass),
+  //   title: "Đăng kí lớp"
+  // },
   contact: {
     exact: false,
     auth: AUTH_VALIDATE.ALL,

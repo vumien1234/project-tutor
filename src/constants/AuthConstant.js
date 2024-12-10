@@ -13,3 +13,10 @@ export const TEXT_AUTH = {
   "student": "Học viên",
   "admin": "Quản trị viên",
 }
+
+
+export const GENDER = {
+  "male": "Nam",
+  "female": "Nữ",
+  "other": "Khác",
+}

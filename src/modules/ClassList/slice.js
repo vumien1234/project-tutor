@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchClassList, fetchClassListDetail } from "./api";
+import { fetchApplyList, fetchClassList, fetchClassListDetail } from "./api";
 
 const initialState = {
   classList: [],
   classListDetail: null,
+  applyList: {},
   loading: false,
   error: null,
   currentPage: 1,
@@ -29,11 +30,15 @@ export const classListSlice = createSlice({
       })
       .addCase(fetchClassList.fulfilled, (state, action) => {
         state.loading = false;
-        state.classList = action.payload.data; 
-        state.totalPages = action.payload.totalPages; 
-        state.currentPage = action.payload.currentPage; 
-    })
-    
+        state.classList = action.payload.data;
+        state.totalPages = action.payload.totalPages;
+        state.currentPage = action.payload.currentPage;
+      })
+
+      .addCase(fetchApplyList.fulfilled, (state, action) => {
+        state.applyList[action.payload.id_lop] = action.payload.data;
+      })
+
 
       .addCase(fetchClassList.rejected, (state, action) => {
         state.loading = false;

@@ -14,5 +14,5 @@ export function formatCurrency(amount) {
 }
 
 export function getIMG(img) {
-  return img ? `${PATH_FILE_URL}/${img}` : ""
+  return img ? `${PATH_FILE_URL}/${img}` : "https://via.placeholder.com/150";
 }

@@ -14,7 +14,7 @@ const ClassListSlider = ({ classList }) => {
   useEffect(() => {
     const updateSlidesToShow = () => {
       if (window.innerWidth <= 640) {
-        setSlidesToShow(1); 
+        setSlidesToShow(1);
       } else {
         setSlidesToShow(4);
       }
@@ -29,7 +29,7 @@ const ClassListSlider = ({ classList }) => {
   }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       (prevIndex < classList.length - slidesToShow ? prevIndex + 1 : 0)
     );
   };
@@ -42,7 +42,7 @@ const ClassListSlider = ({ classList }) => {
 
   const getSlideWidth = () => {
     const slideWidth = 295 + 16;
-    return slideWidth; 
+    return slideWidth;
   };
 
   return (
@@ -60,7 +60,7 @@ const ClassListSlider = ({ classList }) => {
             {classList.map((item, index) => (
               <div className="border border-gray-300 w-[295px]" key={index}>
                 <div className="bg-blue-800 p-4">
-                  <h6 className="font-semibold text-white">{item.id}</h6>
+                  <h6 className="font-semibold text-white">ICS {item.id}</h6>
                 </div>
                 <div className="p-4 space-y-4">
                   {[

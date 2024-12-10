@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourseList } from "./api";
 import { CLASS_STATUS, CLASS_STATUS_COLOR } from "../../constants/MainConstants";
+import { convertDate } from "../../utils/main";
+import { Link } from "react-router-dom";
 
 const Course = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const Course = () => {
                   <td className="border border-gray-300 px-4 py-2 text-center">{index + 1}</td>
                   <td className="border border-gray-300 px-4 py-2">{item.subject}</td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {new Date(item.time).toLocaleString()}
+                    {convertDate(item.time)}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {item.total_price.toLocaleString()}đ
@@ -49,10 +51,12 @@ const Course = () => {
                     </span>
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {new Date(item.due_date).toLocaleDateString()}
+                    {convertDate(item.due_date)}
                   </td>
                   <td className="border border-gray-300 px-4 py-2 text-center">
-                    <button className="text-blue-500">Xem chi tiết</button>
+                    <Link to={`/chi-tiet-lop/${item.id}`} className="text-blue-500">
+                      <button className="text-blue-500">Xem chi tiết</button>
+                    </Link>
                   </td>
                 </tr>
               ))}
