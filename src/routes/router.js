@@ -87,7 +87,7 @@ export const routes = {
   },
   overview: {
     exact: false,
-    auth: AUTH_VALIDATE.TUTOR,
+    auth: AUTH_VALIDATE.ALL,
     path: "/tong-quan",
     component: (props) => injectProps(props, Overview),
     title: "Tổng quan"
