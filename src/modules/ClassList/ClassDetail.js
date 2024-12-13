@@ -88,7 +88,7 @@ const ClassDetail = () => {
               <div className="py-5 flex items-center">
                 <span>Tình trạng:</span>
                 <p className="text-green-500 flex items-center ml-2">
-                  {CLASS_STATUS[classListDetail.status]} <IoIosCheckmarkCircle className="ml-2" />
+                  {classListDetail.status === "pending" ? "Đang chờ" : "Đã hết hạn"} <IoIosCheckmarkCircle className="ml-2" />
                 </p>
               </div>
               <div className="flex items-center gap-3 mb-5">
@@ -172,13 +172,20 @@ const ClassDetail = () => {
               <h6>Ghi chú: {classListDetail.note}</h6>
             </div>
             {currentUser && currentUser.role === "tutor" && (
-              <CustomButton onClick={() => setVisible(true)} title="Đăng kí nhận lớp ngay" icon={FaArrowRight} color="secondary" className="mt-2" />
+              <>
+                {classListDetail.status === "pending" ? (
+                  <CustomButton onClick={() => setVisible(true)} title="Đăng kí nhận lớp ngay" icon={FaArrowRight} color="secondary" className="mt-2" />
+                ) : (
+                  <CustomButton title="Lớp đã hết hạn đăng ký" color="secondary" className="mt-2" />
+                )}
+              </>
             )}
           </div>
 
           <ApplyDetail
             owner={classListDetail?.username === currentUser?.username}
             classId={classId}
+            applied={classListDetail.status !== "pending"}
           />
 
           <div className="border-dashed border my-5 border-indigo-200"></div>

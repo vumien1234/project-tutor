@@ -9,9 +9,10 @@ import Tab from "../../components/common/Tab";
 import UserInfor from "./UserInfor";
 import Password from "./Password";
 import Calendar from "./Calendar";
-import { FaBook, FaExternalLinkAlt, FaRegCalendarAlt } from "react-icons/fa";
+import { FaBook, FaBookmark, FaExternalLinkAlt, FaRegCalendarAlt } from "react-icons/fa";
 import Course from "./Course";
 import { useSelector } from "react-redux";
+import DonDangKy from "./DonDangKy";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -73,6 +74,12 @@ const Profile = () => {
                     onClick={() => handleNewTab("manager")}
                   /> : <>
                     <Tab
+                      detail="Đơn đăng ký"
+                      Icon={FaBookmark}
+                      isActive={activeTab === "don-dang-ky"}
+                      onClick={() => handleClickTab("don-dang-ky")}
+                    />
+                    <Tab
                       detail="Lịch dạy"
                       Icon={FaRegCalendarAlt}
                       isActive={activeTab === "lich-day"}
@@ -99,6 +106,7 @@ const Profile = () => {
               {activeTab === "thong-tin-nguoi-dung" && <UserInfor />}
               {activeTab === "mat-khau" && <Password />}
               {activeTab === "khoa-hoc-dang-ki" && <Course />}
+              {activeTab === "don-dang-ky" && <DonDangKy />}
               {activeTab === "lich-hoc" &&
                 <Calendar />
               }

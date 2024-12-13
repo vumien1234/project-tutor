@@ -13,3 +13,29 @@ export const fetchCourseList = createAsyncThunk(
     }
   }
 );
+
+export const fetchDonDangKy = createAsyncThunk(
+  "getDonDangKy",
+  async ({ username }, thunkAPI) => {
+    try {
+      const url = `/class-requests/yeu-cau?username=${username}`;
+      const response = await SendRequest(url, {}, thunkAPI, "GET");
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateDonDangKy = createAsyncThunk(
+  "updateDonDangKy",
+  async (payload, thunkAPI) => {
+    try {
+      const url = `/class-requests/${payload.requestId}/yeu-cau`;
+      const response = await SendRequest(url, payload, thunkAPI, "PUT");
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

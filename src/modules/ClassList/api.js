@@ -46,3 +46,14 @@ export const fetchApplyList = createAsyncThunk("class-requests/fetchApplyList", 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+// Chap nhan ung tuyen
+export const acceptTutor = createAsyncThunk("class-requests/acceptTutor", async (payload, thunkAPI) => {
+  try {
+    const url = `/class-requests/${payload.classId}/yeu-cau`;
+    const response = await SendRequest(url, payload, thunkAPI, "PUT");
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

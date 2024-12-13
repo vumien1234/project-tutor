@@ -21,6 +21,7 @@ export const LIST_OF_SUBJECTS = [
 
 export const CLASS_STATUS = {
   "pending": "Đang chờ",
+  "waiting": "Đợi phản hồi",
   "studying": "Đang học",
   "finished": "Đã kết thúc",
   "canceled": "Đã hủy"
@@ -28,9 +29,26 @@ export const CLASS_STATUS = {
 
 export const CLASS_STATUS_COLOR = {
   "pending": "bg-yellow-100 text-yellow-700",
+  "waiting": "bg-yellow-100 text-yellow-700",
   "studying": "bg-green-100 text-green-700",
   "finished": "bg-blue-100 text-blue-700",
   "canceled": "bg-red-100 text-red-700"
+}
+
+export const CLASS_STATUS_TAG = {
+  "pending": "warning",
+  "accepted": "processing",
+  "waiting_payment": "processing",
+  "rejected": "error",
+  "done": "success"
+}
+
+export const CLASS_STATUS_TEXT = {
+  "pending": "Đang chờ",
+  "accepted": "Đợi bạn xác nhận",
+  "waiting_payment": "Chờ thanh toán",
+  "rejected": "Đã từ chối",
+  "done": "Đã hoàn thành"
 }
 
 export const PATH_FILE_URL = process.env.REACT_APP_PATH_FILE

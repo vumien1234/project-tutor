@@ -72,7 +72,7 @@ const Comment = ({ userName }) => {
         {comment.slice(0, visibleComments).map((cmt, index) => (
           <div key={index} className="px-8 py-5 mb-5 flex flex-row gap-5 border border-gray-200 rounded-lg">
             <img
-              src={cmt.username_voted === currentUser.username ? getIMG(currentUser?.avatar || "") : ImgTeacher}
+              src={getIMG(cmt?.avatar)}
               className="w-[60px] h-[60px] rounded-full"
               alt="avatar"
             />
