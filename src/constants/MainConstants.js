@@ -21,18 +21,20 @@ export const LIST_OF_SUBJECTS = [
 
 export const CLASS_STATUS = {
   "pending": "Đang chờ",
-  "waiting": "Đợi phản hồi",
+  "waiting_payment": "Chờ thanh toán",
   "studying": "Đang học",
   "finished": "Đã kết thúc",
-  "canceled": "Đã hủy"
+  "canceled": "Đã hủy",
+  "done": "Đã hoàn thành"
 }
 
 export const CLASS_STATUS_COLOR = {
   "pending": "bg-yellow-100 text-yellow-700",
-  "waiting": "bg-yellow-100 text-yellow-700",
+  "waiting_payment": "bg-yellow-100 text-yellow-700",
   "studying": "bg-green-100 text-green-700",
   "finished": "bg-blue-100 text-blue-700",
-  "canceled": "bg-red-100 text-red-700"
+  "canceled": "bg-red-100 text-red-700",
+  "done": "bg-green-100 text-green-700"
 }
 
 export const CLASS_STATUS_TAG = {

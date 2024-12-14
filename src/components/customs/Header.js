@@ -229,7 +229,7 @@ const Header = () => {
                       <Tab
                         detail="Lớp học của tôi"
                         Icon={RiBook3Line}
-                        onClick={() => navigate("/ho-so?tab=khoa-hoc-dang-ki")}
+                        onClick={() => navigate("/ho-so?tab=lich-hoc")}
                       />
                       <Tab detail="Đăng xuất" Icon={IoIosLogOut} onClick={() => handleLogout()} />
                     </div>

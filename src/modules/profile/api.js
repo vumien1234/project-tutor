@@ -39,3 +39,56 @@ export const updateDonDangKy = createAsyncThunk(
     }
   }
 );
+
+export const checkPayment = createAsyncThunk(
+  "checkPayment",
+  async (payload, thunkAPI) => {
+    try {
+      const url = `/webhook`;
+      const response = await SendRequest(url, payload, thunkAPI, "GET");
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updatePayment = createAsyncThunk(
+  "updatePayment",
+  async (payload, thunkAPI) => {
+    try {
+      const url = `/class-requests/${payload.requestId}/xac-nhan`;
+      const response = await SendRequest(url, payload, thunkAPI, "POST");
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const fetchLichHoc = createAsyncThunk(
+  "getLichHoc",
+  async (payload, thunkAPI) => {
+    try {
+      const url = `/classes`;
+      const response = await SendRequest(url, payload, thunkAPI, "GET");
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchLichHocChiTiet = createAsyncThunk(
+  "getLichHocChiTiet",
+  async (payload, thunkAPI) => {
+    try {
+      const url = `/classes/${payload.idLop}`;
+      const response = await SendRequest(url, payload, thunkAPI, "GET");
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

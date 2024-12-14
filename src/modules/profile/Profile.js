@@ -13,6 +13,7 @@ import { FaBook, FaBookmark, FaExternalLinkAlt, FaRegCalendarAlt } from "react-i
 import Course from "./Course";
 import { useSelector } from "react-redux";
 import DonDangKy from "./DonDangKy";
+import LichHoc from "./LichHoc";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -82,14 +83,8 @@ const Profile = () => {
                     <Tab
                       detail="Lịch dạy"
                       Icon={FaRegCalendarAlt}
-                      isActive={activeTab === "lich-day"}
-                      onClick={() => handleClickTab("lich-day")}
-                    />
-                    <Tab
-                      detail="Lớp học đã đăng ký"
-                      Icon={FaBook}
-                      isActive={activeTab === "lop-hoc-dang-ki"}
-                      onClick={() => handleClickTab("lop-hoc-dang-ki")}
+                      isActive={activeTab === "lich-hoc"}
+                      onClick={() => handleClickTab("lich-hoc")}
                     />
                   </>}
               </>}
@@ -108,7 +103,7 @@ const Profile = () => {
               {activeTab === "khoa-hoc-dang-ki" && <Course />}
               {activeTab === "don-dang-ky" && <DonDangKy />}
               {activeTab === "lich-hoc" &&
-                <Calendar />
+                <LichHoc />
               }
             </div>
           </div>
