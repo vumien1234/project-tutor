@@ -27,8 +27,8 @@ export const uploadImage = async (file, oldfile = "") => {
 
   return imageName;
 };
-// export const BASE_URL = "https://api.onllearning.edu.vn/api";
-export const BASE_URL = "http://localhost:3005/api";
+export const BASE_URL = "https://api.onllearning.edu.vn/api";
+// export const BASE_URL = "http://localhost:3005/api";
 
 const SendRequest = async (url, payload, thunkAPI, method = "post") => {
   url = refactorURL(url);
