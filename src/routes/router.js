@@ -13,7 +13,6 @@ import Overview from "../modules/overview/Overview";
 import ReceiveClass from "../modules/receiveClass/ReceiveClass";
 import Calendar from "../modules/profile/Calendar";
 import Course from "../modules/profile/Course";
-import RegisterClass from "../modules/registerClass/RegisterClass";
 import Confirm from "../modules/confirm/Confirm";
 import Note from "../modules/note/Note";
 import ArticleDetail from "../modules/Home/ArticleDetail";
@@ -23,6 +22,12 @@ import RefundPolicy from "../modules/refundPolicy/RefundPolicy";
 import ContractPage from "../modules/contractPage/ContractPage";
 import CreateClass from "../modules/ClassRoom/createClass/CreateClass";
 import Dashboard from "../modules/admin/dashboard";
+import UsersList from "../modules/admin/UsersList";
+import TutorListManage from "../modules/admin/TutorListManage";
+import ClassListManage from "../modules/admin/ClassListManage";
+import OpenClassRequests from "../modules/admin/OpenClassRequests";
+import ReceivedClassRequests from "../modules/admin/ReceivedClassRequests";
+import BankData from "../modules/admin/BankData";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -203,5 +208,43 @@ export const routes = {
     path: "quan-ly",
     component: (props) => injectProps(props, Dashboard),
     title: "Quản lý",
+  },
+  usersList: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly/user/student",
+    component: (props) => injectProps(props, UsersList),
+    title: "Quản lý người dùng",
+  },
+  tutorListManager: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly/user/tutor",
+    component: (props) => injectProps(props, TutorListManage),
+    title: "Quản lý người dùng",
+  },
+  classListManager: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly/lop-hoc",
+    component: (props) => injectProps(props, ClassListManage),
+  },
+  openClassRequests: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly-don/don-mo-lop",
+    component: (props) => injectProps(props, OpenClassRequests),
+  },
+  receivedClassRequests: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly-don/don-nhan-lop",
+    component: (props) => injectProps(props, ReceivedClassRequests),
+  },
+  bankData: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly/bank-status",
+    component: (props) => injectProps(props, BankData),
   }
 };
