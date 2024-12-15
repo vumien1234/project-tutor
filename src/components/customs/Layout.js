@@ -7,9 +7,11 @@ import Login from "../../modules/auth/Login/Login";
 import Signup from "../../modules/auth/Login/Register";
 import CallButton from "../../modules/callButton/CallButton";
 import AdminLayout from "./admin/AdminLayout";
+import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   const pageHidenMenu = {
     [routes.login.path]: <Login />,
@@ -29,6 +31,10 @@ const Layout = ({ children }) => {
 
   // if location has path "/quan-ly" then return children
   if (location.pathname.includes("/quan-ly")) {
+
+    if (currentUser.role !== "admin") {
+      window.location.href = "/";
+    }
     return <AdminLayout>{children}</AdminLayout>;
   }
 

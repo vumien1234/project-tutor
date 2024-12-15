@@ -105,7 +105,7 @@ const ClassDetail = () => {
               </div>
               <div className="flex items-center gap-3 mb-5">
                 <IoMdTime className="w-6 h-6 text-gray-600" />
-                <h6>Ngày bắt đầu: {convertDate(classListDetail.time)}</h6>
+                <h6>Ngày bắt đầu: {convertDate(classListDetail.time)} -  {convertDate(classListDetail.end_time)}</h6>
               </div>
               <div className="flex items-center gap-3 mb-5">
                 <CiCalendar className="w-5 h-5 text-gray-600" />

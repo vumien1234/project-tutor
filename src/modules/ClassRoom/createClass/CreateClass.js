@@ -158,6 +158,21 @@ const CreateClass = () => {
 
                 <div className="flex flex-col w-full mt-5 md:mt-0">
                   <div className="flex items-center">
+                    <h6 className={`${errors.end_time ? "text-red-500" : ""} mr-3`}>Thời gian kết thúc *</h6>
+                    {errors.end_time && <h6 className="text-red-500 text-sm">{errors.end_time.message}</h6>}
+                  </div>
+                  <input
+                    type="date"
+                    className="py-3 px-5 mt-3 rounded-sm border-[1.5px] border-solid w-full"
+                    {...register("end_time", { required: "Hạn gửi hồ sơ là bắt buộc" })}
+                  />
+                </div>
+              </div>
+
+              <div className="flex md:flex-row flex-col md:gap-5 mt-5">
+
+                <div className="flex flex-col w-full mt-5 md:mt-0">
+                  <div className="flex items-center">
                     <h6 className={`${errors.due_date ? "text-red-500" : ""} mr-3`}>Hạn gửi hồ sơ *</h6>
                     {errors.due_date && <h6 className="text-red-500 text-sm">{errors.due_date.message}</h6>}
                   </div>
