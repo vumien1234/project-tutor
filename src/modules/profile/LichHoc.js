@@ -94,7 +94,7 @@ const LichHoc = () => {
   }
 
   return (
-    <Card title="Lịch học của bạn" className="mb-6">
+    <Card title={`Lịch ${currentUser.role === "tutor" ? "dạy" : "học"} của bạn`} className="mb-6">
       <Table
         columns={columns}
         dataSource={data}
