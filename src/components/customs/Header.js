@@ -15,6 +15,7 @@ import Logo_webMobile from "../../assets/image/logo-mobile.png";
 import CustomSearch from "./Search";
 import { TEXT_AUTH } from "../../constants/AuthConstant";
 import { getIMG } from "../../utils/currencyFormatter";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const Header = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -226,11 +227,19 @@ const Header = () => {
                         Icon={RiUser3Line}
                         onClick={() => navigate("/ho-so?tab=thong-tin-nguoi-dung")}
                       />
-                      <Tab
-                        detail="Lớp học của tôi"
-                        Icon={RiBook3Line}
-                        onClick={() => navigate("/ho-so?tab=lich-hoc")}
-                      />
+                      {currentUser.role === "admin" ? (
+                        <Tab
+                          detail="Quản lý trang web"
+                          Icon={FaExternalLinkAlt}
+                          onClick={() => navigate("/quan-ly")}
+                        />
+                      ) : (
+                        <Tab
+                          detail="Lớp học của tôi"
+                          Icon={RiBook3Line}
+                          onClick={() => navigate("/ho-so?tab=lich-hoc")}
+                        />
+                      )}
                       <Tab detail="Đăng xuất" Icon={IoIosLogOut} onClick={() => handleLogout()} />
                     </div>
                   </div>

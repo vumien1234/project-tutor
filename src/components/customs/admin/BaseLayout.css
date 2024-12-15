@@ -1,0 +1,39 @@
+.custom-sider {
+  background: #fff;
+}
+.custom-sider.collapsed .demo-logo-vertical {
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  opacity: 1;
+}
+.custom-sider.collapsed .image-logo {
+  width: 2.5rem;
+  transition: width 0.3s ease;
+}
+.custom-sider.collapsed .ant-menu-item {
+  padding-left: 0;
+  justify-content: center;
+}
+.custom-sider.collapsed .ant-menu-item-icon {
+  margin-right: 0;
+}
+.custom-sider.collapsed .ant-menu-title-content {
+  display: none;
+}
+.custom-sider .demo-logo-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 14px;
+  transition: all 0.3s ease;
+}
+.custom-sider .image-logo {
+  width: 8.6rem;
+  transition: width 0.3s ease;
+}
+.custom-sider .ant-menu-item {
+  transition: padding-left 0.3s ease;
+}

@@ -22,6 +22,7 @@ import TutorList from "../modules/tutorList/TutorList";
 import RefundPolicy from "../modules/refundPolicy/RefundPolicy";
 import ContractPage from "../modules/contractPage/ContractPage";
 import CreateClass from "../modules/ClassRoom/createClass/CreateClass";
+import Dashboard from "../modules/admin/dashboard";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -195,5 +196,12 @@ export const routes = {
     path: "/signup",
     component: (props) => injectProps(props, Signup),
     title: "Đăng kí"
+  },
+  dashboard: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly",
+    component: (props) => injectProps(props, Dashboard),
+    title: "Quản lý",
   }
 };

@@ -69,7 +69,7 @@ const Profile = () => {
               ) : <>
                 {currentUser.role === "admin" ?
                   <Tab
-                    detail="Lớp học của tôi"
+                    detail="Quản lý trang web"
                     Icon={FaExternalLinkAlt}
                     isActive={activeTab === "manager"}
                     onClick={() => handleNewTab("manager")}

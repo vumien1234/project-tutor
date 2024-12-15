@@ -6,6 +6,7 @@ import { routes } from "../../routes/router";
 import Login from "../../modules/auth/Login/Login";
 import Signup from "../../modules/auth/Login/Register";
 import CallButton from "../../modules/callButton/CallButton";
+import AdminLayout from "./admin/AdminLayout";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -24,6 +25,11 @@ const Layout = ({ children }) => {
         <CallButton />
       </div>
     );
+  }
+
+  // if location has path "/quan-ly" then return children
+  if (location.pathname.includes("/quan-ly")) {
+    return <AdminLayout>{children}</AdminLayout>;
   }
 
   return (
