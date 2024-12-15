@@ -27,10 +27,10 @@ export const uploadImage = async (file, oldfile = "") => {
 
   return imageName;
 };
+// export const BASE_URL = "https://api.onllearning.edu.vn/api";
+export const BASE_URL = "http://localhost:3005/api";
 
 const SendRequest = async (url, payload, thunkAPI, method = "post") => {
-  const BASE_URL = "https://api.onllearning.edu.vn/api";
-  // const BASE_URL = "http://localhost:3005/api";
   url = refactorURL(url);
   const token = localStorage.getItem("token") || "";
   const instance = axios.create({

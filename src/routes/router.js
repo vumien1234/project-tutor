@@ -27,7 +27,8 @@ import TutorListManage from "../modules/admin/TutorListManage";
 import ClassListManage from "../modules/admin/ClassListManage";
 import OpenClassRequests from "../modules/admin/OpenClassRequests";
 import ReceivedClassRequests from "../modules/admin/ReceivedClassRequests";
-import BankData from "../modules/admin/BankData";
+import BankData from "../modules/admin/ContactData";
+import ContactData from "../modules/admin/ContactData";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -246,5 +247,11 @@ export const routes = {
     auth: AUTH_VALIDATE.ADMIN,
     path: "quan-ly/bank-status",
     component: (props) => injectProps(props, BankData),
+  },
+  contactData: {
+    exact: false,
+    auth: AUTH_VALIDATE.ADMIN,
+    path: "quan-ly/contact",
+    component: (props) => injectProps(props, ContactData),
   }
 };

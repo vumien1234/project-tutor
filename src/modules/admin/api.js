@@ -44,7 +44,7 @@ export const fetchTutorList = createAsyncThunk(
 export const fetchSupportList = createAsyncThunk(
   "admin/fetchSupportList",
   async (_, thunkAPI) => {
-    const response = await SendRequest("/support", {}, thunkAPI, "GET");
+    const response = await SendRequest("/contacts", {}, thunkAPI, "GET");
     return response;
   }
 );
@@ -53,6 +53,14 @@ export const fetchBankData = createAsyncThunk(
   "admin/fetchBankData",
   async (_, thunkAPI) => {
     const response = await SendRequest("/webhook?limit=1000&getData=true", {}, thunkAPI, "GET");
+    return response;
+  }
+);
+
+export const updateSupportStatus = createAsyncThunk(
+  "admin/updateStatus",
+  async (data, thunkAPI) => {
+    const response = await SendRequest(`/contacts`, data, thunkAPI, "PUT");
     return response;
   }
 );

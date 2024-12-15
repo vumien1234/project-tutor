@@ -7,6 +7,7 @@ import {
   fetchTutorList,
   fetchSupportList,
   fetchBankData,
+  updateSupportStatus,
 } from "./api";
 
 const initialState = {
@@ -59,6 +60,15 @@ export const classListSlice = createSlice({
       .addCase(fetchBankData.fulfilled, (state, action) => {
         state.bankData = action.payload.data;
         state.isGetBankData = true
+      })
+      .addCase(updateSupportStatus.fulfilled, (state, action) => {
+        const updatedSupportList = state.supportList.map((support) => {
+          if (support.id === action.payload.data.id) {
+            return { ...support, status: action.payload.data.status };
+          }
+          return support;
+        });
+        state.supportList = updatedSupportList;
       });
   }
 });

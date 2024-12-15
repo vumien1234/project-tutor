@@ -11,17 +11,36 @@ import { ImLinkedin2 } from "react-icons/im";
 import { useForm } from "react-hook-form";
 import CustomButton from "../../components/common/Button";
 import Banner from "../../components/common/Banner";
+import { BASE_URL } from "../../utils/sendRequest";
 
 const Contact = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
 
-    const onsubmitContact = () => {
-        console.log("errroe");
+    const onsubmitContact = async (data) => {
+        // send to /contacts
+        const response = await fetch(`${BASE_URL}/contacts`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            alert("Gửi yêu cầu thành công");
+        } else {
+            alert("Có lỗi xảy ra, vui lòng thử lại sau");
+        }
+
+        // reset form
+        reset();
     };
+
     return (
         <div className="relative">
             <Banner
@@ -64,7 +83,6 @@ const Contact = () => {
                                         <FaFacebookF />
                                     </div>
                                 </Link>
-
                                 <Link href="/">
                                     <div className="w-[40px] h-[40px] rounded-full bg-color-default flex items-center justify-center text-white">
                                         <ImLinkedin2 />
@@ -87,148 +105,69 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
+
                     <form onSubmit={handleSubmit(onsubmitContact)} className="py-12">
                         <div className="bg-[#EEF4FE] p-10 flex flex-col justify-center items-center">
-                            <h3 className="font-semibold text-orange-400">
-                                LIÊN HỆ VỚI CHÚNG TÔI !
-                            </h3>
+                            <h3 className="font-semibold text-orange-400">LIÊN HỆ VỚI CHÚNG TÔI !</h3>
                             <h5>Gửi yêu cầu hỗ trợ</h5>
                             <h6 className="py-5">
-                                Chúng tôi sẽ phản hồi bạn một cách nhanh chóng và chuyên nghiệp để
-                                đảm bảo bạn có trải nghiệm học tập tốt nhất và được hỗ trợ một cách
-                                toàn diện.
+                                Chúng tôi sẽ phản hồi bạn nhanh chóng và chuyên nghiệp để đảm bảo bạn có trải nghiệm học tập tốt nhất.
                             </h6>
+
+                            {/* Form Fields */}
                             <div className="flex flex-col md:flex-row justify-center items-center gap-5 w-full md:px-20 mb-5">
                                 <div className="flex flex-col w-full">
                                     <div className="flex mb-3 items-center">
-                                        <p
-                                            className={`${
-                                                errors.contact ? "text-red-500" : ""
-                                            } mr-3 label-input`}>
-                                            Liên hệ *
+                                        <p className={`${errors.name ? "text-red-500" : ""} mr-3 label-input`}>
+                                            Họ tên *
                                         </p>
-                                        {errors.contact && (
-                                            <p className="text-red-500 text-sm">
-                                                {errors.contact.message}
-                                            </p>
-                                        )}
+                                        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Liên hệ"
-                                        {...register("contact", {
-                                            required: "Liên hệ là bắt buộc",
-                                        })}
-                                        className={`${
-                                            errors.contact ? "border-red-500" : ""
-                                        } py-3 px-5 rounded-sm border-[1.5px] border-solid`}
+                                        placeholder="Họ tên"
+                                        {...register("name", { required: "Họ tên là bắt buộc" })}
+                                        className={`${errors.name ? "border-red-500" : ""} py-3 px-5 rounded-sm border-[1.5px] border-solid`}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full">
                                     <div className="flex mb-3 items-center">
-                                        <p
-                                            className={`${
-                                                errors.contact ? "text-red-500" : ""
-                                            } mr-3 label-input`}>
-                                            Liên hệ *
+                                        <p className={`${errors.email ? "text-red-500" : ""} mr-3 label-input`}>
+                                            Email *
                                         </p>
-                                        {errors.contact && (
-                                            <p className="text-red-500 text-sm">
-                                                {errors.contact.message}
-                                            </p>
-                                        )}
+                                        {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                                     </div>
                                     <input
-                                        type="text"
-                                        placeholder="Liên hệ"
-                                        {...register("contact", {
-                                            required: "Liên hệ là bắt buộc",
+                                        type="email"
+                                        placeholder="Email"
+                                        {...register("email", {
+                                            required: "Email là bắt buộc",
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                                message: "Định dạng email không hợp lệ"
+                                            }
                                         })}
-                                        className={`${
-                                            errors.contact ? "border-red-500" : ""
-                                        } py-3 px-5 rounded-sm border-[1.5px] border-solid`}
+                                        className={`${errors.email ? "border-red-500" : ""} py-3 px-5 rounded-sm border-[1.5px] border-solid`}
                                     />
                                 </div>
                             </div>
+
                             <div className="flex flex-col md:flex-row justify-center items-center gap-5 w-full md:px-20 mb-5">
                                 <div className="flex flex-col w-full">
                                     <div className="flex mb-3 items-center">
-                                        <p
-                                            className={`${
-                                                errors.contact ? "text-red-500" : ""
-                                            } mr-3 label-input`}>
-                                            Liên hệ *
+                                        <p className={`${errors.message ? "text-red-500" : ""} mr-3 label-input`}>
+                                            Lời nhắn *
                                         </p>
-                                        {errors.contact && (
-                                            <p className="text-red-500 text-sm">
-                                                {errors.contact.message}
-                                            </p>
-                                        )}
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="Liên hệ"
-                                        {...register("contact", {
-                                            required: "Liên hệ là bắt buộc",
-                                        })}
-                                        className={`${
-                                            errors.contact ? "border-red-500" : ""
-                                        } py-3 px-5 rounded-sm border-[1.5px] border-solid`}
-                                    />
-                                </div>
-                                <div className="flex flex-col w-full">
-                                    <div className="flex mb-3 items-center">
-                                        <p
-                                            className={`${
-                                                errors.contact ? "text-red-500" : ""
-                                            } mr-3 label-input`}>
-                                            Liên hệ *
-                                        </p>
-                                        {errors.contact && (
-                                            <p className="text-red-500 text-sm">
-                                                {errors.contact.message}
-                                            </p>
-                                        )}
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="Liên hệ"
-                                        {...register("contact", {
-                                            required: "Liên hệ là bắt buộc",
-                                        })}
-                                        className={`${
-                                            errors.contact ? "border-red-500" : ""
-                                        } py-3 px-5 rounded-sm border-[1.5px] border-solid`}
-                                    />
-                                </div>
-                            </div>
-                            <div className="flex flex-col md:flex-row justify-center items-center gap-5 w-full md:px-20 mb-5">
-                                <div className="flex flex-col w-full">
-                                    <div className="flex mb-3 items-center">
-                                        <p
-                                            className={`${
-                                                errors.contact ? "text-red-500" : ""
-                                            } mr-3 label-input`}>
-                                            Lời nhắn*
-                                        </p>
-                                        {errors.contact && (
-                                            <p className="text-red-500 text-sm">
-                                                {errors.contact.message}
-                                            </p>
-                                        )}
+                                        {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
                                     </div>
                                     <textarea
-                                        type="text"
                                         placeholder="Để lại lời nhắn cho chúng tôi"
-                                        {...register("contact", {
-                                            required: "Lời nhắn là bắt buộc",
-                                        })}
-                                        className={`${
-                                            errors.contact ? "border-red-500" : ""
-                                        } py-3 px-5 rounded-sm border-[1.5px] h-[200px] border-solid`}
+                                        {...register("message", { required: "Lời nhắn là bắt buộc" })}
+                                        className={`${errors.message ? "border-red-500" : ""} py-3 px-5 rounded-sm border-[1.5px] h-[200px] border-solid`}
                                     />
                                 </div>
                             </div>
+
                             <CustomButton
                                 title="Gửi yêu cầu"
                                 icon={FaArrowRight}

@@ -55,7 +55,7 @@ const navbars = [
     ]
   },
   {
-    key: "quan-ly/contact",
+    key: "/quan-ly/contact",
     icon: React.createElement(ContactsOutlined), // Thay icon cho mục quản lý hỗ trợ
     label: "Quản lý hỗ trợ"
   },
