@@ -27,7 +27,7 @@ import TutorListManage from "../modules/admin/TutorListManage";
 import ClassListManage from "../modules/admin/ClassListManage";
 import OpenClassRequests from "../modules/admin/OpenClassRequests";
 import ReceivedClassRequests from "../modules/admin/ReceivedClassRequests";
-import BankData from "../modules/admin/ContactData";
+import BankData from "../modules/admin/BankData";
 import ContactData from "../modules/admin/ContactData";
 
 const injectProps = (props, Component) => {
